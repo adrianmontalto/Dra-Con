@@ -9,12 +9,13 @@ public class InfoSelectPanelController : MonoBehaviour
     public GameObject enemyUnitPanel;//the unit info panel
     public GameObject enemyDefensePanel;//the defense info panel
     public GameObject enemyBuildingsPanel;//the buildings info panel
-    private GameObject previousPanel = null;//the previous panel
+    public GameObject startPanel;//the initial panel
+    private GameObject previousPanel;//the previous panel
 
 	// Use this for initialization
 	void Start ()
     {
-	
+        previousPanel = startPanel;
 	}
 	
 	// Update is called once per frame
@@ -26,102 +27,48 @@ public class InfoSelectPanelController : MonoBehaviour
     //controls the player unit button press
     public void PlayerUnitButtonOn()
     {
-        if(previousPanel == null)
-        {
-            playerUnitPanel.SetActive(true);
-            previousPanel = playerUnitPanel;            
-        }
-
-        if(previousPanel != null)
-        {
-            playerUnitPanel.SetActive(true);
-            previousPanel.SetActive(false);
-            previousPanel = playerUnitPanel;
-        }
+        previousPanel.SetActive(false);
+        playerUnitPanel.SetActive(true);
+        previousPanel = playerUnitPanel;
     }
 
     //controls the player defenses button
     public void PlayerDefensesButtonOn()
     {
-        if (previousPanel == null)
-        {
-            playerDefensePanel.SetActive(true);
-            previousPanel = playerDefensePanel;           
-        }
-
-        if (previousPanel != null)
-        {
-            playerDefensePanel.SetActive(true);
-            previousPanel.SetActive(false);
-            previousPanel = playerDefensePanel;
-        }
+        previousPanel.SetActive(false);
+        playerDefensePanel.SetActive(true);
+        previousPanel = playerDefensePanel;
     }
     
     //controls the player buildings button
     public void PlayerBuildingsButton()
     {
-        if (previousPanel == null)
-        {
-            playerBuildingsPanel.SetActive(true);
-            previousPanel = playerBuildingsPanel;            
-        }
-
-        if (previousPanel != null)
-        {
-            playerBuildingsPanel.SetActive(true);
-            previousPanel.SetActive(false);
-            previousPanel = playerBuildingsPanel;
-        }
+        previousPanel.SetActive(false);
+        playerBuildingsPanel.SetActive(true);
+        previousPanel = playerBuildingsPanel;
     }
 
     //controls the player unit button press
     public void EnemyUnitButtonOn()
     {
-        if (previousPanel == null)
-        {
-            enemyUnitPanel.SetActive(true);
-            previousPanel = enemyUnitPanel;            
-        }
-
-        if (previousPanel != null)
-        {
-            enemyUnitPanel.SetActive(true);
-            previousPanel.SetActive(false);
-            previousPanel = enemyUnitPanel;
-        }
+        previousPanel.SetActive(false);
+        enemyUnitPanel.SetActive(true);
+        previousPanel = enemyUnitPanel;
     }
 
     //controls the player defenses button
     public void EnemyDefensesButtonOn()
     {
-        if (previousPanel == null)
-        {
-            enemyDefensePanel.SetActive(true);
-            previousPanel = enemyDefensePanel;           
-        }
-
-        if (previousPanel != null)
-        {
-            enemyDefensePanel.SetActive(true);
-            previousPanel.SetActive(false);
-            previousPanel = enemyDefensePanel;
-        }
+        previousPanel.SetActive(false);
+        enemyDefensePanel.SetActive(true);
+        previousPanel = enemyDefensePanel;
     }
 
     //controls the player buildings button
     public void EnemyBuildingsButton()
     {
-        if (previousPanel == null)
-        {
-            enemyBuildingsPanel.SetActive(true);
-            previousPanel = enemyBuildingsPanel;           
-        }
-
-        if (previousPanel != null)
-        {
-            enemyBuildingsPanel.SetActive(true);
-            previousPanel.SetActive(false);
-            previousPanel = enemyBuildingsPanel;
-        }
+        previousPanel.SetActive(false);
+        enemyBuildingsPanel.SetActive(true);
+        previousPanel = enemyBuildingsPanel;
     }
 }
