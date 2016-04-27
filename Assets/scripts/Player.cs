@@ -12,15 +12,11 @@ public class Player : MonoBehaviour
     public int dragons = 0;
     public int miners = 0;
     public int advanceminers = 0;
-
-    public Text healthText;
-    public Text goldText;
-    public Text shardsText;
-    public Text dragonWarriorsText;
-    public Text dragonTanksText;
-    public Text dragonsText;
-    public Text minersText;
-    public Text advanceminersText;
+    public int barracks = 0;
+    public int dragonPortals = 0;
+    public int walls = 0;
+    public int antiAirTurrets = 0;
+    public int mines = 0;
 
     // Use this for initialization
     void Start ()
@@ -31,23 +27,8 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        SetHealthGoldShardText();
-        SetUnitsText();
+   
     }
 
-    void SetHealthGoldShardText()
-    {
-        healthText.text = health.ToString();
-        goldText.text = gold.ToString();
-        shardsText.text = shards.ToString();
-    }
 
-    void SetUnitsText()
-    {
-         dragonWarriorsText.text = dragonWarriors.ToString();
-         dragonTanksText.text = dragonTanks.ToString();
-         dragonsText.text = dragons.ToString();
-         minersText.text = miners.ToString();
-         advanceminersText.text = advanceminers.ToString();
-    }
 }
