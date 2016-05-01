@@ -22,8 +22,8 @@ public class GatherMenuController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        availableMiners = player.miners;
-        availableAdvanceMiners = player.advanceminers;
+        availableMiners = player.minerNum;
+        availableAdvanceMiners = player.advanceminerNum;
 	}
 
     public void GoldButton()

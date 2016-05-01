@@ -7,16 +7,16 @@ public class Player : MonoBehaviour
     public int health = 0;
     public int gold = 0;
     public int shards = 0;
-    public int dragonWarriors = 0;
-    public int dragonTanks = 0;
-    public int dragons = 0;
-    public int miners = 0;
-    public int advanceminers = 0;
-    public int barracks = 0;
-    public int dragonPortals = 0;
-    public int walls = 0;
-    public int antiAirTurrets = 0;
-    public int mines = 0;
+    public int dragonWarriorNum = 0;
+    public int dragonTankNum = 0;
+    public int dragonNum = 0;
+    public int minerNum = 0;
+    public int advanceminerNum = 0;
+    public int barrackNum = 0;
+    public int dragonPortalNum = 0;
+    public int wallNum = 0;
+    public int antiAirTurretNum = 0;
+    public int mineNum = 0;
 
     // Use this for initialization
     void Start ()

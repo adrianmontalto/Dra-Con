@@ -43,23 +43,23 @@ public class PlayerStatText : MonoBehaviour
 
     void SetUnitsText()
     {
-        dragonWarriorsText.text = player.dragonWarriors.ToString();
-        dragonTanksText.text = player.dragonTanks.ToString();
-        dragonsText.text = player.dragons.ToString();
-        minersText.text = player.miners.ToString();
-        advanceminersText.text = player.advanceminers.ToString();
+        dragonWarriorsText.text = player.dragonWarriorNum.ToString();
+        dragonTanksText.text = player.dragonTankNum.ToString();
+        dragonsText.text = player.dragonNum.ToString();
+        minersText.text = player.minerNum.ToString();
+        advanceminersText.text = player.advanceminerNum.ToString();
     }
 
     void SetBuildingsText()
     {
-        barracksText.text = player.barracks.ToString();
-        dragonPortalText.text = player.dragonPortals.ToString();
+        barracksText.text = player.barrackNum.ToString();
+        dragonPortalText.text = player.dragonPortalNum.ToString();
     }
 
     void SetDefenseText()
     {
-        wallsText.text = player.walls.ToString();
-        antiAirTurretsText.text = player.antiAirTurrets.ToString();
-        minesText.text = player.mines.ToString();
+        wallsText.text = player.wallNum.ToString();
+        antiAirTurretsText.text = player.antiAirTurretNum.ToString();
+        minesText.text = player.mineNum.ToString();
     }
 }
