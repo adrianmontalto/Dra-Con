@@ -83,7 +83,8 @@ public class AttackPanelController : MonoBehaviour
     public void AttackButtonClick()
     {
         CalculatePlayerAttackDamage();
-        if(playerAttackdamage > 0)
+        enemy.health -= playerAttackdamage;
+        if (playerAttackdamage > 0)
         {
             AttackEnemy();
         }
@@ -129,12 +130,12 @@ public class AttackPanelController : MonoBehaviour
         int LastEnemy = enemy.enemyUnits.Count - 1;
         if(playerAttackdamage < enemy.enemyUnits[LastEnemy].health)
         {
-            enemy.enemyUnits[LastEnemy].health -= playerAttackdamage;
+            enemy.enemyUnits[LastEnemy].health -= playerAttackdamage;           
         }
         else
         {
             playerAttackdamage -= enemy.enemyUnits[LastEnemy].health;
-            enemy.ReduceUnitNumber(enemy.enemyUnits[LastEnemy].name);
+            enemy.ReduceUnitNumber(enemy.enemyUnits[LastEnemy].objectName);
             enemy.enemyUnits.RemoveAt(LastEnemy);
             AttackEnemy();
         }

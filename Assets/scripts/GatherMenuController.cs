@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GatherMenuController : MonoBehaviour
 {
     public Player player;
+    public GameItem miner;
+    public GameItem advanceMiner;
     public GameObject gatherMenuPanel;
     public GameManager gameManager;
+    public Text minersAmountText;
+    public Text advanceMinersAmountText;
+    public Text gatherMaterial;
 
     private int availableMiners = 0;
     private int availableAdvanceMiners = 0;
@@ -24,7 +30,18 @@ public class GatherMenuController : MonoBehaviour
     {
         availableMiners = player.minerNum;
         availableAdvanceMiners = player.advanceminerNum;
-	}
+        minersAmountText.text = minersNum.ToString();
+        advanceMinersAmountText.text = advanceMinersNum.ToString();
+        if(gatherGold == true)
+        {
+            gatherMaterial.text = "Gold";
+        }
+
+        if (gatherShards == true)
+        {
+            gatherMaterial.text = "Shard";
+        }
+    }
 
     public void GoldButton()
     {
@@ -72,6 +89,22 @@ public class GatherMenuController : MonoBehaviour
 
     public void GatherButton()
     {
+        if(gatherGold == true)
+        {
+            int gold = (minersNum * miner.attack) + (advanceMinersNum * advanceMiner.attack);
+            player.gold += gold;
+            minersNum = 0;
+            advanceMinersNum = 0;
+        }
+
+        if (gatherShards == true)
+        {
+            int shard = (minersNum * miner.attack) + (advanceMinersNum * advanceMiner.attack);
+            player.shards += shard;
+            minersNum = 0;
+            advanceMinersNum = 0;
+        }
+
         gatherMenuPanel.SetActive(false);
         gameManager.playerTurn = false;
         gameManager.enemyTurn = true;

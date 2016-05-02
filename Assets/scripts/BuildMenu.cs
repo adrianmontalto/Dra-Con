@@ -56,16 +56,19 @@ public class BuildMenu : MonoBehaviour
         for(int i = 0; i < barracksNum; ++i)
         {
             player.playerUnits.Add(new GameItem(barracks.objectName,barracks.goldCost,barracks.shardCost,barracks.health,barracks.attack));
+            player.health += barracks.health;
         }
 
         for (int i = 0; i < dragonPortalsNum; ++i)
         {
             player.playerUnits.Add(new GameItem(dragonPortal.objectName, dragonPortal.goldCost, dragonPortal.shardCost, dragonPortal.health, dragonPortal.attack));
+            player.health += dragonPortal.health;
         }
 
         for (int i = 0; i < antiAirTurretNum; ++i)
         {
             player.playerUnits.Add(new GameItem(antiAirTurret.objectName, antiAirTurret.goldCost, antiAirTurret.shardCost, antiAirTurret.health, antiAirTurret.attack));
+            player.health += antiAirTurret.health;
         }
 
         for (int i = 0; i < wallNum; ++i)
@@ -76,6 +79,7 @@ public class BuildMenu : MonoBehaviour
         for (int i = 0; i < minesNum; ++i)
         {
             player.playerUnits.Add(new GameItem(mines.objectName, mines.goldCost, mines.shardCost, mines.health, mines.attack));
+            player.health += mines.health;
         }
     }
 
@@ -84,11 +88,13 @@ public class BuildMenu : MonoBehaviour
         for (int i = 0; i < minerNum; ++i)
         {
             player.playerUnits.Add(new GameItem(miner.objectName, miner.goldCost, miner.shardCost, miner.health, miner.attack));
+            player.health += miner.health;
         }
 
         for (int i = 0; i < advanceMinerNum; ++i)
         {
             player.playerUnits.Add(new GameItem(advanceMiner.objectName, advanceMiner.goldCost, advanceMiner.shardCost, advanceMiner.health, advanceMiner.attack));
+            player.health += advanceMiner.health;
         }
 
         for (int i = 0; i < dragonWarriorNum; ++i)
