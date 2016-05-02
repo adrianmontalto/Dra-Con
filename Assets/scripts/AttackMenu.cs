@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class AttackMenu : MonoBehaviour
 {
-    [HideInInspector]
-    public int dragonWarriorNum = 0;
-    public int dragonTankNum = 0;
-    public int dragonsNum = 0;
+    public GameItem dragonWarrior;
+    public GameItem dragonTank;
+    public GameItem dragon;
 
 	// Use this for initialization
 	void Start ()
@@ -17,6 +17,6 @@ public class AttackMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	
-	}
+
+    }
 }

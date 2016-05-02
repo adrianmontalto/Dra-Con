@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     public int wallNum = 0;
     public int antiAirTurretNum = 0;
     public int mineNum = 0;
+    public List<GameItem> playerUnits;
 
     // Use this for initialization
     void Start ()

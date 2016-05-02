@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class AttackPanelController : MonoBehaviour
 {
+    public Player player;
+    public Enemy enemy;
+    public AttackMenu menu;
     public GameManager gameManger;
     public GameObject attackPanel;
     private int dragonWarriorsNum = 0;
     private int dragonTanksNum = 0;
     private int dragonsNum = 0;
-	// Use this for initialization
-	void Start ()
+    private int playerAttackdamage = 0;
+
+    public Text dragonWarriorsAmountText;
+    public Text dragonTankAmountText;
+    public Text dragonAmountText;
+
+    // Use this for initialization
+    void Start ()
     {
 	
 	}
@@ -17,13 +27,17 @@ public class AttackPanelController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	
-	}
+        dragonWarriorsAmountText.text = dragonWarriorsNum.ToString();
+        dragonTankAmountText.text = dragonTanksNum.ToString();
+        dragonAmountText.text = dragonsNum.ToString();
+    }
 
     public void AddDragonWarrior()
     {
-        dragonWarriorsNum ++;
-        Debug.Log(dragonWarriorsNum);
+        if(dragonWarriorsNum < player.dragonWarriorNum)
+        {
+            dragonWarriorsNum++;
+        }        
     }
 
     public void RemoveDragonWarrior()
@@ -31,14 +45,15 @@ public class AttackPanelController : MonoBehaviour
         if(dragonWarriorsNum > 0)
         {
             dragonWarriorsNum --;
-            Debug.Log(dragonWarriorsNum);
         }
     }
 
     public void AddDragonTanks()
     {
-        dragonTanksNum ++;
-        Debug.Log(dragonTanksNum);
+        if (dragonTanksNum < player.dragonTankNum)
+        {
+            dragonTanksNum++;
+        }        
     }
 
     public void RemoveDragonTanks()
@@ -46,14 +61,15 @@ public class AttackPanelController : MonoBehaviour
         if(dragonTanksNum > 0)
         {
             dragonTanksNum --;
-            Debug.Log(dragonTanksNum);
         }
     }
 
     public void AddDragon()
     {
-        dragonsNum ++;
-        Debug.Log(dragonsNum);
+        if (dragonsNum < player.dragonNum)
+        {
+            dragonsNum++;
+        }       
     }
 
     public void RemoveDragons()
@@ -61,14 +77,84 @@ public class AttackPanelController : MonoBehaviour
         if(dragonsNum > 0)
         {
             dragonsNum --;
-            Debug.Log(dragonsNum);
         }
     }
 
     public void AttackButtonClick()
     {
+        CalculatePlayerAttackDamage();
+        if(playerAttackdamage > 0)
+        {
+            AttackEnemy();
+        }
         attackPanel.SetActive(false);
         gameManger.playerTurn = false;
         gameManger.enemyTurn = true;
+    }
+
+    void AttackEnemy()
+    {
+        if (enemy.wallNum > 0)
+        {
+            AttackEnemyWall();
+        }
+        else
+        {
+            AttackEnemyLastBuilt();
+        }
+    }
+
+    void AttackEnemyWall()
+    {
+        int lastWall = enemy.enemyUnits.FindLastIndex((GameItem item) => { return item.objectName == "wall"; });
+
+        if(lastWall > -1)
+        {
+           if(playerAttackdamage < enemy.enemyUnits[lastWall].health)
+            {
+                enemy.enemyUnits[lastWall].health -= playerAttackdamage;
+            }
+           else
+            {
+                playerAttackdamage -= enemy.enemyUnits[lastWall].health;
+                enemy.enemyUnits.RemoveAt(lastWall);
+                enemy.wallNum--;
+                AttackEnemy();
+            }
+        }
+    }
+
+    void AttackEnemyLastBuilt()
+    {
+        int LastEnemy = enemy.enemyUnits.Count - 1;
+        if(playerAttackdamage < enemy.enemyUnits[LastEnemy].health)
+        {
+            enemy.enemyUnits[LastEnemy].health -= playerAttackdamage;
+        }
+        else
+        {
+            playerAttackdamage -= enemy.enemyUnits[LastEnemy].health;
+            enemy.ReduceUnitNumber(enemy.enemyUnits[LastEnemy].name);
+            enemy.enemyUnits.RemoveAt(LastEnemy);
+            AttackEnemy();
+        }
+    }
+
+    void CalculatePlayerAttackDamage()
+    {
+        for(int i = 0; i < dragonWarriorsNum;++i)
+        {
+            playerAttackdamage += menu.dragonWarrior.attack;
+        }
+
+        for(int i = 0; i < dragonTanksNum; ++i)
+        {
+            playerAttackdamage += menu.dragonTank.attack;
+        }
+
+        for(int i = 0; i < dragonsNum; ++ i)
+        {
+            playerAttackdamage += menu.dragon.attack;
+        }
     }
 }

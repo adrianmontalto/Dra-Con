@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class Enemy : MonoBehaviour
     public int wallNum = 0;
     public int antiAirTurretNum = 0;
     public int mineNum = 0;
-    
+    public List<GameItem> enemyUnits = new List<GameItem>();
     private float turnTimer = 5.0f;
     private float resetTurnTimer = 5.0f;
 
@@ -38,6 +40,54 @@ public class Enemy : MonoBehaviour
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
             turnTimer = resetTurnTimer;
+        }
+    }
+
+    public void ReduceUnitNumber(string unitName)
+    {
+        if(unitName == "barracks")
+        {
+            barrackNum --;
+        }
+        
+        if(unitName == "dragonPortal")
+        {
+            dragonPortalNum --;
+        }
+
+        if(unitName == "antiAirTurret")
+        {
+            antiAirTurretNum --;
+        }
+
+        if(unitName == "mine")
+        {
+            mineNum --;
+        }
+
+        if (unitName == "miner")
+        {
+            minerNum --;
+        }
+
+        if (unitName == "advanceMiner")
+        {
+            advanceminerNum --;
+        }
+
+        if (unitName == "dragonWarrior")
+        {
+            dragonWarriorNum --;
+        }
+
+        if (unitName == "dragonTank")
+        {
+            dragonTankNum --;
+        }
+
+        if (unitName == "dragon")
+        {
+            dragonNum --;
         }
     }
 }
