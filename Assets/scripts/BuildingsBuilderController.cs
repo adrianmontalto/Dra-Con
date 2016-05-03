@@ -4,17 +4,17 @@ using System.Collections;
 
 public class BuildingsBuilderController : MonoBehaviour
 {
-    public GameObject barracksImage;
-    public GameObject dragonPortalImage;
-    public GameObject antiAirTurretImage;
-    public GameObject minesImage;
-    public GameObject wallImage;      
-    public BuildMenu buildMenu;
-    public BuilMenuController buildController;
-    public Text shardsCostText;
-    public Text goldCostText;
-    public Text healthText;
-    public Text attackText;
+    public GameObject barracksImage;//the image for the barracks
+    public GameObject dragonPortalImage;// the image for the dragon portal
+    public GameObject antiAirTurretImage;//the image for the anti air turret
+    public GameObject minesImage;//the image for the mine
+    public GameObject wallImage;//the image for the wall      
+    public BuildMenu buildMenu;//allows to access the build menu variables
+    public BuilMenuController buildController;//allows to access build controller variables
+    public Text shardsCostText;//text to display the shard cost of the building
+    public Text goldCostText;//text to display the gold cost of the building
+    public Text healthText;//text to display the health of the building
+    public Text attackText;//text to display the attack of the building
     public Text barracksNumText;
     public Text dragonPortalNumText;
     public Text minesNumText;
