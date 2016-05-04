@@ -55,30 +55,36 @@ public class BuildMenu : MonoBehaviour
     {
         for(int i = 0; i < barracksNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(barracks.objectName,barracks.goldCost,barracks.shardCost,barracks.health,barracks.attack));
+            GameItem playerBuilding = barracks.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerBuilding);
             player.health += barracks.health;
         }
 
         for (int i = 0; i < dragonPortalsNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragonPortal.objectName, dragonPortal.goldCost, dragonPortal.shardCost, dragonPortal.health, dragonPortal.attack));
+            GameItem playerBuilding = dragonPortal.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerBuilding);
             player.health += dragonPortal.health;
         }
 
         for (int i = 0; i < antiAirTurretNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(antiAirTurret.objectName, antiAirTurret.goldCost, antiAirTurret.shardCost, antiAirTurret.health, antiAirTurret.attack));
+            GameItem playerBuilding = antiAirTurret.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerBuilding);
             player.health += antiAirTurret.health;
         }
 
         for (int i = 0; i < wallNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(wall.objectName, wall.goldCost, wall.shardCost, wall.health, wall.attack));
+            GameItem playerBuilding = wall.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerBuilding);
+            player.health += wall.health;
         }
 
         for (int i = 0; i < minesNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(mines.objectName, mines.goldCost, mines.shardCost, mines.health, mines.attack));
+            GameItem playerBuilding = mines.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerBuilding);
             player.health += mines.health;
         }
     }
@@ -87,29 +93,37 @@ public class BuildMenu : MonoBehaviour
     {
         for (int i = 0; i < minerNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(miner.objectName, miner.goldCost, miner.shardCost, miner.health, miner.attack));
+            GameItem playerUnits = miner.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerUnits);
             player.health += miner.health;
         }
 
         for (int i = 0; i < advanceMinerNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(advanceMiner.objectName, advanceMiner.goldCost, advanceMiner.shardCost, advanceMiner.health, advanceMiner.attack));
+            GameItem playerUnits = advanceMiner.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerUnits);
             player.health += advanceMiner.health;
         }
 
         for (int i = 0; i < dragonWarriorNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragonWarrior.objectName, dragonWarrior.goldCost, dragonWarrior.shardCost, dragonWarrior.health, dragonWarrior.attack));
+            GameItem playerUnits = dragonWarrior.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerUnits);
+            player.health += dragonWarrior.health;
         }
 
         for (int i = 0; i < dragonTankNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragonTank.objectName, dragonTank.goldCost, dragonTank.shardCost, dragonTank.health, dragonTank.attack));
+            GameItem playerUnits = dragonTank.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerUnits);
+            player.health += dragonTank.health;
         }
 
         for (int i = 0; i < dragonNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragon.objectName, dragon.goldCost, dragon.shardCost, dragon.health, dragon.attack));
+            GameItem playerUnits = dragon.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(playerUnits);
+            player.health += dragon.health;
         }
     }
 
@@ -117,27 +131,37 @@ public class BuildMenu : MonoBehaviour
     {
         for (int i = 0; i < barracksNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(barracks.objectName, barracks.goldCost, barracks.shardCost, barracks.health, barracks.attack));
+            GameItem enemyBuildings = barracks.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyBuildings);
+            enemy.health += barracks.health;
         }
 
         for (int i = 0; i < dragonPortalsNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(dragonPortal.objectName, dragonPortal.goldCost, dragonPortal.shardCost, dragonPortal.health, dragonPortal.attack));
+            GameItem enemyBuildings = dragonPortal.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyBuildings);
+            enemy.health += dragonPortal.health;
         }
 
         for (int i = 0; i < antiAirTurretNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(antiAirTurret.objectName, antiAirTurret.goldCost, antiAirTurret.shardCost, antiAirTurret.health, antiAirTurret.attack));
+            GameItem enemyBuildings = antiAirTurret.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyBuildings);
+            enemy.health += antiAirTurret.health;
         }
 
         for (int i = 0; i < wallNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(wall.objectName, wall.goldCost, wall.shardCost, wall.health, wall.attack));
+            GameItem enemyBuildings = wall.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyBuildings);
+            enemy.health += wall.health;
         }
 
         for (int i = 0; i < minesNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(mines.objectName, mines.goldCost, mines.shardCost, mines.health, mines.attack));
+            GameItem enemyBuildings = mines.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyBuildings);
+            enemy.health += mines.health;
         }
     }
 
@@ -145,27 +169,37 @@ public class BuildMenu : MonoBehaviour
     {
         for (int i = 0; i < minerNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(miner.objectName, miner.goldCost, miner.shardCost, miner.health, miner.attack));
+            GameItem enemyUnit = miner.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyUnit);
+            enemy.health += miner.health;
         }
 
         for (int i = 0; i < advanceMinerNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(advanceMiner.objectName, advanceMiner.goldCost, advanceMiner.shardCost, advanceMiner.health, advanceMiner.attack));
+            GameItem enemyUnit = advanceMiner.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyUnit);
+            enemy.health += advanceMiner.health;
         }
 
         for (int i = 0; i < dragonWarriorNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(dragonWarrior.objectName, dragonWarrior.goldCost, dragonWarrior.shardCost, dragonWarrior.health, dragonWarrior.attack));
+            GameItem enemyUnit = dragonWarrior.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyUnit);
+            enemy.health += dragonWarrior.health;
         }
 
         for (int i = 0; i < dragonTankNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(dragonTank.objectName, dragonTank.goldCost, dragonTank.shardCost, dragonTank.health, dragonTank.attack));
+            GameItem enemyUnit =dragonTank.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyUnit);
+            enemy.health += dragonTank.health;
         }
 
         for (int i = 0; i < dragonNum; ++i)
         {
-            enemy.enemyUnits.Add(new GameItem(dragon.objectName, dragon.goldCost, dragon.shardCost, dragon.health, dragon.attack));
+            GameItem enemyUnit = dragon.gameObject.GetComponent<GameItem>();
+            enemy.enemyUnits.Add(enemyUnit);
+            enemy.health += dragon.health;
         }
     }
 

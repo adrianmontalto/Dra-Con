@@ -17,7 +17,7 @@ public class UtilityValue : MonoBehaviour
     public float m_value;
     public float m_normalizedValue;
     public NormalizationType m_normalizationType;
-
+    public UtilityMaths math;
     public UtilityValue(NormalizationType type, float min, float max)
     {
         m_min = min;
@@ -64,14 +64,19 @@ public class UtilityValue : MonoBehaviour
         switch(m_normalizationType)
         {
             case NormalizationType.LINEAR:
+                m_normalizedValue = math.LinearNormalise(m_min,m_max,m_value);
                 break;
             case NormalizationType.INVERSE_LINEAR:
+                m_normalizedValue =1.0f - math.LinearNormalise(m_min,m_max,m_value);
                 break;
             case NormalizationType.QUADRATIC:
+                m_normalizedValue = math.QuadraticNormalise(m_min, m_max, m_value, m_power);
                 break;
             case NormalizationType.INVERSE_QUADRATIC:
+                m_normalizedValue = 1.0f - math.QuadraticNormalise(m_min, m_max, m_value, m_power);
                 break;
             default:
+                Debug.Log("No Utility Function Set");
                 break;
                
         }

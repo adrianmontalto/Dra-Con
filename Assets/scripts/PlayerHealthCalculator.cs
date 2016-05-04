@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class PlayerHealthCalculator : MonoBehaviour
 {
     public Player player;
-    [HideInInspector]
     public GameItem barrack;
     public GameItem dragonPortal;
     public GameItem antiAirTurret;
@@ -39,70 +38,78 @@ public class PlayerHealthCalculator : MonoBehaviour
     //sets up the units
     void SetUpUnits()
     {
-        //adds a dragon warrior to the player unit list for the initial amount of dragon warriors
+        //adds a dragon warrior to the enemy unit list for the initial amount of dragon warriors
         for (int i = 0; i < player.dragonWarriorNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragonWarrior.objectName, dragonWarrior.goldCost, dragonWarrior.shardCost, dragonWarrior.health, dragonWarrior.attack));
+            GameItem newPlayer = dragonWarrior.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
-        //adds a dragon tank to the playerUnits list for each dragon tank initialiased
+        //adds a dragon tank to the enemyUnits list for each dragon tank initialiased
         for (int i = 0; i < player.dragonTankNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragonTank.objectName, dragonTank.goldCost, dragonTank.shardCost, dragonTank.health, dragonTank.attack));
+            GameItem newPlayer = dragonTank.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
-        //adds a dragon to the player unit list for each dragon that you have
+        //adds a dragon to the enemy unit list for each dragon that you have
         for (int i = 0; i < player.dragonNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragon.objectName, dragon.goldCost, dragon.shardCost, dragon.health, dragon.attack));
+            GameItem newPlayer = dragon.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
-        //adds a miner to the player unit list for each miner that you have
+        //adds a miner to the enemy unit list for each miner that you have
         for (int i = 0; i < player.minerNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(miner.objectName, miner.goldCost, miner.shardCost, miner.health, miner.attack));
+            GameItem newPlayer = miner.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
         //adds a advance miner for each advanced miner that you have
         for (int i = 0; i < player.advanceminerNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(advanceMiner.objectName, advanceMiner.goldCost, advanceMiner.shardCost, advanceMiner.health, advanceMiner.attack));
+            GameItem newPlayer = advanceMiner.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
     }
 
     //set up the buildings
     void SetUpBuildings()
     {
-        //adds a barack to the player units list for each barrack the player has
-        for (int i = 0; i < player.barrackNum;++i)
+        //adds a barack to the enemy units list for each barrack the player has
+        for (int i = 0; i < player.barrackNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(barrack.name,barrack.goldCost,barrack.shardCost,barrack.health,barrack.attack));
+            GameItem newPlayer = barrack.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
-        //adds a dragon portal to the player units list for each dragon portal the player has
-        for(int i =0; i < player.dragonPortalNum;++i)
+        //adds a dragon portal to the enemy units list for each dragon portal the player has
+        for (int i = 0; i < player.dragonPortalNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(dragonPortal.name,dragonPortal.goldCost,dragonPortal.shardCost,dragonPortal.health,
-                                         dragonPortal.attack));
+            GameItem newPlayer = dragonPortal.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
-        //adds a wall to the player units list for each wall the player has
-        for(int i = 0; i < player.wallNum; ++ i)
+        //adds a wall to the enemy units list for each wall the player has
+        for (int i = 0; i < player.wallNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(wall.name,wall.goldCost,wall.shardCost,wall.health,wall.attack));
+            GameItem newPlayer = wall.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
-        //adds a anti air turrets to the player units list for each anti air turret the player has
-        for(int i = 0; i < player.antiAirTurretNum; ++i)
+        //adds a anti air turrets to the enemy units list for each anti air turret the player has
+        for (int i = 0; i < player.antiAirTurretNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(antiAirTurret.name,antiAirTurret.goldCost,antiAirTurret.shardCost,
-                                         antiAirTurret.health,antiAirTurret.attack));
+            GameItem newPlayer = antiAirTurret.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
 
-        //adds a mine to the player units list for each mine the player has
-        for(int i = 0; i < player.mineNum; ++i)
+        //adds a mine to the enemy units list for each mine the player has
+        for (int i = 0; i < player.mineNum; ++i)
         {
-            player.playerUnits.Add(new GameItem(mine.name,mine.goldCost,mine.shardCost,mine.health,mine.attack));
+            GameItem newPlayer = mine.gameObject.GetComponent<GameItem>();
+            player.playerUnits.Add(newPlayer);
         }
     }
 }
