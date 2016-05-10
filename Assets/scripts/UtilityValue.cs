@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UtilityValue : MonoBehaviour
+public class UtilityValue 
 {
     public enum NormalizationType
     {

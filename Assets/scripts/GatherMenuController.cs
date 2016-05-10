@@ -13,12 +13,12 @@ public class GatherMenuController : MonoBehaviour
     public Text advanceMinersAmountText;
     public Text gatherMaterial;
 
-    private int availableMiners = 0;
-    private int availableAdvanceMiners = 0;
-    private int minersNum = 0;
-    private int advanceMinersNum = 0;
-    private bool gatherGold = false;
-    private bool gatherShards = false;
+    private int m_availableMiners = 0;
+    private int m_availableAdvanceMiners = 0;
+    private int m_minersNum = 0;
+    private int m_advanceMinersNum = 0;
+    private bool m_gatherGold = false;
+    private bool m_gatherShards = false;
 	// Use this for initialization
 	void Start ()
     {
@@ -28,16 +28,16 @@ public class GatherMenuController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        availableMiners = player.minerNum;
-        availableAdvanceMiners = player.advanceminerNum;
-        minersAmountText.text = minersNum.ToString();
-        advanceMinersAmountText.text = advanceMinersNum.ToString();
-        if(gatherGold == true)
+        m_availableMiners = player.m_minerNum;
+        m_availableAdvanceMiners = player.m_advanceminerNum;
+        minersAmountText.text = m_minersNum.ToString();
+        advanceMinersAmountText.text = m_advanceMinersNum.ToString();
+        if(m_gatherGold == true)
         {
             gatherMaterial.text = "Gold";
         }
 
-        if (gatherShards == true)
+        if (m_gatherShards == true)
         {
             gatherMaterial.text = "Shard";
         }
@@ -45,64 +45,64 @@ public class GatherMenuController : MonoBehaviour
 
     public void GoldButton()
     {
-        gatherShards = false;
-        gatherGold = true;
+        m_gatherShards = false;
+        m_gatherGold = true;
     }
 
     public void ShardButton()
     {
-        gatherGold = false;
-        gatherShards = true;
+        m_gatherGold = false;
+        m_gatherShards = true;
     }
 
     public void AddMinerButton()
     {
-        if(minersNum < availableMiners)
+        if(m_minersNum < m_availableMiners)
         {
-            minersNum ++;
+            m_minersNum ++;
         }
     }
 
     public void RemoveMinerButton()
     {
-        if(minersNum > 0)
+        if(m_minersNum > 0)
         {
-            minersNum--;
+            m_minersNum--;
         }
     }
 
     public void AddAdvanceMinerButton()
     {
-        if (advanceMinersNum < availableAdvanceMiners)
+        if (m_advanceMinersNum < m_availableAdvanceMiners)
         {
-            advanceMinersNum++;
+            m_advanceMinersNum++;
         }
     }
 
     public void RemoveAdvanceMinerButton()
     {
-        if (advanceMinersNum > 0)
+        if (m_advanceMinersNum > 0)
         {
-            advanceMinersNum--;
+            m_advanceMinersNum--;
         }
     }
 
     public void GatherButton()
     {
-        if(gatherGold == true)
+        if(m_gatherGold == true)
         {
-            int gold = (minersNum * miner.attack) + (advanceMinersNum * advanceMiner.attack);
-            player.gold += gold;
-            minersNum = 0;
-            advanceMinersNum = 0;
+            int gold = (m_minersNum * miner.attack) + (m_advanceMinersNum * advanceMiner.attack);
+            player.m_gold += gold;
+            m_minersNum = 0;
+            m_advanceMinersNum = 0;
         }
 
-        if (gatherShards == true)
+        if (m_gatherShards == true)
         {
-            int shard = (minersNum * miner.attack) + (advanceMinersNum * advanceMiner.attack);
-            player.shards += shard;
-            minersNum = 0;
-            advanceMinersNum = 0;
+            int shard = (m_minersNum * miner.attack) + (m_advanceMinersNum * advanceMiner.attack);
+            player.m_shards += shard;
+            m_minersNum = 0;
+            m_advanceMinersNum = 0;
         }
 
         gatherMenuPanel.SetActive(false);

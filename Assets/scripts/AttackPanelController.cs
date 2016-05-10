@@ -9,14 +9,14 @@ public class AttackPanelController : MonoBehaviour
     public AttackMenu menu;
     public GameManager gameManger;
     public GameObject attackPanel;
-    private int dragonWarriorsNum = 0;
-    private int dragonTanksNum = 0;
-    private int dragonsNum = 0;
-    private int playerAttackdamage = 0;
+    private int m_dragonWarriorsNum = 0;
+    private int m_dragonTanksNum = 0;
+    private int m_dragonsNum = 0;
+    private int m_playerAttackdamage = 0;
 
-    public Text dragonWarriorsAmountText;
-    public Text dragonTankAmountText;
-    public Text dragonAmountText;
+    public Text m_dragonWarriorsAmountText;
+    public Text m_dragonTankAmountText;
+    public Text m_dragonAmountText;
 
     // Use this for initialization
     void Start ()
@@ -27,64 +27,64 @@ public class AttackPanelController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        dragonWarriorsAmountText.text = dragonWarriorsNum.ToString();
-        dragonTankAmountText.text = dragonTanksNum.ToString();
-        dragonAmountText.text = dragonsNum.ToString();
+        m_dragonWarriorsAmountText.text = m_dragonWarriorsNum.ToString();
+        m_dragonTankAmountText.text = m_dragonTanksNum.ToString();
+        m_dragonAmountText.text = m_dragonsNum.ToString();
     }
 
     public void AddDragonWarrior()
     {
-        if(dragonWarriorsNum < player.dragonWarriorNum)
+        if(m_dragonWarriorsNum < player.m_dragonWarriorNum)
         {
-            dragonWarriorsNum++;
+            m_dragonWarriorsNum++;
         }        
     }
 
     public void RemoveDragonWarrior()
     {
-        if(dragonWarriorsNum > 0)
+        if(m_dragonWarriorsNum > 0)
         {
-            dragonWarriorsNum --;
+            m_dragonWarriorsNum --;
         }
     }
 
     public void AddDragonTanks()
     {
-        if (dragonTanksNum < player.dragonTankNum)
+        if (m_dragonTanksNum < player.m_dragonTankNum)
         {
-            dragonTanksNum++;
+            m_dragonTanksNum++;
         }        
     }
 
     public void RemoveDragonTanks()
     {
-        if(dragonTanksNum > 0)
+        if(m_dragonTanksNum > 0)
         {
-            dragonTanksNum --;
+            m_dragonTanksNum --;
         }
     }
 
     public void AddDragon()
     {
-        if (dragonsNum < player.dragonNum)
+        if (m_dragonsNum < player.m_dragonNum)
         {
-            dragonsNum++;
+            m_dragonsNum++;
         }       
     }
 
     public void RemoveDragons()
     {
-        if(dragonsNum > 0)
+        if(m_dragonsNum > 0)
         {
-            dragonsNum --;
+            m_dragonsNum --;
         }
     }
 
     public void AttackButtonClick()
     {
         CalculatePlayerAttackDamage();
-        enemy.health -= playerAttackdamage;
-        if (playerAttackdamage > 0)
+        enemy.m_health -= m_playerAttackdamage;
+        if (m_playerAttackdamage > 0)
         {
             AttackEnemy();
         }
@@ -95,7 +95,7 @@ public class AttackPanelController : MonoBehaviour
 
     void AttackEnemy()
     {
-        if (enemy.wallNum > 0)
+        if (enemy.m_wallNum > 0)
         {
             AttackEnemyWall();
         }
@@ -107,19 +107,19 @@ public class AttackPanelController : MonoBehaviour
 
     void AttackEnemyWall()
     {
-        int lastWall = enemy.enemyUnits.FindLastIndex((GameItem item) => { return item.objectName == "wall"; });
+        int lastWall = enemy.m_enemyUnits.FindLastIndex((GameItem item) => { return item.objectName == "wall"; });
 
         if(lastWall > -1)
         {
-           if(playerAttackdamage < enemy.enemyUnits[lastWall].health)
+           if(m_playerAttackdamage < enemy.m_enemyUnits[lastWall].health)
             {
-                enemy.enemyUnits[lastWall].health -= playerAttackdamage;
+                enemy.m_enemyUnits[lastWall].health -= m_playerAttackdamage;
             }
            else
             {
-                playerAttackdamage -= enemy.enemyUnits[lastWall].health;
-                enemy.enemyUnits.RemoveAt(lastWall);
-                enemy.wallNum--;
+                m_playerAttackdamage -= enemy.m_enemyUnits[lastWall].health;
+                enemy.m_enemyUnits.RemoveAt(lastWall);
+                enemy.m_wallNum--;
                 AttackEnemy();
             }
         }
@@ -127,35 +127,35 @@ public class AttackPanelController : MonoBehaviour
 
     void AttackEnemyLastBuilt()
     {
-        int LastEnemy = enemy.enemyUnits.Count - 1;
-        if(playerAttackdamage < enemy.enemyUnits[LastEnemy].health)
+        int LastEnemy = enemy.m_enemyUnits.Count - 1;
+        if(m_playerAttackdamage < enemy.m_enemyUnits[LastEnemy].health)
         {
-            enemy.enemyUnits[LastEnemy].health -= playerAttackdamage;           
+            enemy.m_enemyUnits[LastEnemy].health -= m_playerAttackdamage;           
         }
         else
         {
-            playerAttackdamage -= enemy.enemyUnits[LastEnemy].health;
-            enemy.ReduceUnitNumber(enemy.enemyUnits[LastEnemy].objectName);
-            enemy.enemyUnits.RemoveAt(LastEnemy);
+            m_playerAttackdamage -= enemy.m_enemyUnits[LastEnemy].health;
+            enemy.ReduceUnitNumber(enemy.m_enemyUnits[LastEnemy].objectName);
+            enemy.m_enemyUnits.RemoveAt(LastEnemy);
             AttackEnemy();
         }
     }
 
     void CalculatePlayerAttackDamage()
     {
-        for(int i = 0; i < dragonWarriorsNum;++i)
+        for(int i = 0; i < m_dragonWarriorsNum;++i)
         {
-            playerAttackdamage += menu.dragonWarrior.attack;
+            m_playerAttackdamage += menu.dragonWarrior.attack;
         }
 
-        for(int i = 0; i < dragonTanksNum; ++i)
+        for(int i = 0; i < m_dragonTanksNum; ++i)
         {
-            playerAttackdamage += menu.dragonTank.attack;
+            m_playerAttackdamage += menu.dragonTank.attack;
         }
 
-        for(int i = 0; i < dragonsNum; ++ i)
+        for(int i = 0; i < m_dragonsNum; ++ i)
         {
-            playerAttackdamage += menu.dragon.attack;
+            m_playerAttackdamage += menu.dragon.attack;
         }
     }
 }

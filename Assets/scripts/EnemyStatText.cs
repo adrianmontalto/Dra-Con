@@ -28,7 +28,7 @@ public class EnemyStatText : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        healthText.text = enemy.health.ToString();
+        healthText.text = enemy.m_health.ToString();
         SetResourceText();
         SetUnitsText();
         SetBuildingsText();
@@ -37,29 +37,29 @@ public class EnemyStatText : MonoBehaviour
 
     void SetResourceText()
     {
-        goldText.text = enemy.gold.ToString();
-        shardsText.text = enemy.shards.ToString();
+        goldText.text = enemy.m_gold.ToString();
+        shardsText.text = enemy.m_shards.ToString();
     }
 
     void SetUnitsText()
     {
-        dragonWarriorsText.text = enemy.dragonWarriorNum.ToString();
-        dragonTanksText.text = enemy.dragonTankNum.ToString();
-        dragonsText.text = enemy.dragonNum.ToString();
-        minersText.text = enemy.minerNum.ToString();
-        advanceminersText.text = enemy.advanceminerNum.ToString();
+        dragonWarriorsText.text = enemy.m_dragonWarriorNum.ToString();
+        dragonTanksText.text = enemy.m_dragonTankNum.ToString();
+        dragonsText.text = enemy.m_dragonNum.ToString();
+        minersText.text = enemy.m_minerNum.ToString();
+        advanceminersText.text = enemy.m_advanceminerNum.ToString();
     }
 
     void SetBuildingsText()
     {
-        barracksText.text = enemy.barrackNum.ToString();
-        dragonPortalText.text = enemy.dragonPortalNum.ToString();
+        barracksText.text = enemy.m_barrackNum.ToString();
+        dragonPortalText.text = enemy.m_dragonPortalNum.ToString();
     }
 
     void SetDefenseText()
     {
-        wallsText.text = enemy.wallNum.ToString();
-        antiAirTurretsText.text = enemy.antiAirTurretNum.ToString();
-        minesText.text = enemy.mineNum.ToString();
+        wallsText.text = enemy.m_wallNum.ToString();
+        antiAirTurretsText.text = enemy.m_antiAirTurretNum.ToString();
+        minesText.text = enemy.m_mineNum.ToString();
     }
 }

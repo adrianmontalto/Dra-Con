@@ -7,39 +7,58 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour
 {
     
-    public GameManager gameManager;
-    public int health = 0;
-    public int gold = 0;
-    public int shards = 0;
-    public int dragonWarriorNum = 0;
-    public int dragonTankNum = 0;
-    public int dragonNum = 0;
-    public int minerNum = 0;
-    public int advanceminerNum = 0;
-    public int barrackNum = 0;
-    public int dragonPortalNum = 0;
-    public int wallNum = 0;
-    public int antiAirTurretNum = 0;
-    public int mineNum = 0;
-    public List<GameItem> enemyUnits = new List<GameItem>();
-    private float turnTimer = 5.0f;
-    private float resetTurnTimer = 5.0f;
-
+    public GameManager gameManager;//the game manager
+    public WinningGoalsManager winningGoalManager;
+    
+    public int m_gold = 0;
+    public int m_shards = 0;
+    public int m_dragonWarriorNum = 0;
+    public int m_dragonTankNum = 0;
+    public int m_dragonNum = 0;
+    public int m_minerNum = 0;
+    public int m_advanceminerNum = 0;
+    public int m_barrackNum = 0;
+    public int m_dragonPortalNum = 0;
+    public int m_wallNum = 0;
+    public int m_antiAirTurretNum = 0;
+    public int m_mineNum = 0;
+    [HideInInspector]
+    public int m_health = 0;
+    [HideInInspector]
+    public List<GameItem> m_enemyUnits = new List<GameItem>();
+    [HideInInspector]
+    public int m_closenessToWinGoal = 0;
+    [HideInInspector]
+    public int m_closenessToShardGoal;
+    [HideInInspector]
+    public int m_closenessToGoldGoal;
+    [HideInInspector]
+    public int m_totalUnitCount = 0;
+    [HideInInspector]
+    public int m_totalResourceUnits = 0;
+    private float m_turnTimer = 5.0f;
+    private float m_resetTurnTimer = 5.0f;
     // Use this for initialization
     void Start ()
     {
-
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        turnTimer -= Time.deltaTime;
-        if (turnTimer < 0)
+        m_closenessToGoldGoal = m_gold / winningGoalManager.goldNeeded;
+        m_closenessToShardGoal = m_shards / winningGoalManager.shardsNeeded;
+        m_closenessToWinGoal = m_closenessToGoldGoal + m_closenessToShardGoal;
+
+        m_totalUnitCount = m_dragonWarriorNum + m_dragonTankNum + m_dragonNum;
+        m_totalResourceUnits = m_minerNum + m_advanceminerNum;
+        m_turnTimer -= Time.deltaTime;
+        if (m_turnTimer < 0)
         {
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
-            turnTimer = resetTurnTimer;
+            m_turnTimer = m_resetTurnTimer;
         }
     }
 
@@ -47,47 +66,47 @@ public class Enemy : MonoBehaviour
     {
         if(unitName == "barracks")
         {
-            barrackNum --;
+            m_barrackNum --;
         }
         
         if(unitName == "dragonPortal")
         {
-            dragonPortalNum --;
+            m_dragonPortalNum --;
         }
 
         if(unitName == "antiAirTurret")
         {
-            antiAirTurretNum --;
+            m_antiAirTurretNum --;
         }
 
         if(unitName == "mine")
         {
-            mineNum --;
+            m_mineNum --;
         }
 
         if (unitName == "miner")
         {
-            minerNum --;
+            m_minerNum --;
         }
 
         if (unitName == "advanceMiner")
         {
-            advanceminerNum --;
+            m_advanceminerNum --;
         }
 
         if (unitName == "dragonWarrior")
         {
-            dragonWarriorNum --;
+            m_dragonWarriorNum --;
         }
 
         if (unitName == "dragonTank")
         {
-            dragonTankNum --;
+            m_dragonTankNum --;
         }
 
         if (unitName == "dragon")
         {
-            dragonNum --;
+            m_dragonNum --;
         }
     }
 }

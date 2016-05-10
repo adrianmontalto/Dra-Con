@@ -12,14 +12,14 @@ public class BuilMenuController : MonoBehaviour
     public GameObject buildingPanel;
     public GameObject initPanel;
     private GameObject previousPanel;
-    public Text totalShardCostText;
-    public Text shardAmountText;
-    public Text totalGoldCostText;
-    public Text goldAmount;
+    public Text m_totalShardCostText;
+    public Text m_shardAmountText;
+    public Text m_totalGoldCostText;
+    public Text m_goldAmount;
     [HideInInspector]
-    public int totalGold;
+    public int m_totalGold;
     [HideInInspector]
-    public int totalShard;
+    public int m_totalShard;
 
     // Use this for initialization
     void Start ()
@@ -49,7 +49,7 @@ public class BuilMenuController : MonoBehaviour
 
     public void BuildButtonClick()
     {
-        if(totalShard < player.shards && totalGold < player.gold)
+        if(m_totalShard < player.m_shards && m_totalGold < player.m_gold)
         {
             buildMenu.AddPlayerBuildings();
             buildMenu.AddPlayerUnits();

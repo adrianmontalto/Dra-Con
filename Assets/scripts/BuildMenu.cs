@@ -4,25 +4,25 @@ using System.Collections;
 public class BuildMenu : MonoBehaviour
 {
     [HideInInspector]
-    public int minerNum = 0;
+    public int m_minerNum = 0;
     [HideInInspector]
-    public int advanceMinerNum = 0;
+    public int m_advanceMinerNum = 0;
     [HideInInspector]
-    public int dragonWarriorNum = 0;
+    public int m_dragonWarriorNum = 0;
     [HideInInspector]
-    public int dragonTankNum = 0;
+    public int m_dragonTankNum = 0;
     [HideInInspector]
-    public int dragonNum = 0;
+    public int m_dragonNum = 0;
     [HideInInspector]
-    public int barracksNum = 0;
+    public int m_barracksNum = 0;
     [HideInInspector]
-    public int dragonPortalsNum = 0;
+    public int m_dragonPortalsNum = 0;
     [HideInInspector]
-    public int antiAirTurretNum = 0;
+    public int m_antiAirTurretNum = 0;
     [HideInInspector]
-    public int minesNum = 0;
+    public int m_minesNum = 0;
     [HideInInspector]
-    public int wallNum = 0;
+    public int m_wallNum = 0;
    
     public Player player;
     public Enemy enemy;
@@ -53,167 +53,167 @@ public class BuildMenu : MonoBehaviour
 
     public void AddPlayerBuildings()
     {
-        for(int i = 0; i < barracksNum; ++i)
+        for(int i = 0; i < m_barracksNum; ++i)
         {
             GameItem playerBuilding = barracks.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerBuilding);
-            player.health += barracks.health;
+            player.m_playerUnits.Add(playerBuilding);
+            player.m_health += barracks.health;
         }
 
-        for (int i = 0; i < dragonPortalsNum; ++i)
+        for (int i = 0; i < m_dragonPortalsNum; ++i)
         {
             GameItem playerBuilding = dragonPortal.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerBuilding);
-            player.health += dragonPortal.health;
+            player.m_playerUnits.Add(playerBuilding);
+            player.m_health += dragonPortal.health;
         }
 
-        for (int i = 0; i < antiAirTurretNum; ++i)
+        for (int i = 0; i < m_antiAirTurretNum; ++i)
         {
             GameItem playerBuilding = antiAirTurret.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerBuilding);
-            player.health += antiAirTurret.health;
+            player.m_playerUnits.Add(playerBuilding);
+            player.m_health += antiAirTurret.health;
         }
 
-        for (int i = 0; i < wallNum; ++i)
+        for (int i = 0; i < m_wallNum; ++i)
         {
             GameItem playerBuilding = wall.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerBuilding);
-            player.health += wall.health;
+            player.m_playerUnits.Add(playerBuilding);
+            player.m_health += wall.health;
         }
 
-        for (int i = 0; i < minesNum; ++i)
+        for (int i = 0; i < m_minesNum; ++i)
         {
             GameItem playerBuilding = mines.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerBuilding);
-            player.health += mines.health;
+            player.m_playerUnits.Add(playerBuilding);
+            player.m_health += mines.health;
         }
     }
 
     public void AddPlayerUnits()
     {
-        for (int i = 0; i < minerNum; ++i)
+        for (int i = 0; i < m_minerNum; ++i)
         {
             GameItem playerUnits = miner.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerUnits);
-            player.health += miner.health;
+            player.m_playerUnits.Add(playerUnits);
+            player.m_health += miner.health;
         }
 
-        for (int i = 0; i < advanceMinerNum; ++i)
+        for (int i = 0; i < m_advanceMinerNum; ++i)
         {
             GameItem playerUnits = advanceMiner.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerUnits);
-            player.health += advanceMiner.health;
+            player.m_playerUnits.Add(playerUnits);
+            player.m_health += advanceMiner.health;
         }
 
-        for (int i = 0; i < dragonWarriorNum; ++i)
+        for (int i = 0; i < m_dragonWarriorNum; ++i)
         {
             GameItem playerUnits = dragonWarrior.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerUnits);
-            player.health += dragonWarrior.health;
+            player.m_playerUnits.Add(playerUnits);
+            player.m_health += dragonWarrior.health;
         }
 
-        for (int i = 0; i < dragonTankNum; ++i)
+        for (int i = 0; i < m_dragonTankNum; ++i)
         {
             GameItem playerUnits = dragonTank.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerUnits);
-            player.health += dragonTank.health;
+            player.m_playerUnits.Add(playerUnits);
+            player.m_health += dragonTank.health;
         }
 
-        for (int i = 0; i < dragonNum; ++i)
+        for (int i = 0; i < m_dragonNum; ++i)
         {
             GameItem playerUnits = dragon.gameObject.GetComponent<GameItem>();
-            player.playerUnits.Add(playerUnits);
-            player.health += dragon.health;
+            player.m_playerUnits.Add(playerUnits);
+            player.m_health += dragon.health;
         }
     }
 
     public void AddEnemyBuildings()
     {
-        for (int i = 0; i < barracksNum; ++i)
+        for (int i = 0; i < m_barracksNum; ++i)
         {
             GameItem enemyBuildings = barracks.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyBuildings);
-            enemy.health += barracks.health;
+            enemy.m_enemyUnits.Add(enemyBuildings);
+            enemy.m_health += barracks.health;
         }
 
-        for (int i = 0; i < dragonPortalsNum; ++i)
+        for (int i = 0; i < m_dragonPortalsNum; ++i)
         {
             GameItem enemyBuildings = dragonPortal.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyBuildings);
-            enemy.health += dragonPortal.health;
+            enemy.m_enemyUnits.Add(enemyBuildings);
+            enemy.m_health += dragonPortal.health;
         }
 
-        for (int i = 0; i < antiAirTurretNum; ++i)
+        for (int i = 0; i < m_antiAirTurretNum; ++i)
         {
             GameItem enemyBuildings = antiAirTurret.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyBuildings);
-            enemy.health += antiAirTurret.health;
+            enemy.m_enemyUnits.Add(enemyBuildings);
+            enemy.m_health += antiAirTurret.health;
         }
 
-        for (int i = 0; i < wallNum; ++i)
+        for (int i = 0; i < m_wallNum; ++i)
         {
             GameItem enemyBuildings = wall.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyBuildings);
-            enemy.health += wall.health;
+            enemy.m_enemyUnits.Add(enemyBuildings);
+            enemy.m_health += wall.health;
         }
 
-        for (int i = 0; i < minesNum; ++i)
+        for (int i = 0; i < m_minesNum; ++i)
         {
             GameItem enemyBuildings = mines.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyBuildings);
-            enemy.health += mines.health;
+            enemy.m_enemyUnits.Add(enemyBuildings);
+            enemy.m_health += mines.health;
         }
     }
 
     public void AddEnemyUnits()
     {
-        for (int i = 0; i < minerNum; ++i)
+        for (int i = 0; i < m_minerNum; ++i)
         {
             GameItem enemyUnit = miner.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyUnit);
-            enemy.health += miner.health;
+            enemy.m_enemyUnits.Add(enemyUnit);
+            enemy.m_health += miner.health;
         }
 
-        for (int i = 0; i < advanceMinerNum; ++i)
+        for (int i = 0; i < m_advanceMinerNum; ++i)
         {
             GameItem enemyUnit = advanceMiner.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyUnit);
-            enemy.health += advanceMiner.health;
+            enemy.m_enemyUnits.Add(enemyUnit);
+            enemy.m_health += advanceMiner.health;
         }
 
-        for (int i = 0; i < dragonWarriorNum; ++i)
+        for (int i = 0; i < m_dragonWarriorNum; ++i)
         {
             GameItem enemyUnit = dragonWarrior.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyUnit);
-            enemy.health += dragonWarrior.health;
+            enemy.m_enemyUnits.Add(enemyUnit);
+            enemy.m_health += dragonWarrior.health;
         }
 
-        for (int i = 0; i < dragonTankNum; ++i)
+        for (int i = 0; i < m_dragonTankNum; ++i)
         {
             GameItem enemyUnit =dragonTank.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyUnit);
-            enemy.health += dragonTank.health;
+            enemy.m_enemyUnits.Add(enemyUnit);
+            enemy.m_health += dragonTank.health;
         }
 
-        for (int i = 0; i < dragonNum; ++i)
+        for (int i = 0; i < m_dragonNum; ++i)
         {
             GameItem enemyUnit = dragon.gameObject.GetComponent<GameItem>();
-            enemy.enemyUnits.Add(enemyUnit);
-            enemy.health += dragon.health;
+            enemy.m_enemyUnits.Add(enemyUnit);
+            enemy.m_health += dragon.health;
         }
     }
 
     public void ResetNumbers()
     {
-        minerNum = 0;
-        advanceMinerNum = 0;
-        dragonWarriorNum = 0;
-        dragonTankNum = 0;
-        dragonNum = 0;
-        barracksNum = 0;
-        dragonPortalsNum = 0;
-        antiAirTurretNum = 0;
-        minesNum = 0;
-        wallNum = 0;
+        m_minerNum = 0;
+        m_advanceMinerNum = 0;
+        m_dragonWarriorNum = 0;
+        m_dragonTankNum = 0;
+        m_dragonNum = 0;
+        m_barracksNum = 0;
+        m_dragonPortalsNum = 0;
+        m_antiAirTurretNum = 0;
+        m_minesNum = 0;
+        m_wallNum = 0;
     }
 }

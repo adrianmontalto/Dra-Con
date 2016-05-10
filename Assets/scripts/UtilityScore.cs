@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UtilityScore : MonoBehaviour
+public class UtilityScore 
 {
     public UtilityValue m_utilityvalue;
     public float m_score = 0.0f;
@@ -17,7 +17,7 @@ public class UtilityScore : MonoBehaviour
             m_modifier = mod;
         }
     };
-    public List<UtilityInfo> m_values;
+    public List<UtilityInfo> m_values = new List<UtilityInfo>();
 	// Use this for initialization
 	void Start ()
     {
@@ -30,7 +30,7 @@ public class UtilityScore : MonoBehaviour
 	
 	}
 
-    void AddUtilityValue(UtilityValue value,float modifier)
+    public void AddUtilityValue(UtilityValue value,float modifier)
     {
         m_values.Add(new UtilityInfo(value,modifier));
     }
