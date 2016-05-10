@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyBuildManager : MonoBehaviour
 {
+    public Enemy enemy;
+    public Player player;
+    public Dictionary<string, UtilityScore> m_utilityScoreMap = new Dictionary<string, UtilityScore>();
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
 	
 	}
@@ -15,4 +19,14 @@ public class EnemyBuildManager : MonoBehaviour
     {
 	
 	}
+
+    void SetValues()
+    {
+
+    }
+
+    void SetScores()
+    {
+
+    }
 }
