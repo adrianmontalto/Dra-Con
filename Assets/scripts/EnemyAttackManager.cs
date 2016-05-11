@@ -6,6 +6,7 @@ public class EnemyAttackManager : MonoBehaviour
 {
     public Enemy enemy;
     public Player player;
+    public GameManager gameManager;
     private UtilityValue m_lowAttackValue;
     private UtilityValue m_mediumAttackValue;
     private UtilityValue m_highAttackValue;
@@ -13,17 +14,20 @@ public class EnemyAttackManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        SetValues();
+        InitValues();
         SetScores();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	
+        //checks to see if it is the enemy turn
+	    if(gameManager.enemyTurn == true)
+        {
+            SelectAction();
+        }
 	}
-
-    void SetValues()
+    void InitValues()
     {
         m_lowAttackValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 15);
         m_lowAttackValue.SetValue(enemy.m_closenessToWinGoal);
@@ -32,6 +36,13 @@ public class EnemyAttackManager : MonoBehaviour
         m_mediumAttackValue.SetValue(player.m_health);
 
         m_highAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_highAttackValue.SetValue(enemy.m_closenessToWinGoal);
+    }
+
+    void SetValues()
+    {
+        m_lowAttackValue.SetValue(enemy.m_closenessToWinGoal);
+        m_mediumAttackValue.SetValue(player.m_health);
         m_highAttackValue.SetValue(enemy.m_closenessToWinGoal);
     }
 
@@ -48,5 +59,53 @@ public class EnemyAttackManager : MonoBehaviour
         UtilityScore highAttackScore = new UtilityScore();
         highAttackScore.AddUtilityValue(m_highAttackValue,1.0f);
         m_utilityScoreMap.Add("highAttack",highAttackScore);
+    }
+
+    public void SelectAction()
+    {
+        SetValues();
+
+        float bestScore = 0.0f;
+        string strBestAction = "";
+
+        foreach(KeyValuePair<string,UtilityScore> score in m_utilityScoreMap)
+        {
+            float thisScore = score.Value.GetUtilityScore();
+            if(thisScore > bestScore)
+            {
+                bestScore = thisScore;
+                strBestAction = score.Key;
+            }
+        }
+
+        if(strBestAction == "lowAttack")
+        {
+            LowAttack();
+        }
+
+        if(strBestAction == "mediumAttack")
+        {
+            MediumAttack();
+        }
+
+        if(strBestAction == "highAttack")
+        {
+            HighAttack();
+        }
+    }
+
+    void LowAttack()
+    {
+
+    }
+
+    void MediumAttack()
+    {
+
+    }
+
+    void HighAttack()
+    {
+
     }
 }

@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         m_closenessToGoldGoal = m_gold / winningGoalManager.goldNeeded;
         m_closenessToShardGoal = m_shards / winningGoalManager.shardsNeeded;
-        m_closenessToWinGoal = m_closenessToGoldGoal + m_closenessToShardGoal;
+        m_closenessToWinGoal = (m_closenessToGoldGoal + m_closenessToShardGoal) / 2;
 
         m_totalUnitCount = m_dragonWarriorNum + m_dragonTankNum + m_dragonNum;
         m_totalResourceUnits = m_minerNum + m_advanceminerNum;
