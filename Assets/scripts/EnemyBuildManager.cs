@@ -34,7 +34,7 @@ public class EnemyBuildManager : MonoBehaviour
     [HideInInspector]
     public Dictionary<string, UtilityScore> m_buildUtilityScoreMap = new Dictionary<string, UtilityScore>();
     [HideInInspector]
-    public Dictionary<string, UtilityScore> m_unitUtilityScore = new Dictionary<string, UtilityScore>();
+    public Dictionary<string, UtilityScore> m_unitUtilityScoreMap = new Dictionary<string, UtilityScore>();
     //
 
     // Use this for initialization
@@ -179,15 +179,15 @@ public class EnemyBuildManager : MonoBehaviour
     {
         UtilityScore dragonWarriorScore = new UtilityScore();
         dragonWarriorScore.AddUtilityValue(m_buildDragonWarriors,1.0f);
-        m_unitUtilityScore.Add("dragonWarrior", dragonWarriorScore);
+        m_unitUtilityScoreMap.Add("dragonWarrior", dragonWarriorScore);
 
         UtilityScore dragonTankScore = new UtilityScore();
         dragonTankScore.AddUtilityValue(m_buildDragonTanks, 1.0f);
-        m_unitUtilityScore.Add("dragonTank",dragonTankScore);
+        m_unitUtilityScoreMap.Add("dragonTank",dragonTankScore);
 
         UtilityScore dragonScore = new UtilityScore();
         dragonScore.AddUtilityValue(m_buildDragon,1.0f);
-        m_unitUtilityScore.Add("dragon",dragonScore);
+        m_unitUtilityScoreMap.Add("dragon",dragonScore);
     }
 
     public void SelectAction()
@@ -235,7 +235,7 @@ public class EnemyBuildManager : MonoBehaviour
         float bestScore = 0.0f;
         string strBestAction = "";
 
-        foreach(KeyValuePair<string,UtilityScore> score in)
+        foreach(KeyValuePair<string,UtilityScore> score in m_resourceUtilittScoreMap)
         {
             float thisScore = score.Value.GetUtilityScore();
             if(thisScore > bestScore)
@@ -243,6 +243,16 @@ public class EnemyBuildManager : MonoBehaviour
                 bestScore = thisScore;
                 strBestAction = score.Key;
             }
+        }
+
+        if(strBestAction == "buildMiner")
+        {
+            BuildMiner();
+        }
+
+        if(strBestAction == "buildAdvanceMiner")
+        {
+            BuildAdvanceMiner();
         }
     }
 
@@ -253,7 +263,7 @@ public class EnemyBuildManager : MonoBehaviour
         float bestScore = 0.0f;
         string strBestAction = "";
 
-        foreach (KeyValuePair<string, UtilityScore> score in)
+        foreach (KeyValuePair<string, UtilityScore> score in m_unitUtilityScoreMap)
         {
             float thisScore = score.Value.GetUtilityScore();
             if (thisScore > bestScore)
@@ -261,6 +271,21 @@ public class EnemyBuildManager : MonoBehaviour
                 bestScore = thisScore;
                 strBestAction = score.Key;
             }
+        }   
+
+        if(strBestAction == "dragonWarrior")
+        {
+            BuildDragonWarrior();
+        }
+
+        if(strBestAction == "dragonTank")
+        {
+            BuildDragonTank();
+        }
+
+        if(strBestAction == "dragon")
+        {
+            BuildDragon();
         }
     }
 
@@ -271,7 +296,7 @@ public class EnemyBuildManager : MonoBehaviour
         float bestScore = 0.0f;
         string strBestAction = "";
 
-        foreach (KeyValuePair<string, UtilityScore> score in)
+        foreach (KeyValuePair<string, UtilityScore> score in m_defenseUtilityScoreMap)
         {
             float thisScore = score.Value.GetUtilityScore();
             if (thisScore > bestScore)
@@ -279,6 +304,21 @@ public class EnemyBuildManager : MonoBehaviour
                 bestScore = thisScore;
                 strBestAction = score.Key;
             }
+        }
+
+        if(strBestAction == "mine")
+        {
+            BuildMines();
+        }
+
+        if(strBestAction == "wall")
+        {
+            BuildWalls();
+        }
+
+        if(strBestAction == "turret")
+        {
+            BuildTurret();
         }
     }
 
@@ -289,7 +329,7 @@ public class EnemyBuildManager : MonoBehaviour
         float bestScore = 0.0f;
         string strBestAction = "";
 
-        foreach (KeyValuePair<string, UtilityScore> score in)
+        foreach (KeyValuePair<string, UtilityScore> score in m_buildUtilityScoreMap)
         {
             float thisScore = score.Value.GetUtilityScore();
             if (thisScore > bestScore)
@@ -297,6 +337,16 @@ public class EnemyBuildManager : MonoBehaviour
                 bestScore = thisScore;
                 strBestAction = score.Key;
             }
+        }
+
+        if(strBestAction == "barrack")
+        {
+            BuildBarracks();
+        }
+
+        if(strBestAction == "portal")
+        {
+            BuildDragonPortal();
         }
     }
 

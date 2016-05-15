@@ -36,6 +36,12 @@ public class Enemy : MonoBehaviour
     public int m_totalUnitCount = 0;
     [HideInInspector]
     public int m_totalResourceUnits = 0;
+    [HideInInspector]
+    public int m_dragonWarriorsDestroyed = 0;
+    [HideInInspector]
+    public int m_dragonTanksDestroyed = 0;
+    [HideInInspector]
+    public int m_dragonsDestroyed = 0;
     private float m_turnTimer = 5.0f;
     private float m_resetTurnTimer = 5.0f;
     // Use this for initialization
@@ -108,5 +114,90 @@ public class Enemy : MonoBehaviour
         {
             m_dragonNum --;
         }
+    }
+
+    public void DestroyGroundUnit(int damage)
+    {
+        int unitDamage = damage;
+        while(unitDamage > 0)
+        {
+            int index = ChooseWhichUnitToDestroy();
+            if (unitDamage > m_enemyUnits[index].health)
+            {
+                unitDamage -= m_enemyUnits[index].health;
+                if (m_enemyUnits[index].name == "dragonWarrior")
+                {
+                    DestroyLastDragonWarrior(index);
+                }
+                if (m_enemyUnits[index].name == "dragonTank")
+                {
+                    DestroyLastDragonTank(index);
+                }
+            }
+            else
+            {
+                m_enemyUnits[index].health -= unitDamage;
+                unitDamage = 0;
+            }
+        }
+    }
+
+    void DestroyLastDragonWarrior(int index)
+    {
+        if(index > -1)
+        {
+            m_enemyUnits.RemoveAt(index);
+            m_dragonWarriorNum --;
+            m_dragonWarriorsDestroyed ++;
+        }
+    }
+
+    void DestroyLastDragonTank(int index)
+    {
+        m_enemyUnits.RemoveAt(index);
+        m_dragonTankNum --;
+        m_dragonTanksDestroyed ++;
+    }
+
+    int ChooseWhichUnitToDestroy()
+    {
+        int lastWarrior = m_enemyUnits.FindLastIndex((GameItem item) =>
+        { return item.objectName == "dragonWarrior"; });
+        int lastTank = m_enemyUnits.FindLastIndex((GameItem item) =>
+        { return item.objectName == "dragonTank"; });
+
+        if (lastWarrior > lastTank)
+        {
+            return lastWarrior;
+        }
+        else
+            return lastTank;
+    }
+
+    public void DestroyDragons(int damage)
+    {
+        int dragonDamage = damage;
+        while (dragonDamage > 0)
+        {
+            int lastDragon = m_enemyUnits.FindLastIndex((GameItem item) => 
+                                { return item.objectName == "dragon"; });
+            if (dragonDamage > m_enemyUnits[lastDragon].health)
+            {
+                dragonDamage -= m_enemyUnits[lastDragon].health;
+                DestroyLastDragon(lastDragon);
+            }
+            else
+            {
+                m_enemyUnits[lastDragon].health -= dragonDamage;
+                dragonDamage = 0;
+            }
+        }
+    }
+
+    void DestroyLastDragon(int index)
+    {
+        m_enemyUnits.RemoveAt(index);
+        m_dragonNum--;
+        m_dragonsDestroyed ++;
     }
 }

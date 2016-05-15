@@ -35,4 +35,96 @@ public class Player : MonoBehaviour
         //calculate the number of units the player has
         m_unitNumber = m_dragonWarriorNum + m_dragonTankNum + m_dragonNum + m_minerNum + m_advanceminerNum;
     }
+
+    public void DestroyMines(int number)
+    {
+        for(int i = 0; i < number;++i)
+        {
+            int lastMine = m_playerUnits.FindLastIndex((GameItem item) => { return item.objectName == "mines";});
+
+            if(lastMine > -1)
+            {
+                m_playerUnits.RemoveAt(lastMine);
+                m_mineNum--;
+            }
+        }
+    }
+
+    public void ReduceUnitNumber(string unitName)
+    {
+        if (unitName == "barracks")
+        {
+            m_barrackNum--;
+        }
+
+        if (unitName == "dragonPortal")
+        {
+            m_dragonPortalNum--;
+        }
+
+        if (unitName == "antiAirTurret")
+        {
+            m_antiAirTurretNum--;
+        }
+
+        if (unitName == "mine")
+        {
+            m_mineNum--;
+        }
+
+        if (unitName == "miner")
+        {
+            m_minerNum--;
+        }
+
+        if (unitName == "advanceMiner")
+        {
+            m_advanceminerNum--;
+        }
+
+        if (unitName == "dragonWarrior")
+        {
+            m_dragonWarriorNum--;
+        }
+
+        if (unitName == "dragonTank")
+        {
+            m_dragonTankNum--;
+        }
+
+        if (unitName == "dragon")
+        {
+            m_dragonNum--;
+        }
+    }
+
+    public void DestroyGroundUnit(int damage)
+    {
+
+    }
+
+    void DestroyLastDragonWarrior(int index)
+    {
+
+    }
+
+    void DestroyLastDragonTank(int index)
+    {
+
+    }
+
+    int ChooseWhichUnitToDestroy()
+    {
+        return 0;
+    }
+
+    public void DestroyDragons(int damage)
+    {
+
+    }
+
+    void DestroyLastDragon(int index)
+    {
+
+    }
 }

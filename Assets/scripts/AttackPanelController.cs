@@ -158,4 +158,19 @@ public class AttackPanelController : MonoBehaviour
             m_playerAttackdamage += menu.dragon.attack;
         }
     }
+
+    void CalculateMineDamage()
+    {
+
+    }
+
+    void AntiAirTurretDamage()
+    {
+
+    }
+
+    void CalculateGrounUnitHealth()
+    {
+
+    }
 }
