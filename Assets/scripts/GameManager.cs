@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public Player player;
     public Enemy enemy;
+    public WinningGoalsManager winGoal;
     public GameObject playerTurnIndicator;
     public GameObject enemyTurnIndicator;
     public GameObject playerAttackPanel;
@@ -44,5 +46,29 @@ public class GameManager : MonoBehaviour
             enemyTurnIndicator.SetActive(true);
             enemyIndicatorOn = true;
         }
-	}
+
+        if(enemy.m_health < 0)
+        {
+            if((player.m_gold == winGoal.goldNeeded) &&(player.m_shards == winGoal.shardsNeeded))
+            {
+                SceneManager.LoadScene("PlayerWin");
+            }
+            else
+            {
+                SceneManager.LoadScene("EnemyWin");
+            }
+        }
+
+        if (player.m_health < 0)
+        {
+            if ((enemy.m_gold == winGoal.goldNeeded) && (enemy.m_shards == winGoal.shardsNeeded))
+            {
+                SceneManager.LoadScene("EnemyWin");
+            }
+            else
+            {
+                SceneManager.LoadScene("PlayerWin");
+            }
+        }
+    }
 }

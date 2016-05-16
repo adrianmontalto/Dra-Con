@@ -5,19 +5,21 @@ public class UtilityValue
 {
     public enum NormalizationType
     {
+        NULL,
         LINEAR,
         INVERSE_LINEAR,
         QUADRATIC,
         INVERSE_QUADRATIC
     }
 
-    public float m_min;
-    public float m_max;
-    public float m_power;
-    public float m_value;
-    public float m_normalizedValue;
-    public NormalizationType m_normalizationType;
-    public UtilityMaths math;
+    public float m_min = 0;
+    public float m_max = 0;
+    public float m_power = 0;
+    public float m_value = 0;
+    public float m_normalizedValue = 0;
+    public NormalizationType m_normalizationType = NormalizationType.NULL;
+    public UtilityMaths math = new UtilityMaths();
+
     public UtilityValue(NormalizationType type, float min, float max)
     {
         m_min = min;
@@ -67,7 +69,7 @@ public class UtilityValue
                 m_normalizedValue = math.LinearNormalise(m_min,m_max,m_value);
                 break;
             case NormalizationType.INVERSE_LINEAR:
-                m_normalizedValue =1.0f - math.LinearNormalise(m_min,m_max,m_value);
+                m_normalizedValue = 1.0f - math.LinearNormalise(m_min, m_max, m_value);
                 break;
             case NormalizationType.QUADRATIC:
                 m_normalizedValue = math.QuadraticNormalise(m_min, m_max, m_value, m_power);
@@ -77,10 +79,8 @@ public class UtilityValue
                 break;
             default:
                 Debug.Log("No Utility Function Set");
-                break;
-               
+                break;               
         }
-        m_normalizedValue = 0;
         return m_normalizedValue;
     }
 }

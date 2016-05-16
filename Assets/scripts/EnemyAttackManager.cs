@@ -43,12 +43,15 @@ public class EnemyAttackManager : MonoBehaviour
     void InitValues()
     {
         m_lowAttackValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 15);
+        m_lowAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
         m_lowAttackValue.SetValue(enemy.m_closenessToWinGoal);
 
         m_mediumAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_mediumAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_mediumAttackValue.SetValue(player.m_health);
 
         m_highAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_mediumAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_highAttackValue.SetValue(enemy.m_closenessToWinGoal);
     }
 
@@ -176,27 +179,27 @@ public class EnemyAttackManager : MonoBehaviour
             //calculate health of attacking dragon warriors and dragon tanks
             CalculateGroundUnitHealth();
             //calculate damage done to player ensurinbg that no excess mines are used
-            int mineDamage = player.m_mineNum * mine.attack;
-            if(mineDamage < m_groundUnitHealth)
+            m_mineDamage = player.m_mineNum * mine.attack;
+            if(m_mineDamage < m_groundUnitHealth)
             {
                 //destroy all mines used                
                 player.DestroyMines(player.m_mineNum);
                 //destroy any warriors and tanks killed from mines
-                enemy.DestroyGroundUnit(mineDamage);
+                enemy.DestroyGroundUnit(m_mineDamage);
             }
             else
             {
-                mineDamage = 0;
+                m_mineDamage = 0;
                 int mineNum = 0;
-                while(mineDamage < m_groundUnitHealth)
+                while(m_mineDamage < m_groundUnitHealth)
                 {
                     mineNum++;
-                    mineDamage += mine.attack;
+                    m_mineDamage += mine.attack;
                 }
                 //destroy all mines used                
                 player.DestroyMines(mineNum);
                 //destroy any warriors and tanks killed from mines
-                enemy.DestroyGroundUnit(mineDamage);
+                enemy.DestroyGroundUnit(m_mineDamage);
             }          
         }
     }
@@ -312,5 +315,16 @@ public class EnemyAttackManager : MonoBehaviour
         CalculateMineDamage();
         //calculate anti air turret damage
         CalculateAntiAirTurretDamage();
+    }
+
+    void ResetUnitNumbers()
+    {
+        m_mineDamage = 0;
+        m_antiAirTurretDamage = 0;
+        m_dragonWarriorNumber = 0;
+        m_dragonTankNum = 0;
+        m_dragonNum = 0;
+        m_groundUnitHealth = 0;
+        m_attackDamage = 0;
     }
 }

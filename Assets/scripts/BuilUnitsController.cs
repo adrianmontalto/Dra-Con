@@ -42,17 +42,17 @@ public class BuilUnitsController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         minerImage.SetActive(true);
         buildMenu.previousImage = minerImage;
-        m_shardsCostText.text = buildMenu.miner.shardCost.ToString();
-        m_goldCostText.text = buildMenu.miner.goldCost.ToString();
-        m_healthText.text = buildMenu.miner.health.ToString();
-        m_attackText.text = buildMenu.miner.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.miner.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.miner.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.miner.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.miner.attack.ToString();
     }
 
     public void AddMiner()
     {
         buildMenu.m_minerNum ++;
-        buildController.m_totalGold += buildMenu.miner.goldCost;
-        buildController.m_totalShard += buildMenu.miner.shardCost;        
+        buildController.m_totalGold += buildMenu.gameItemList.miner.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.miner.shardCost;        
     }
 
     public void RemoveMiner()
@@ -60,8 +60,8 @@ public class BuilUnitsController : MonoBehaviour
         if(buildMenu.m_minerNum > 0)
         {
             buildMenu.m_minerNum --;
-            buildController.m_totalGold -= buildMenu.miner.goldCost;
-            buildController.m_totalShard -= buildMenu.miner.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.miner.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.miner.shardCost;
         }
     }
 
@@ -70,18 +70,18 @@ public class BuilUnitsController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         advanceMinerImage.SetActive(true);
         buildMenu.previousImage = advanceMinerImage;
-        m_shardsCostText.text = buildMenu.advanceMiner.shardCost.ToString();
-        m_goldCostText.text = buildMenu.advanceMiner.goldCost.ToString();
-        m_healthText.text = buildMenu.advanceMiner.health.ToString();
-        m_attackText.text = buildMenu.advanceMiner.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.advanceMiner.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.advanceMiner.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.advanceMiner.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.advanceMiner.attack.ToString();
     }
 
 
     public void AddAdvanceMiner()
     {
         buildMenu.m_advanceMinerNum ++;
-        buildController.m_totalGold += buildMenu.advanceMiner.goldCost;
-        buildController.m_totalShard += buildMenu.advanceMiner.shardCost;
+        buildController.m_totalGold += buildMenu.gameItemList.advanceMiner.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.advanceMiner.shardCost;
     }
 
     public void RemoveAdvanceMiner()
@@ -89,8 +89,8 @@ public class BuilUnitsController : MonoBehaviour
         if(buildMenu.m_advanceMinerNum > 0)
         {
             buildMenu.m_advanceMinerNum --;
-            buildController.m_totalGold -= buildMenu.advanceMiner.goldCost;
-            buildController.m_totalShard -= buildMenu.advanceMiner.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.advanceMiner.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.advanceMiner.shardCost;
         }
     }
 
@@ -99,17 +99,17 @@ public class BuilUnitsController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         dragonWarriorImage.SetActive(true);
         buildMenu.previousImage = dragonWarriorImage;
-        m_shardsCostText.text = buildMenu.dragonWarrior.shardCost.ToString();
-        m_goldCostText.text = buildMenu.dragonWarrior.goldCost.ToString();
-        m_healthText.text = buildMenu.dragonWarrior.health.ToString();
-        m_attackText.text = buildMenu.dragonWarrior.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.dragonWarrior.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.dragonWarrior.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.dragonWarrior.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.dragonWarrior.attack.ToString();
     }
 
     public void AddDragonWarrior()
     {
         buildMenu.m_dragonWarriorNum ++;
-        buildController.m_totalGold += buildMenu.dragonWarrior.goldCost;
-        buildController.m_totalShard += buildMenu.dragonWarrior.shardCost;
+        buildController.m_totalGold += buildMenu.gameItemList.dragonWarrior.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.dragonWarrior.shardCost;
     }
 
     public void RemoveDragonWarrior()
@@ -117,8 +117,8 @@ public class BuilUnitsController : MonoBehaviour
         if(buildMenu.m_dragonWarriorNum > 0)
         {
             buildMenu.m_dragonWarriorNum --;
-            buildController.m_totalGold -= buildMenu.dragonWarrior.goldCost;
-            buildController.m_totalShard -= buildMenu.dragonWarrior.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.dragonWarrior.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.dragonWarrior.shardCost;
         }
     }
 
@@ -127,17 +127,17 @@ public class BuilUnitsController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         dragonTankImage.SetActive(true);
         buildMenu.previousImage = dragonTankImage;
-        m_shardsCostText.text = buildMenu.dragonTank.shardCost.ToString();
-        m_goldCostText.text = buildMenu.dragonTank.goldCost.ToString();
-        m_healthText.text = buildMenu.dragonTank.health.ToString();
-        m_attackText.text = buildMenu.dragonTank.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.dragonTank.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.dragonTank.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.dragonTank.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.dragonTank.attack.ToString();
     }
     
     public void AddDragonTank()
     {
         buildMenu.m_dragonTankNum ++;
-        buildController.m_totalGold += buildMenu.dragonTank.goldCost;
-        buildController.m_totalShard += buildMenu.dragonTank.shardCost;
+        buildController.m_totalGold += buildMenu.gameItemList.dragonTank.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.dragonTank.shardCost;
     }
 
     public void RemoveDragonTank()
@@ -145,8 +145,8 @@ public class BuilUnitsController : MonoBehaviour
         if(buildMenu.m_dragonTankNum > 0)
         {
             buildMenu.m_dragonTankNum --;
-            buildController.m_totalGold -= buildMenu.dragonTank.goldCost;
-            buildController.m_totalShard -= buildMenu.dragonTank.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.dragonTank.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.dragonTank.shardCost;
         }
     }
 
@@ -155,17 +155,17 @@ public class BuilUnitsController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         dragonImage.SetActive(true);
         buildMenu.previousImage = dragonImage;
-        m_shardsCostText.text = buildMenu.dragon.shardCost.ToString();
-        m_goldCostText.text = buildMenu.dragon.goldCost.ToString();
-        m_healthText.text = buildMenu.dragon.health.ToString();
-        m_attackText.text = buildMenu.dragon.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.dragon.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.dragon.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.dragon.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.dragon.attack.ToString();
     }
 
     public void AddDragon()
     {
         buildMenu.m_dragonNum ++;
-        buildController.m_totalGold += buildMenu.dragon.goldCost;
-        buildController.m_totalShard += buildMenu.dragon.shardCost;
+        buildController.m_totalGold += buildMenu.gameItemList.dragon.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.dragon.shardCost;
     }
 
     public void RemoveDragon()
@@ -173,8 +173,8 @@ public class BuilUnitsController : MonoBehaviour
         if(buildMenu.m_dragonNum > 0)
         {
             buildMenu.m_dragonNum --;
-            buildController.m_totalGold -= buildMenu.dragon.goldCost;
-            buildController.m_totalShard -= buildMenu.dragon.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.dragon.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.dragon.shardCost;
         }
     }
 

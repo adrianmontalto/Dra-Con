@@ -12,6 +12,8 @@ public class GatherMenuController : MonoBehaviour
     public Text minersAmountText;
     public Text advanceMinersAmountText;
     public Text gatherMaterial;
+    public int m_maxMiners = 0;
+    public int m_maxAdvanceMiners = 0;
 
     private int m_availableMiners = 0;
     private int m_availableAdvanceMiners = 0;
@@ -59,7 +61,10 @@ public class GatherMenuController : MonoBehaviour
     {
         if(m_minersNum < m_availableMiners)
         {
-            m_minersNum ++;
+            if(m_minersNum < m_maxMiners)
+            {
+                m_minersNum++;
+            }            
         }
     }
 
@@ -75,7 +80,10 @@ public class GatherMenuController : MonoBehaviour
     {
         if (m_advanceMinersNum < m_availableAdvanceMiners)
         {
-            m_advanceMinersNum++;
+            if(m_advanceMinersNum < m_maxAdvanceMiners)
+            {
+                m_advanceMinersNum++;
+            }            
         }
     }
 

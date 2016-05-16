@@ -111,25 +111,32 @@ public class EnemyDecisionManager : MonoBehaviour
     void InitValues()
     {
         m_attackToLowerDefensesValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_attackToLowerDefensesValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_attackToLowerDefensesValue.SetValue(player.m_health);
 
-        m_attackToDestroyPlayerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 5);
+        m_attackToDestroyPlayerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_attackToDestroyPlayerValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_attackToDestroyPlayerValue.SetValue(enemy.m_closenessToWinGoal);
 
-        m_gatherGoldValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 12);
+        m_gatherGoldValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 5, 15);
+        m_gatherGoldValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_gatherGoldValue.SetValue(enemy.m_gold);
 
-        m_gatherShardValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 12);
+        m_gatherShardValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 5, 15);
+        m_gatherShardValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_gatherShardValue.SetValue(enemy.m_shards);
 
-        m_buildUnitValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 8);
+        m_buildUnitValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, 10);
+        m_buildUnitValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
         m_buildUnitValue.SetValue(enemy.m_totalUnitCount);
 
-        m_buildBuildingValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 10);
+        m_buildBuildingValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, 10);
+        m_buildBuildingValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
         m_buildBuildingValue.SetValue(enemy.m_health);
 
-        m_buildResourceValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 9);
-         m_buildResourceValue.SetValue(enemy.m_totalResourceUnits);
+        m_buildResourceValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, 10);
+        m_buildResourceValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
+        m_buildResourceValue.SetValue(enemy.m_totalResourceUnits);
     }
 
     void SetValues()

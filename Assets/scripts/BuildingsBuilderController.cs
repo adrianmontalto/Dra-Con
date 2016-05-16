@@ -43,17 +43,17 @@ public class BuildingsBuilderController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         barracksImage.SetActive(true);
         buildMenu.previousImage = barracksImage;
-        m_shardsCostText.text = buildMenu.barracks.shardCost.ToString();
-        m_goldCostText.text = buildMenu.barracks.goldCost.ToString();
-        m_healthText.text = buildMenu.barracks.health.ToString();
-        m_attackText.text = buildMenu.barracks.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.barracks.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.barracks.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.barracks.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.barracks.attack.ToString();
     }
 
     public void AddBarracks()
     {
-        buildMenu.m_barracksNum ++;
-        buildController.m_totalGold += buildMenu.barracks.goldCost;
-        buildController.m_totalShard += buildMenu.barracks.shardCost;
+        buildMenu.m_barracksNum += 1;
+        buildController.m_totalGold += buildMenu.gameItemList.barracks.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.barracks.shardCost;
     }
 
     public void RemoveBarracks()
@@ -61,8 +61,8 @@ public class BuildingsBuilderController : MonoBehaviour
         if(buildMenu.m_barracksNum > 0)
         {
             buildMenu.m_barracksNum--;
-            buildController.m_totalGold -= buildMenu.barracks.goldCost;
-            buildController.m_totalShard -= buildMenu.barracks.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.barracks.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.barracks.shardCost;
         }       
     }
 
@@ -71,17 +71,17 @@ public class BuildingsBuilderController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         dragonPortalImage.SetActive(true);
         buildMenu.previousImage = dragonPortalImage;
-        m_shardsCostText.text = buildMenu.dragonPortal.shardCost.ToString();
-        m_goldCostText.text = buildMenu.dragonPortal.goldCost.ToString();
-        m_healthText.text = buildMenu.dragonPortal.health.ToString();
-        m_attackText.text = buildMenu.dragonPortal.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.dragonPortal.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.dragonPortal.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.dragonPortal.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.dragonPortal.attack.ToString();
     }
 
     public void AddDragonPortal()
     {
-        buildMenu.m_dragonPortalsNum++;
-        buildController.m_totalGold += buildMenu.dragonPortal.goldCost;
-        buildController.m_totalShard += buildMenu.dragonPortal.shardCost;
+        buildMenu.m_dragonPortalsNum += 1;
+        buildController.m_totalGold += buildMenu.gameItemList.dragonPortal.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.dragonPortal.shardCost;
     }
 
     public void RemoveDragonPortal()
@@ -89,8 +89,8 @@ public class BuildingsBuilderController : MonoBehaviour
         if (buildMenu.m_dragonPortalsNum > 0)
         {
             buildMenu.m_dragonPortalsNum--;
-            buildController.m_totalGold -= buildMenu.dragonPortal.goldCost;
-            buildController.m_totalShard -= buildMenu.dragonPortal.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.dragonPortal.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.dragonPortal.shardCost;
         }
     }
 
@@ -99,17 +99,17 @@ public class BuildingsBuilderController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         antiAirTurretImage.SetActive(true);
         buildMenu.previousImage = antiAirTurretImage;
-        m_shardsCostText.text = buildMenu.antiAirTurret.shardCost.ToString();
-        m_goldCostText.text = buildMenu.antiAirTurret.goldCost.ToString();
-        m_healthText.text = buildMenu.antiAirTurret.health.ToString();
-        m_attackText.text = buildMenu.antiAirTurret.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.antiAirTurret.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.antiAirTurret.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.antiAirTurret.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.antiAirTurret.attack.ToString();
     }
 
     public void AddAntiAirTurret()
     {
-        buildMenu.m_antiAirTurretNum++;
-        buildController.m_totalGold += buildMenu.antiAirTurret.goldCost;
-        buildController.m_totalShard += buildMenu.antiAirTurret.shardCost;
+        buildMenu.m_antiAirTurretNum += 1;
+        buildController.m_totalGold += buildMenu.gameItemList.antiAirTurret.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.antiAirTurret.shardCost;
     }
 
     public void RemoveAntiAirTurret()
@@ -117,8 +117,8 @@ public class BuildingsBuilderController : MonoBehaviour
         if (buildMenu.m_dragonPortalsNum > 0)
         {
             buildMenu.m_antiAirTurretNum--;
-            buildController.m_totalGold -= buildMenu.antiAirTurret.goldCost;
-            buildController.m_totalShard -= buildMenu.antiAirTurret.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.antiAirTurret.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.antiAirTurret.shardCost;
         }
     }
 
@@ -127,17 +127,17 @@ public class BuildingsBuilderController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         minesImage.SetActive(true);
         buildMenu.previousImage = minesImage;
-        m_shardsCostText.text = buildMenu.mines.shardCost.ToString();
-        m_goldCostText.text = buildMenu.mines.goldCost.ToString();
-        m_healthText.text = buildMenu.mines.health.ToString();
-        m_attackText.text = buildMenu.mines.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.mine.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.mine.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.mine.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.mine.attack.ToString();
     }
 
     public void AddMines()
     {
-        buildMenu.m_minesNum++;
-        buildController.m_totalGold += buildMenu.mines.goldCost;
-        buildController.m_totalShard += buildMenu.mines.shardCost;
+        buildMenu.m_minesNum += 1;
+        buildController.m_totalGold += buildMenu.gameItemList.mine.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.mine.shardCost;
     }
 
     public void RemoveMines()
@@ -145,8 +145,8 @@ public class BuildingsBuilderController : MonoBehaviour
         if (buildMenu.m_dragonPortalsNum > 0)
         {
             buildMenu.m_minesNum--;
-            buildController.m_totalGold -= buildMenu.mines.goldCost;
-            buildController.m_totalShard -= buildMenu.mines.shardCost;
+            buildController.m_totalGold -= buildMenu.gameItemList.mine.goldCost;
+            buildController.m_totalShard -= buildMenu.gameItemList.mine.shardCost;
         }
     }
 
@@ -155,17 +155,17 @@ public class BuildingsBuilderController : MonoBehaviour
         buildMenu.previousImage.SetActive(false);
         wallImage.SetActive(true);
         buildMenu.previousImage = wallImage;
-        m_shardsCostText.text = buildMenu.wall.shardCost.ToString();
-        m_goldCostText.text = buildMenu.wall.goldCost.ToString();
-        m_healthText.text = buildMenu.wall.health.ToString();
-        m_attackText.text = buildMenu.wall.attack.ToString();
+        m_shardsCostText.text = buildMenu.gameItemList.wall.shardCost.ToString();
+        m_goldCostText.text = buildMenu.gameItemList.wall.goldCost.ToString();
+        m_healthText.text = buildMenu.gameItemList.wall.health.ToString();
+        m_attackText.text = buildMenu.gameItemList.wall.attack.ToString();
     }
 
     public void AddWall()
     {
-        buildMenu.m_wallNum++;
-        buildController.m_totalGold += buildMenu.wall.goldCost;
-        buildController.m_totalShard += buildMenu.wall.shardCost;
+        buildMenu.m_wallNum += 1;
+        buildController.m_totalGold += buildMenu.gameItemList.wall.goldCost;
+        buildController.m_totalShard += buildMenu.gameItemList.wall.shardCost;
     }
 
     public void RemoveWall()
@@ -173,8 +173,8 @@ public class BuildingsBuilderController : MonoBehaviour
         if (buildMenu.m_dragonPortalsNum > 0)
         {
             buildMenu.m_wallNum--;
-            buildController.m_totalGold += buildMenu.barracks.goldCost;
-            buildController.m_totalShard += buildMenu.barracks.shardCost;
+            buildController.m_totalGold += buildMenu.gameItemList.barracks.goldCost;
+            buildController.m_totalShard += buildMenu.gameItemList.barracks.shardCost;
         }
     }
 

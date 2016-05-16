@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UtilityMaths : MonoBehaviour
+public class UtilityMaths 
 {
     public float LinearNormalise(float min, float max, float value)
     {

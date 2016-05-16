@@ -42,8 +42,6 @@ public class Enemy : MonoBehaviour
     public int m_dragonTanksDestroyed = 0;
     [HideInInspector]
     public int m_dragonsDestroyed = 0;
-    private float m_turnTimer = 5.0f;
-    private float m_resetTurnTimer = 5.0f;
     // Use this for initialization
     void Start ()
     {
@@ -59,13 +57,6 @@ public class Enemy : MonoBehaviour
 
         m_totalUnitCount = m_dragonWarriorNum + m_dragonTankNum + m_dragonNum;
         m_totalResourceUnits = m_minerNum + m_advanceminerNum;
-        m_turnTimer -= Time.deltaTime;
-        if (m_turnTimer < 0)
-        {
-            gameManager.enemyTurn = false;
-            gameManager.playerTurn = true;
-            m_turnTimer = m_resetTurnTimer;
-        }
     }
 
     public void ReduceUnitNumber(string unitName)
@@ -199,5 +190,19 @@ public class Enemy : MonoBehaviour
         m_enemyUnits.RemoveAt(index);
         m_dragonNum--;
         m_dragonsDestroyed ++;
+    }
+
+    public void DestroyMines(int number)
+    {
+        for(int i = 0; i < number;++i)
+        {
+            int lastMine = m_enemyUnits.FindLastIndex((GameItem item) => { return item.objectName == "mines";});
+
+            if(lastMine > -1)
+            {
+                m_enemyUnits.RemoveAt(lastMine);
+                m_mineNum--;
+            }
+        }
     }
 }

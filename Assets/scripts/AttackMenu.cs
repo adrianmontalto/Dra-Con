@@ -7,6 +7,8 @@ public class AttackMenu : MonoBehaviour
     public GameItem dragonWarrior;
     public GameItem dragonTank;
     public GameItem dragon;
+    public GameItem mine;
+    public GameItem antiAirTurret;
 
 	// Use this for initialization
 	void Start ()
