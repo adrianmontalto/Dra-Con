@@ -44,11 +44,11 @@ public class EnemyDecisionManager : MonoBehaviour
         string strBestAction = "";
 
         foreach(KeyValuePair<string,UtilityScore> m_utilityScore in m_utilityScoreMap)
-        {
-
+        {            
             float thisScore = m_utilityScore.Value.GetUtilityScore();
-            if(thisScore > bestScore)
-            {
+            Debug.Log(m_utilityScore.Key + "::" + thisScore);
+            if (thisScore > bestScore)
+            {                
                 bestScore = thisScore;
                 strBestAction = m_utilityScore.Key;
             }
@@ -57,55 +57,60 @@ public class EnemyDecisionManager : MonoBehaviour
         if(strBestAction == "lowerDefense")
         {
             AttackPlayer();
+            Debug.Log("dec:lower defense");
         }
 
         if(strBestAction == "destroyPlayer")
         {
+            Debug.Log("dec:destroy player");
             AttackPlayer();
+            
         }
 
         if(strBestAction == "gatherGold")
         {
-            GatherResources();
+            Debug.Log("dec:gather gold");
+            GatherResources();            
         }
 
         if(strBestAction == "gatherShard")
         {
-            GatherResources();
+            Debug.Log("dec:gather shard");
+            GatherResources();            
         }
 
         if(strBestAction == "buildUnit")
         {
-            BuildResources();
+            Debug.Log("dec:build unit");
+            BuildResources();            
         }
 
         if(strBestAction == "buildBuilding")
         {
-            BuildResources();
+            Debug.Log("dec:build building");
+            BuildResources();            
         }
 
         if(strBestAction == "buildResource")
         {
-            BuildResources();
+            Debug.Log("dec:build resources");
+            BuildResources();            
         }
     }
 
     void AttackPlayer()
     {
-        m_enemyAttacker.SelectAction();
-        Debug.Log("Enemy Attacked Player");
+        m_enemyAttacker.SelectAction();        
     }
 
     void GatherResources()
     {
         m_enemyGather.SelectAction();
-        Debug.Log("Enemy Gathered Resources");
     }
 
     void BuildResources()
     {
         m_enemyBuilder.SelectAction();
-        Debug.Log("Enemy Built Resources");
     }
 
     void InitValues()

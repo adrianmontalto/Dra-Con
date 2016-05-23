@@ -6,11 +6,12 @@ public class EnemyGatherManager : MonoBehaviour
 {
     public Enemy enemy;
     public Player player;
-    public GameItem miner;
-    public GameItem advanceMiner;
+    public GameItemList itemList;
     public GameManager gameManager;
     public int m_maxMiners = 0;
     public int m_maxAdvanceMiners = 0;
+    [HideInInspector]
+    public bool m_isActive = false;
     private UtilityValue m_gatherGoldValue;
     private UtilityValue m_gatherShardValue;
     private UtilityValue m_useMinerValue;
@@ -26,35 +27,32 @@ public class EnemyGatherManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-	
+        InitValues();
+        SetGatherScores();
+        SetScores();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	
-	}
+        
+    }
 
     void InitValues()
     {
         m_gatherGoldValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 10);
-        m_gatherGoldValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
         m_gatherGoldValue.SetValue(enemy.m_gold);
 
         m_gatherShardValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 10);
-        m_gatherShardValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
         m_gatherShardValue.SetValue(enemy.m_shards);
 
         m_useMinerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
-        m_useMinerValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
-        m_useMinerValue.SetValue(enemy.m_closenessToWinGoal);
+        m_useMinerValue.SetValue(enemy.m_minerNum);
 
-        m_useAdvanceMinerValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,12);
-        m_useAdvanceMinerValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
-        m_useAdvanceMinerValue.SetValue(enemy.m_closenessToWinGoal);
+        m_useAdvanceMinerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR,0,10);
+        m_useAdvanceMinerValue.SetValue(enemy.m_advanceminerNum);
 
-        m_useBothMinersValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR,0,14);
-        m_useBothMinersValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
+        m_useBothMinersValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR,0,10);
         m_useBothMinersValue.SetValue(enemy.m_closenessToWinGoal);
     }
 
@@ -66,8 +64,9 @@ public class EnemyGatherManager : MonoBehaviour
 
     void SetMinerValues()
     {
-        m_useMinerValue.SetValue(enemy.m_closenessToWinGoal);
-        m_useAdvanceMinerValue.SetValue(enemy.m_closenessToWinGoal);
+        m_useMinerValue.SetValue(enemy.m_minerNum);
+        m_useAdvanceMinerValue.SetValue(enemy.m_advanceminerNum);
+        m_useBothMinersValue.SetValue(enemy.m_closenessToWinGoal);
     }
 
     void SetScores()
@@ -99,8 +98,8 @@ public class EnemyGatherManager : MonoBehaviour
     public void SelectAction()
     {
         SetValues();
-
-        float bestScore = 0.0f;
+        Debug.Log("gather action");
+        float bestScore =-100.0f;
         string strBestAction = "";
 
         foreach(KeyValuePair<string,UtilityScore> score in m_UtilityScoreMap)
@@ -115,12 +114,14 @@ public class EnemyGatherManager : MonoBehaviour
 
         if(strBestAction == "gatherGold")
         {
-            SelectGoldAction();
+            Debug.Log("gather: gold");
+            SelectGoldAction();            
         }
 
         if(strBestAction == "gatherShard")
         {
-            SelectShardAction();
+            Debug.Log("gather: shard");
+            SelectShardAction();            
         }
     }
 
@@ -152,6 +153,7 @@ public class EnemyGatherManager : MonoBehaviour
                 m_minerNum = 10;
             }
             GatherGold();
+            Debug.Log("gather:gold miner");
         }
 
         if(strBestAction == "useAdvanceMiner")
@@ -165,6 +167,7 @@ public class EnemyGatherManager : MonoBehaviour
                 m_advanceMinerNum = 10;
             }
             GatherGold();
+            Debug.Log("gather: gold advance");
         }
 
         if(strBestAction == "useBothMiners")
@@ -172,6 +175,8 @@ public class EnemyGatherManager : MonoBehaviour
             if (enemy.m_minerNum < m_maxMiners)
             {
                 m_minerNum = enemy.m_minerNum;
+                Debug.Log("gather: gold both");
+                GatherGold();
             }
             else
                 m_minerNum = 10;
@@ -179,11 +184,15 @@ public class EnemyGatherManager : MonoBehaviour
             if (enemy.m_advanceminerNum < m_maxAdvanceMiners)
             {
                 m_advanceMinerNum = enemy.m_advanceminerNum;
+                Debug.Log("gather: gold both");
+                GatherGold();
             }
             else
+            {
                 m_advanceMinerNum = 10;
-
-            GatherGold();
+                Debug.Log("gather: gold both");
+                GatherGold();
+            }
         }
     }
 
@@ -214,7 +223,8 @@ public class EnemyGatherManager : MonoBehaviour
             {
                 m_minerNum = m_maxMiners;
             }
-            GatherShard();
+            Debug.Log("gather: shard miner");
+            GatherShard();            
         }
 
         if (strBestAction == "useAdvanceMiner")
@@ -228,7 +238,8 @@ public class EnemyGatherManager : MonoBehaviour
                 m_advanceMinerNum = m_maxAdvanceMiners;
             }
 
-            GatherShard();
+            Debug.Log("gather: shard advance");
+            GatherShard();            
         }
 
         if (strBestAction == "useBothMiners")
@@ -251,26 +262,29 @@ public class EnemyGatherManager : MonoBehaviour
                 m_advanceMinerNum = m_maxAdvanceMiners;
             }
 
-            GatherShard();
+            Debug.Log("gather: shard both");
+            GatherShard();            
         }
     }
 
     void GatherGold()
     {
-        enemy.m_gold += (m_minerNum * miner.attack) + 
-                        (m_advanceMinerNum * advanceMiner.attack);
+        enemy.m_gold += (m_minerNum * itemList.miner.attack) + 
+                        (m_advanceMinerNum * itemList.advanceMiner.attack);
         m_minerNum = 0;
         m_advanceMinerNum = 0;
+        m_isActive = false;
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }
 
     void GatherShard()
     {
-        enemy.m_shards += (m_minerNum * miner.attack) +
-                          (m_advanceMinerNum * advanceMiner.attack);
+        enemy.m_shards += (m_minerNum * itemList.miner.attack) +
+                          (m_advanceMinerNum * itemList.advanceMiner.attack);
         m_minerNum = 0;
         m_advanceMinerNum = 0;
+        m_isActive = false;
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }

@@ -7,17 +7,14 @@ public class EnemyAttackManager : MonoBehaviour
     public Enemy enemy;
     public Player player;
     public GameManager gameManager;
-    public GameItem dragonWarrior;
-    public GameItem dragonTank;
-    public GameItem dragon;
-    public GameItem mine;
-    public GameItem antiAirTurret;
+    public GameItemList itemList;
+    [HideInInspector]
+    public bool m_isActive = false;
     private UtilityValue m_lowAttackValue;
     private UtilityValue m_mediumAttackValue;
     private UtilityValue m_highAttackValue;
     public Dictionary<string, UtilityScore> m_utilityScoreMap = new Dictionary<string, UtilityScore>();
     private int m_mineDamage = 0;
-    private int m_antiAirTurretDamage = 0;
     private int m_dragonWarriorNumber = 0;
     private int m_dragonTankNum = 0;
     private int m_dragonNum = 0;
@@ -34,12 +31,9 @@ public class EnemyAttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //checks to see if it is the enemy turn
-        if (gameManager.enemyTurn == true)
-        {
-            SelectAction();
-        }
+
     }
+
     void InitValues()
     {
         m_lowAttackValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 15);
@@ -96,17 +90,20 @@ public class EnemyAttackManager : MonoBehaviour
 
         if (strBestAction == "lowAttack")
         {
-            LowAttack();
+            Debug.Log("atk: low attack");
+            LowAttack();            
         }
 
         if (strBestAction == "mediumAttack")
         {
-            MediumAttack();
+            Debug.Log("atk: medium attack");
+            MediumAttack();            
         }
 
         if (strBestAction == "highAttack")
         {
-            HighAttack();
+            Debug.Log("atk: high attack");
+            HighAttack();            
         }
     }
 
@@ -122,6 +119,7 @@ public class EnemyAttackManager : MonoBehaviour
         {
             AttackPlayer();
         }
+        m_isActive = false;
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }
@@ -138,6 +136,7 @@ public class EnemyAttackManager : MonoBehaviour
         {
             AttackPlayer();
         }
+        m_isActive = false;
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }
@@ -154,6 +153,7 @@ public class EnemyAttackManager : MonoBehaviour
         {
             AttackPlayer();
         }
+        m_isActive = false;
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }
@@ -179,7 +179,7 @@ public class EnemyAttackManager : MonoBehaviour
             //calculate health of attacking dragon warriors and dragon tanks
             CalculateGroundUnitHealth();
             //calculate damage done to player ensurinbg that no excess mines are used
-            m_mineDamage = player.m_mineNum * mine.attack;
+            m_mineDamage = player.m_mineNum * itemList.mine.attack;
             if(m_mineDamage < m_groundUnitHealth)
             {
                 //destroy all mines used                
@@ -194,7 +194,7 @@ public class EnemyAttackManager : MonoBehaviour
                 while(m_mineDamage < m_groundUnitHealth)
                 {
                     mineNum++;
-                    m_mineDamage += mine.attack;
+                    m_mineDamage += itemList.mine.attack;
                 }
                 //destroy all mines used                
                 player.DestroyMines(mineNum);
@@ -210,9 +210,9 @@ public class EnemyAttackManager : MonoBehaviour
         if(player.m_antiAirTurretNum > 0)
         {
             //calculate damage from air turrets
-            int turretDamage = player.m_antiAirTurretNum * antiAirTurret.attack;
+            int turretDamage = player.m_antiAirTurretNum * itemList.antiAirTurret.attack;
             //calculate dragon health
-            int dragonHealth = m_dragonNum * dragon.health;
+            int dragonHealth = m_dragonNum * itemList.dragon.health;
             if(turretDamage > dragonHealth)
             {
                 turretDamage = dragonHealth;
@@ -226,9 +226,9 @@ public class EnemyAttackManager : MonoBehaviour
         m_dragonWarriorNumber -= enemy.m_dragonWarriorsDestroyed;
         m_dragonTankNum -= enemy.m_dragonTanksDestroyed;
         m_dragonNum -= enemy.m_dragonsDestroyed;
-        m_attackDamage = (m_dragonWarriorNumber * dragonWarrior.attack) + 
-                            (m_dragonTankNum * dragonTank.attack) + 
-                            (m_dragonNum * dragon.attack);
+        m_attackDamage = (m_dragonWarriorNumber * itemList.dragonWarrior.attack) + 
+                            (m_dragonTankNum * itemList.dragonTank.attack) + 
+                            (m_dragonNum * itemList.dragon.attack);
     }
 
     void CalculateWallDamage()
@@ -269,8 +269,8 @@ public class EnemyAttackManager : MonoBehaviour
 
     void CalculateGroundUnitHealth()
     {
-        m_groundUnitHealth = (m_dragonWarriorNumber * dragonWarrior.health) + 
-                              (m_dragonTankNum * dragonTank.health);
+        m_groundUnitHealth = (m_dragonWarriorNumber * itemList.dragonWarrior.health) + 
+                              (m_dragonTankNum * itemList.dragonTank.health);
     }
 
     void DragonWarriorAttackNumber(int num)
@@ -320,7 +320,6 @@ public class EnemyAttackManager : MonoBehaviour
     void ResetUnitNumbers()
     {
         m_mineDamage = 0;
-        m_antiAirTurretDamage = 0;
         m_dragonWarriorNumber = 0;
         m_dragonTankNum = 0;
         m_dragonNum = 0;

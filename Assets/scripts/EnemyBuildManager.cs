@@ -11,6 +11,8 @@ public class EnemyBuildManager : MonoBehaviour
     public EnemyUnitBuilder unitBuilder;
 
     public int m_maxBuildNumber;
+    [HideInInspector]
+    public bool m_isActive = false;
     //values for the utility scores
     private UtilityValue m_buildResources;
     private UtilityValue m_buildMiners;
@@ -54,10 +56,7 @@ public class EnemyBuildManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	    if(gameManager.enemyTurn == true)
-        {
-            SelectAction();
-        }
+
 	}
 
     void InitValues()
@@ -228,22 +227,26 @@ public class EnemyBuildManager : MonoBehaviour
 
         if(strBestAction == "buildResource")
         {
-            SelectResourceAction();
+            Debug.Log("build:build resources");
+            SelectResourceAction();            
         }
 
         if(strBestAction == "buildUnit")
         {
-            SelectUnitAction();
+            Debug.Log("build:build unit");
+            SelectUnitAction();            
         }
 
         if(strBestAction == "buildDefense")
         {
-            SelectDefenseAction();
+            Debug.Log("build: build defense");
+            SelectDefenseAction();            
         }
 
         if(strBestAction == "buildBuilding")
         {
-            SelectBuildingAction();
+            Debug.Log("build: build building");
+            SelectBuildingAction();            
         }
     }
 
@@ -266,12 +269,14 @@ public class EnemyBuildManager : MonoBehaviour
 
         if(strBestAction == "buildMiner")
         {
-            BuildMiner();
+            Debug.Log("build: build miner");
+            BuildMiner();            
         }
 
         if(strBestAction == "buildAdvanceMiner")
         {
-            BuildAdvanceMiner();
+            Debug.Log("build: build advance miner");
+            BuildAdvanceMiner();            
         }
     }
 
@@ -294,17 +299,20 @@ public class EnemyBuildManager : MonoBehaviour
 
         if(strBestAction == "dragonWarrior")
         {
-            BuildDragonWarrior();
+            Debug.Log("build:build dragon warrior");
+            BuildDragonWarrior();            
         }
 
         if(strBestAction == "dragonTank")
         {
-            BuildDragonTank();
+            Debug.Log("build:build dragon Tank");
+            BuildDragonTank();            
         }
 
         if(strBestAction == "dragon")
         {
-            BuildDragon();
+            Debug.Log("build: build dragon");
+            BuildDragon();            
         }
     }
 
@@ -327,17 +335,20 @@ public class EnemyBuildManager : MonoBehaviour
 
         if(strBestAction == "mine")
         {
-            BuildMines();
+            Debug.Log("build: build mine");
+            BuildMines();            
         }
 
         if(strBestAction == "wall")
         {
-            BuildWalls();
+            Debug.Log("build: build wall");
+            BuildWalls();            
         }
 
         if(strBestAction == "turret")
         {
-            BuildTurret();
+            Debug.Log("build: build turret");
+            BuildTurret();            
         }
     }
 
@@ -360,12 +371,14 @@ public class EnemyBuildManager : MonoBehaviour
 
         if(strBestAction == "barrack")
         {
-            BuildBarracks();
+            Debug.Log("build: build barrack");
+            BuildBarracks();            
         }
 
         if(strBestAction == "portal")
         {
-            BuildDragonPortal();
+            Debug.Log("build: build portal");
+            BuildDragonPortal();            
         }
     }
 
@@ -384,6 +397,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -414,6 +430,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -432,6 +451,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -461,6 +483,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -479,6 +504,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -508,6 +536,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -526,6 +557,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -555,6 +589,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -573,6 +610,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -602,6 +642,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -620,6 +663,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -649,6 +695,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -667,6 +716,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -696,6 +748,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -714,6 +769,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -742,6 +800,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -760,6 +821,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -789,6 +853,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 
@@ -807,6 +874,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
         else
         {
@@ -836,6 +906,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
+            m_isActive = false;
+            gameManager.enemyTurn = false;
+            gameManager.playerTurn = true;
         }
     }
 }

@@ -27,11 +27,11 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public List<GameItem> m_enemyUnits = new List<GameItem>();
     [HideInInspector]
-    public int m_closenessToWinGoal = 0;
+    public float m_closenessToWinGoal = 0;
     [HideInInspector]
-    public int m_closenessToShardGoal;
+    public float m_closenessToShardGoal;
     [HideInInspector]
-    public int m_closenessToGoldGoal;
+    public float m_closenessToGoldGoal;
     [HideInInspector]
     public int m_totalUnitCount = 0;
     [HideInInspector]

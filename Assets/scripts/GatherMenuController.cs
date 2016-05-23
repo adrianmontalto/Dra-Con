@@ -97,7 +97,10 @@ public class GatherMenuController : MonoBehaviour
 
     public void GatherButton()
     {
-        if(m_gatherGold == true)
+        Debug.Log("");
+        Debug.Log("player Gather");
+        Debug.Log("");
+        if (m_gatherGold == true)
         {
             int gold = (m_minersNum * miner.attack) + (m_advanceMinersNum * advanceMiner.attack);
             player.m_gold += gold;
@@ -113,6 +116,9 @@ public class GatherMenuController : MonoBehaviour
             m_advanceMinersNum = 0;
         }
 
+        m_gatherGold = false;
+        m_gatherShards = false;
+        gatherMaterial.text = "";
         gatherMenuPanel.SetActive(false);
         gameManager.playerTurn = false;
         gameManager.enemyTurn = true;

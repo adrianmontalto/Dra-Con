@@ -6,14 +6,13 @@ public class AttackPanelController : MonoBehaviour
 {
     public Player player;
     public Enemy enemy;
-    public AttackMenu menu;
+    public GameItemList itemList;
     public GameManager gameManger;
     public GameObject attackPanel;
     public int m_maxDragonWarriors;
     public int m_maxDragonTanks;
     public int m_maxDragons;
 
-    private int m_antiAirTurret = 0;
     private int m_dragonWarriorsNum = 0;
     private int m_dragonTanksNum = 0;
     private int m_dragonsNum = 0;
@@ -97,14 +96,18 @@ public class AttackPanelController : MonoBehaviour
 
     public void AttackButtonClick()
     {
+        Debug.Log("");
+        Debug.Log("player attack");
+        Debug.Log("");
         CalculateDefenseDamage();
         CalculatePlayerAttackDamage();
-        enemy.m_health -= m_playerAttackdamage;
+       
         if (m_playerAttackdamage > 0)
         {
             AttackEnemy();
         }
         ResetUnitNumbers();
+        enemy.m_health -= m_playerAttackdamage;
         attackPanel.SetActive(false);
         gameManger.playerTurn = false;
         gameManger.enemyTurn = true;
@@ -162,17 +165,17 @@ public class AttackPanelController : MonoBehaviour
     {
         for (int i = 0; i < m_dragonWarriorsNum; ++i)
         {
-            m_playerAttackdamage += menu.dragonWarrior.attack;
+            m_playerAttackdamage += itemList.dragonWarrior.attack;
         }
 
         for (int i = 0; i < m_dragonTanksNum; ++i)
         {
-            m_playerAttackdamage += menu.dragonTank.attack;
+            m_playerAttackdamage += itemList.dragonTank.attack;
         }
 
         for (int i = 0; i < m_dragonsNum; ++i)
         {
-            m_playerAttackdamage += menu.dragon.attack;
+            m_playerAttackdamage += itemList.dragon.attack;
         }
     }
 
@@ -183,7 +186,7 @@ public class AttackPanelController : MonoBehaviour
         {
             CalculateGrounUnitHealth();
             //calculate damage done to player ensuring that no excess mines are used
-            int mineDamage = enemy.m_mineNum * menu.mine.attack;
+            int mineDamage = enemy.m_mineNum * itemList.mine.attack;
             if (mineDamage < m_groundUnitHealth)
             {
                 //destroy all mines used
@@ -198,7 +201,7 @@ public class AttackPanelController : MonoBehaviour
                 while (mineDamage < m_groundUnitHealth)
                 {
                     mineNum++;
-                    mineDamage += menu.mine.attack;
+                    mineDamage += itemList.mine.attack;
                 }
                 //destroy all mines used
                 player.DestroyMines(mineNum);
@@ -214,9 +217,9 @@ public class AttackPanelController : MonoBehaviour
         if (enemy.m_antiAirTurretNum > 0)
         {
             //calculate damage from air turrets
-            int turretDamage = player.m_antiAirTurretNum * menu.antiAirTurret.attack;
+            int turretDamage = player.m_antiAirTurretNum * itemList.antiAirTurret.attack;
             //claculate dragon health
-            int dragonHealth = m_dragonsNum * menu.dragon.health;
+            int dragonHealth = m_dragonsNum * itemList.dragon.health;
             if (turretDamage > dragonHealth)
             {
                 turretDamage = dragonHealth;
@@ -234,13 +237,12 @@ public class AttackPanelController : MonoBehaviour
     }
     void CalculateGrounUnitHealth()
     {
-        m_groundUnitHealth = ((m_dragonWarriorsNum * menu.dragonWarrior.health) + 
-                                (m_dragonTanksNum * menu.dragonTank.health));
+        m_groundUnitHealth = ((m_dragonWarriorsNum * itemList.dragonWarrior.health) + 
+                                (m_dragonTanksNum * itemList.dragonTank.health));
     }
 
     void ResetUnitNumbers()
     {
-        m_antiAirTurret = 0;
         m_dragonWarriorsNum = 0;
         m_dragonTanksNum = 0;
         m_dragonsNum = 0;

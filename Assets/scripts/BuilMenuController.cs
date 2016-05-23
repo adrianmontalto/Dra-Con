@@ -49,12 +49,17 @@ public class BuilMenuController : MonoBehaviour
 
     public void BuildButtonClick()
     {
-        if(m_totalShard < player.m_shards && m_totalGold < player.m_gold)
+        Debug.Log("");
+        Debug.Log("player build");
+        Debug.Log("");
+        if (m_totalShard < player.m_shards && m_totalGold < player.m_gold)
         {
             buildMenu.AddPlayerBuildings();
             buildMenu.AddPlayerUnits();
             buildMenu.ResetNumbers();
             buildPanel.SetActive(false);
+            m_totalGold = 0;
+            m_totalShard = 0;
             gameManager.playerTurn = false;
             gameManager.enemyTurn = true;
 
