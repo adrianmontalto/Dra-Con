@@ -40,32 +40,37 @@ public class EnemyGatherManager : MonoBehaviour
 
     void InitValues()
     {
-        m_gatherGoldValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 10);
+        m_gatherGoldValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, enemy.m_maxGold);
         m_gatherGoldValue.SetValue(enemy.m_gold);
 
-        m_gatherShardValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 10);
+        m_gatherShardValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, enemy.m_maxShard);
         m_gatherShardValue.SetValue(enemy.m_shards);
 
-        m_useMinerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_useMinerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, enemy.m_maxMinerNum);
         m_useMinerValue.SetValue(enemy.m_minerNum);
 
-        m_useAdvanceMinerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR,0,10);
+        m_useAdvanceMinerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR,0,enemy.m_maxAdvanceMinerNum);
         m_useAdvanceMinerValue.SetValue(enemy.m_advanceminerNum);
 
-        m_useBothMinersValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR,0,10);
+        m_useBothMinersValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR,0,enemy.m_maxClosenessToWinGoal);
         m_useBothMinersValue.SetValue(enemy.m_closenessToWinGoal);
     }
 
     void SetValues()
     {
+        m_gatherGoldValue.SetMinMaxValue(0,enemy.m_maxGold);
         m_gatherGoldValue.SetValue(enemy.m_gold);
+        m_gatherShardValue.SetMinMaxValue(0,enemy.m_maxShard);
         m_gatherShardValue.SetValue(enemy.m_shards);
     }
 
     void SetMinerValues()
     {
+        m_useMinerValue.SetMinMaxValue( 0,enemy.m_maxMinerNum);
         m_useMinerValue.SetValue(enemy.m_minerNum);
+        m_useAdvanceMinerValue.SetMinMaxValue( 0, enemy.m_maxAdvanceMinerNum);
         m_useAdvanceMinerValue.SetValue(enemy.m_advanceminerNum);
+        m_useBothMinersValue.SetMinMaxValue( 0, enemy.m_maxClosenessToWinGoal);
         m_useBothMinersValue.SetValue(enemy.m_closenessToWinGoal);
     }
 

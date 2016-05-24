@@ -61,82 +61,100 @@ public class EnemyBuildManager : MonoBehaviour
 
     void InitValues()
     {
-        m_buildResources = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,12);
+        m_buildResources = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxTotalResourceUnits);
         m_buildResources.SetValue(enemy.m_totalResourceUnits);
 
-        m_buildMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxMinerNum);
         m_buildMiners.SetValue(enemy.m_minerNum);
         
-        m_buildAdvanceMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildAdvanceMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxAdvanceMinerNum);
         m_buildAdvanceMiners.SetValue(enemy.m_advanceminerNum);
 
-        m_buildDefenses = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,12);
+        m_buildDefenses = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,player.m_maxUnitNumber);
         m_buildDefenses.SetValue(player.m_unitNumber);
 
-        m_buildMines = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildMines = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxMineNum);
         m_buildMines.SetValue(enemy.m_mineNum);
 
-        m_buildWalls = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildWalls = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxWallNUm);
         m_buildWalls.SetValue(enemy.m_wallNum);
 
-        m_buildAntiAirTurrets = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildAntiAirTurrets = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxAntiAirTurretNum);
         m_buildAntiAirTurrets.SetValue(enemy.m_antiAirTurretNum);
 
-        m_buildBuildings = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,12);
+        m_buildBuildings = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxHealth);
         m_buildBuildings.SetValue(enemy.m_health);
 
-        m_buildBarracks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildBarracks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxBarracksNum);
         m_buildBarracks.SetValue(enemy.m_barrackNum);
 
-        m_buildPortals = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildPortals = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonPortalNum);
         m_buildPortals.SetValue(enemy.m_dragonPortalNum);
 
-        m_buildUnits = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,12);
+        m_buildUnits = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxTotalUnitCount);
         m_buildUnits.SetValue(enemy.m_totalUnitCount);
 
-        m_buildDragonWarriors = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildDragonWarriors = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonWarriorNum);
         m_buildDragonWarriors.SetValue(enemy.m_dragonWarriorNum);
 
-        m_buildDragonTanks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildDragonTanks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonTankNum);
         m_buildDragonTanks.SetValue(enemy.m_dragonTankNum);
 
-        m_buildDragon = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,10);
+        m_buildDragon = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonNum);
         m_buildDragon.SetValue(enemy.m_dragonNum);
     }
 
     void SetValues()
     {
+        m_buildResources.SetMinMaxValue(0, enemy.m_maxTotalResourceUnits);
         m_buildResources.SetValue(enemy.m_totalResourceUnits);
+        m_buildDefenses.SetMinMaxValue(0, player.m_maxUnitNumber);
         m_buildDefenses.SetValue(player.m_unitNumber);
+        m_buildBuildings.SetMinMaxValue(0, enemy.m_maxHealth);
         m_buildBuildings.SetValue(enemy.m_health);
+        m_buildUnits.SetMinMaxValue(0, enemy.m_maxTotalUnitCount);
         m_buildUnits.SetValue(enemy.m_totalUnitCount);
     }
 
     void SetResourceValues()
     {
+        m_buildMiners.SetMinMaxValue(0, enemy.m_maxMinerNum);
         m_buildMiners.SetValue(enemy.m_minerNum);
+        m_buildAdvanceMiners.SetMinMaxValue(0, enemy.m_maxAdvanceMinerNum);
         m_buildAdvanceMiners.SetValue(enemy.m_advanceminerNum);
     }
 
     void SetDefenseValues()
     {
+        m_buildMines.SetMinMaxValue(0, enemy.m_maxMineNum);
         m_buildMines.SetValue(enemy.m_mineNum);
+        m_buildWalls.SetMinMaxValue(0, enemy.m_maxWallNUm);
         m_buildWalls.SetValue(enemy.m_wallNum);
+        m_buildAntiAirTurrets.SetMinMaxValue(0, enemy.m_maxAntiAirTurretNum);
         m_buildAntiAirTurrets.SetValue(enemy.m_antiAirTurretNum);
     }
 
     void SetBuildingsValues()
     {
+        m_buildBarracks.SetMinMaxValue(0, enemy.m_maxBarracksNum); 
         m_buildBarracks.SetValue(enemy.m_barrackNum);
+
+        m_buildPortals.SetMinMaxValue(0, enemy.m_maxDragonPortalNum);
         m_buildPortals.SetValue(enemy.m_dragonPortalNum);
     }
 
     void SetUnitsValues()
     {
+        m_buildDragonWarriors.SetMinMaxValue(0, enemy.m_maxDragonWarriorNum);
         m_buildDragonWarriors.SetValue(enemy.m_dragonWarriorNum);
+
+        m_buildDragonTanks.SetMinMaxValue(0, enemy.m_maxDragonTankNum);
         m_buildDragonTanks.SetValue(enemy.m_dragonTankNum);
+
+        m_buildDragon.SetMinMaxValue(0, enemy.m_maxDragonNum);
         m_buildDragon.SetValue(enemy.m_dragonNum);
     }
+
     void SetUtilityScores()
     {
         UtilityScore buildResourceScore = new UtilityScore();
@@ -212,7 +230,7 @@ public class EnemyBuildManager : MonoBehaviour
     {
         SetValues();
 
-        float bestScore = 0.0f;
+        float bestScore = -1.0f;
         string strBestAction = "";
 
         foreach(KeyValuePair<string,UtilityScore> score in m_utilityScoreMap)
@@ -254,7 +272,7 @@ public class EnemyBuildManager : MonoBehaviour
     {
         SetResourceValues();
 
-        float bestScore = 0.0f;
+        float bestScore = -1.0f;
         string strBestAction = "";
 
         foreach(KeyValuePair<string,UtilityScore> score in m_resourceUtilittScoreMap)
@@ -284,7 +302,7 @@ public class EnemyBuildManager : MonoBehaviour
     {
         SetUnitsValues();
 
-        float bestScore = 0.0f;
+        float bestScore = -1.0f;
         string strBestAction = "";
 
         foreach (KeyValuePair<string, UtilityScore> score in m_unitUtilityScoreMap)
@@ -320,7 +338,7 @@ public class EnemyBuildManager : MonoBehaviour
     {
         SetDefenseValues();
 
-        float bestScore = 0.0f;
+        float bestScore = -1.0f;
         string strBestAction = "";
 
         foreach (KeyValuePair<string, UtilityScore> score in m_defenseUtilityScoreMap)
@@ -356,7 +374,7 @@ public class EnemyBuildManager : MonoBehaviour
     {
         SetBuildingsValues();
 
-        float bestScore = 0.0f;
+        float bestScore = -1.0f;
         string strBestAction = "";
 
         foreach (KeyValuePair<string, UtilityScore> score in m_buildUtilityScoreMap)
@@ -397,7 +415,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -430,7 +450,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -451,7 +473,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -483,7 +507,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -504,7 +530,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -536,7 +564,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -557,7 +587,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -589,7 +621,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -610,7 +644,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -642,7 +678,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -663,7 +701,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -695,7 +735,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -716,7 +758,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -748,7 +792,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -769,7 +815,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -800,7 +848,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -821,7 +871,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -853,7 +905,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -874,7 +928,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }
@@ -906,7 +962,9 @@ public class EnemyBuildManager : MonoBehaviour
             }
             unitBuilder.AddEnemyBuildings();
             unitBuilder.ResetNumbers();
-            m_isActive = false;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
+            enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
         }

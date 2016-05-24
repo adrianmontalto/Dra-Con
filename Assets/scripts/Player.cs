@@ -25,11 +25,13 @@ public class Player : MonoBehaviour
     public int m_unitNumber = 0;//the number of units the player has
     [HideInInspector]
     public int m_maxHealth = 0;
-
+    [HideInInspector]
+    public int m_maxUnitNumber = 0;
     // Use this for initialization
     void Start ()
     {
-	
+        SetMaxHealth();
+        SetMaxUnitNumber();
 	}
 	
 	// Update is called once per frame
@@ -189,6 +191,13 @@ public class Player : MonoBehaviour
         if (m_health > m_maxHealth)
         {
             m_maxHealth = m_health;
+        }
+    }
+    public void SetMaxUnitNumber()
+    {
+        if(m_unitNumber > m_maxUnitNumber)
+        {
+            m_maxUnitNumber = m_unitNumber;
         }
     }
 }

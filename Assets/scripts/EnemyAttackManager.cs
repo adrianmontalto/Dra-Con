@@ -36,23 +36,26 @@ public class EnemyAttackManager : MonoBehaviour
 
     void InitValues()
     {
-        m_lowAttackValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, 15);
+        m_lowAttackValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, enemy.m_maxClosenessToWinGoal);
         m_lowAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
         m_lowAttackValue.SetValue(enemy.m_closenessToWinGoal);
 
-        m_mediumAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_mediumAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, player.m_maxHealth);
         m_mediumAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_mediumAttackValue.SetValue(player.m_health);
 
-        m_highAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, 10);
+        m_highAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, enemy.m_maxClosenessToWinGoal);
         m_mediumAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
         m_highAttackValue.SetValue(enemy.m_closenessToWinGoal);
     }
 
     void SetValues()
     {
+        m_lowAttackValue.SetMinMaxValue(0, enemy.m_maxClosenessToWinGoal);
         m_lowAttackValue.SetValue(enemy.m_closenessToWinGoal);
+        m_mediumAttackValue.SetMinMaxValue(0, player.m_maxHealth);
         m_mediumAttackValue.SetValue(player.m_health);
+        m_highAttackValue.SetMinMaxValue(0, enemy.m_maxClosenessToWinGoal);
         m_highAttackValue.SetValue(enemy.m_closenessToWinGoal);
     }
 
@@ -120,6 +123,9 @@ public class EnemyAttackManager : MonoBehaviour
             AttackPlayer();
         }
         m_isActive = false;
+        player.SetMaxHealth();
+        player.SetMaxUnitNumber();
+        enemy.SetMaxValues();
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }
@@ -136,7 +142,9 @@ public class EnemyAttackManager : MonoBehaviour
         {
             AttackPlayer();
         }
-        m_isActive = false;
+        player.SetMaxHealth();
+        player.SetMaxUnitNumber();
+        enemy.SetMaxValues();
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }
@@ -153,7 +161,9 @@ public class EnemyAttackManager : MonoBehaviour
         {
             AttackPlayer();
         }
-        m_isActive = false;
+        player.SetMaxHealth();
+        player.SetMaxUnitNumber();
+        enemy.SetMaxValues();
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
     }

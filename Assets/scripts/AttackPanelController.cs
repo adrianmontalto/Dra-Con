@@ -109,6 +109,8 @@ public class AttackPanelController : MonoBehaviour
         ResetUnitNumbers();
         enemy.m_health -= m_playerAttackdamage;
         attackPanel.SetActive(false);
+        player.SetMaxUnitNumber();
+        enemy.SetMaxValues();
         gameManger.playerTurn = false;
         gameManger.enemyTurn = true;
     }

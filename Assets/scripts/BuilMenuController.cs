@@ -60,6 +60,8 @@ public class BuilMenuController : MonoBehaviour
             buildPanel.SetActive(false);
             m_totalGold = 0;
             m_totalShard = 0;
+            player.SetMaxHealth();
+            player.SetMaxUnitNumber();
             gameManager.playerTurn = false;
             gameManager.enemyTurn = true;
 

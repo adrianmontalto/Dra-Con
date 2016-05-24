@@ -42,10 +42,43 @@ public class Enemy : MonoBehaviour
     public int m_dragonTanksDestroyed = 0;
     [HideInInspector]
     public int m_dragonsDestroyed = 0;
+
+    [HideInInspector]
+    public float m_maxClosenessToWinGoal = 0;
+    [HideInInspector]
+    public int m_maxGold = 0;
+    [HideInInspector]
+    public int m_maxShard = 0;
+    [HideInInspector]
+    public int m_maxTotalUnitCount = 0;
+    [HideInInspector]
+    public int m_maxHealth = 0;
+    [HideInInspector]
+    public int m_maxTotalResourceUnits = 0;
+    [HideInInspector]
+    public int m_maxMinerNum = 0;
+    [HideInInspector]
+    public int m_maxAdvanceMinerNum = 0;
+    [HideInInspector]
+    public int m_maxMineNum = 0;
+    [HideInInspector]
+    public int m_maxWallNUm = 0;
+    [HideInInspector]
+    public int m_maxAntiAirTurretNum = 0;
+    [HideInInspector]
+    public int m_maxBarracksNum = 0;
+    [HideInInspector]
+    public int m_maxDragonPortalNum = 0;
+    [HideInInspector]
+    public int m_maxDragonWarriorNum = 0;
+    [HideInInspector]
+    public int m_maxDragonTankNum = 0;
+    [HideInInspector]
+    public int m_maxDragonNum = 0;
     // Use this for initialization
     void Start ()
     {
-        
+        SetMaxValues();
     }
 	
 	// Update is called once per frame
@@ -203,6 +236,89 @@ public class Enemy : MonoBehaviour
                 m_enemyUnits.RemoveAt(lastMine);
                 m_mineNum--;
             }
+        }
+    }
+
+    public void SetMaxValues()
+    {
+        if (m_closenessToWinGoal > m_maxClosenessToWinGoal)
+        {
+            m_maxClosenessToWinGoal = m_closenessToWinGoal;
+        }
+
+        if (m_gold > m_maxGold)
+        {
+            m_maxGold = m_gold;
+        }
+
+        if (m_shards > m_maxShard)
+        {
+            m_maxShard = m_shards;
+        }
+
+        if (m_totalUnitCount > m_maxTotalUnitCount)
+        {
+            m_maxTotalUnitCount = m_totalUnitCount;
+        }
+
+        if (m_health > m_maxHealth)
+        {
+            m_maxHealth = m_health;
+        }
+
+        if (m_totalResourceUnits > m_maxTotalResourceUnits)
+        {
+            m_maxTotalResourceUnits = 0;
+        }
+
+        if (m_minerNum > m_maxMinerNum)
+        {
+            m_maxMinerNum = m_minerNum;
+        }
+
+        if (m_advanceminerNum > m_maxAdvanceMinerNum)
+        {
+            m_maxAdvanceMinerNum = m_advanceminerNum;
+        }
+
+        if (m_mineNum > m_maxMinerNum)
+        {
+            m_maxMineNum = m_mineNum;
+        }
+
+        if (m_wallNum > m_maxWallNUm)
+        {
+            m_maxWallNUm = m_wallNum;
+        }
+
+        if (m_antiAirTurretNum > m_maxAntiAirTurretNum)
+        {
+            m_maxAntiAirTurretNum = m_antiAirTurretNum;
+        }
+
+        if (m_barrackNum > m_maxBarracksNum)
+        {
+            m_maxBarracksNum = m_barrackNum;
+        }
+
+        if (m_dragonPortalNum > m_maxDragonPortalNum)
+        {
+            m_maxDragonPortalNum = m_dragonPortalNum;
+        }
+
+        if (m_dragonWarriorNum > m_maxDragonWarriorNum)
+        {
+            m_maxDragonWarriorNum = m_dragonWarriorNum;
+        }
+
+        if (m_dragonTankNum > m_maxDragonTankNum)
+        {
+            m_maxDragonTankNum = m_dragonTankNum;
+        }
+
+        if (m_dragonNum > m_maxDragonNum)
+        {
+            m_maxDragonNum = m_dragonNum;
         }
     }
 }
