@@ -114,7 +114,7 @@ public class BuildingsBuilderController : MonoBehaviour
 
     public void RemoveAntiAirTurret()
     {
-        if (buildMenu.m_dragonPortalsNum > 0)
+        if (buildMenu.m_antiAirTurretNum > 0)
         {
             buildMenu.m_antiAirTurretNum--;
             buildController.m_totalGold -= buildMenu.gameItemList.antiAirTurret.goldCost;
@@ -142,7 +142,7 @@ public class BuildingsBuilderController : MonoBehaviour
 
     public void RemoveMines()
     {
-        if (buildMenu.m_dragonPortalsNum > 0)
+        if (buildMenu.m_minesNum > 0)
         {
             buildMenu.m_minesNum--;
             buildController.m_totalGold -= buildMenu.gameItemList.mine.goldCost;
@@ -170,7 +170,7 @@ public class BuildingsBuilderController : MonoBehaviour
 
     public void RemoveWall()
     {
-        if (buildMenu.m_dragonPortalsNum > 0)
+        if (buildMenu.m_wallNum > 0)
         {
             buildMenu.m_wallNum--;
             buildController.m_totalGold += buildMenu.gameItemList.barracks.goldCost;
