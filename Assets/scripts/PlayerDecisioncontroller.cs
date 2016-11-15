@@ -3,10 +3,14 @@ using System.Collections;
 
 public class PlayerDecisioncontroller : MonoBehaviour
 {
-    public GameObject attackPanel;
-    public GameObject buildPanel;
-    public GameObject gatherPanel;
-    public GameObject initpanel;
+    [SerializeField]
+    private GameObject attackPanel;
+    [SerializeField]
+    private GameObject buildPanel;
+    [SerializeField]
+    private GameObject gatherPanel;
+    [SerializeField]
+    private GameObject initpanel;
     private GameObject previousPanel;
 
 	// Use this for initialization

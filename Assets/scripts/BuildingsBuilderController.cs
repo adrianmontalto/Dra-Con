@@ -4,22 +4,38 @@ using System.Collections;
 
 public class BuildingsBuilderController : MonoBehaviour
 {
-    public GameObject barracksImage;//the image for the barracks
-    public GameObject dragonPortalImage;// the image for the dragon portal
-    public GameObject antiAirTurretImage;//the image for the anti air turret
-    public GameObject minesImage;//the image for the mine
-    public GameObject wallImage;//the image for the wall      
-    public BuildMenu buildMenu;//allows to access the build menu variables
-    public BuilMenuController buildController;//allows to access build controller variables
-    public Text m_shardsCostText;//text to display the shard cost of the building
-    public Text m_goldCostText;//text to display the gold cost of the building
-    public Text m_healthText;//text to display the health of the building
-    public Text m_attackText;//text to display the attack of the building
-    public Text m_barracksNumText;
-    public Text m_dragonPortalNumText;
-    public Text m_minesNumText;
-    public Text m_wallNumText;
-    public Text m_antiAirTurretNumText;
+    [SerializeField]
+    private GameObject barracksImage;//the image for the barracks
+    [SerializeField]
+    private GameObject dragonPortalImage;// the image for the dragon portal
+    [SerializeField]
+    private GameObject antiAirTurretImage;//the image for the anti air turret
+    [SerializeField]
+    private GameObject minesImage;//the image for the mine
+    [SerializeField]
+    private GameObject wallImage;//the image for the wall
+    [SerializeField]
+    private BuildMenu buildMenu;//allows to access the build menu variables
+    [SerializeField]
+    private BuilMenuController buildController;//allows to access build controller variables
+    [SerializeField]
+    private Text m_shardsCostText;//text to display the shard cost of the building
+    [SerializeField]
+    private Text m_goldCostText;//text to display the gold cost of the building
+    [SerializeField]
+    private Text m_healthText;//text to display the health of the building
+    [SerializeField]
+    private Text m_attackText;//text to display the attack of the building
+    [SerializeField]
+    private Text m_barracksNumText;
+    [SerializeField]
+    private Text m_dragonPortalNumText;
+    [SerializeField]
+    private Text m_minesNumText;
+    [SerializeField]
+    private Text m_wallNumText;
+    [SerializeField]
+    private Text m_antiAirTurretNumText;
 
 
 	// Use this for initialization

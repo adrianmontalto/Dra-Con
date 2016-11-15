@@ -3,29 +3,21 @@ using System.Collections;
 
 public class EnemyUnitBuilder : MonoBehaviour
 {
-    [HideInInspector]
-    public int m_minerNum = 0;
-    [HideInInspector]
-    public int m_advanceMinerNum = 0;
-    [HideInInspector]
-    public int m_dragonWarriorNum = 0;
-    [HideInInspector]
-    public int m_dragonTankNum = 0;
-    [HideInInspector]
-    public int m_dragonNum = 0;
-    [HideInInspector]
-    public int m_barracksNum = 0;
-    [HideInInspector]
-    public int m_dragonPortalsNum = 0;
-    [HideInInspector]
-    public int m_antiAirTurretNum = 0;
-    [HideInInspector]
-    public int m_minesNum = 0;
-    [HideInInspector]
-    public int m_wallNum = 0;
+    private int m_minerNum = 0;
+    private int m_advanceMinerNum = 0;
+    private int m_dragonWarriorNum = 0;
+    private int m_dragonTankNum = 0;
+    private int m_dragonNum = 0;
+    private int m_barracksNum = 0;
+    private int m_dragonPortalsNum = 0;
+    private int m_antiAirTurretNum = 0;
+    private int m_minesNum = 0;
+    private int m_wallNum = 0;
 
-    public Enemy enemy;
-    public GameItemList gameItemList;
+    [SerializeField]
+    private Enemy enemy;
+    [SerializeField]
+    private GameItemList gameItemList;
 
     public void AddEnemyBuildings()
     {

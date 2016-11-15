@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyGatherManager : MonoBehaviour
 {
-    public Enemy enemy;
-    public Player player;
-    public GameItemList itemList;
-    public GameManager gameManager;
-    public int m_maxMiners = 0;
-    public int m_maxAdvanceMiners = 0;
+    [SerializeField]
+    private Enemy enemy;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private GameItemList itemList;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private int m_maxMiners = 0;
+    [SerializeField]
+    private int m_maxAdvanceMiners = 0;
     [HideInInspector]
-    public bool m_isActive = false;
+    private bool m_isActive = false;
     private UtilityValue m_gatherGoldValue;
     private UtilityValue m_gatherShardValue;
     private UtilityValue m_useMinerValue;
@@ -20,10 +27,11 @@ public class EnemyGatherManager : MonoBehaviour
 
     private int m_minerNum = 0;
     private int m_advanceMinerNum = 0;
-    [HideInInspector]
-    public Dictionary<string, UtilityScore> m_UtilityScoreMap = new Dictionary<string, UtilityScore>();
-    [HideInInspector]
-    public Dictionary<string, UtilityScore> m_gatherUtilityMap = new Dictionary<string, UtilityScore>();
+    
+    private Dictionary<string, UtilityScore> m_UtilityScoreMap = new Dictionary<string, UtilityScore>();
+    private Dictionary<string, UtilityScore> m_gatherUtilityMap = new Dictionary<string, UtilityScore>();
+    [SerializeField]
+    private Text m_lastMoveText;
 	// Use this for initialization
 	void Start ()
     {
@@ -120,13 +128,15 @@ public class EnemyGatherManager : MonoBehaviour
         if(strBestAction == "gatherGold")
         {
             Debug.Log("gather: gold");
-            SelectGoldAction();            
+            SelectGoldAction();
+            m_lastMoveText.text = "Enemy Gathered Gold";       
         }
 
         if(strBestAction == "gatherShard")
         {
             Debug.Log("gather: shard");
-            SelectShardAction();            
+            SelectShardAction();
+            m_lastMoveText.text = "Enemy Gathered Shards";            
         }
     }
 

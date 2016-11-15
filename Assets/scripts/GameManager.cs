@@ -4,21 +4,23 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public Player player;
-    public Enemy enemy;
-    public WinningGoalsManager winGoal;
-    public GameObject playerTurnIndicator;
-    public GameObject enemyTurnIndicator;
-    public GameObject playerAttackPanel;
+    [SerializeField]
+    private Player m_player;
+    [SerializeField]
+    private Enemy m_enemy;
+    [SerializeField]
+    private WinningGoalsManager winGoal;
+    [SerializeField]
+    private GameObject m_playerTurnIndicator;
+    [SerializeField]
+    private GameObject m_enemyTurnIndicator;
+    [SerializeField]
+    private GameObject m_playerAttackPanel;
 
-    [HideInInspector]
-    public bool playerIndicatorON = false;
-    [HideInInspector]
-    public bool enemyIndicatorOn = false;
-    [HideInInspector]
-    public bool playerTurn = false;
-    [HideInInspector]
-    public bool enemyTurn = false;
+    private bool m_playerIndicatorON = false;
+    private bool m_enemyIndicatorOn = false;
+    private bool m_playerTurn = false;
+    private bool m_enemyTurn = false;
 
 	// Use this for initialization
 	void Start ()
@@ -47,9 +49,9 @@ public class GameManager : MonoBehaviour
             enemyIndicatorOn = true;
         }
 
-        if(enemy.m_health < 0)
+        if(enemy.GetHealth() < 0)
         {
-            if((player.m_gold == winGoal.goldNeeded) &&(player.m_shards == winGoal.shardsNeeded))
+            if((player.GetGold() == winGoal.goldNeeded) &&(player.m_shards == winGoal.shardsNeeded))
             {
                 SceneManager.LoadScene("PlayerWin");
             }
@@ -70,5 +72,10 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("PlayerWin");
             }
         }
+    }
+
+    public void SetPlayerTurn(bool isTurn)
+    {
+        m_playerTurn
     }
 }

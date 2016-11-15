@@ -4,22 +4,34 @@ using System.Collections;
 
 public class BuilMenuController : MonoBehaviour
 {
-    public Player player;
-    public BuildMenu buildMenu;
-    public GameManager gameManager;
-    public GameObject buildPanel;
-    public GameObject unitPanel;
-    public GameObject buildingPanel;
-    public GameObject initPanel;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private BuildMenu buildMenu;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private GameObject buildPanel;
+    [SerializeField]
+    private GameObject unitPanel;
+    [SerializeField]
+    private GameObject buildingPanel;
+    [SerializeField]
+    private GameObject initPanel;
+    [SerializeField]
     private GameObject previousPanel;
-    public Text m_totalShardCostText;
-    public Text m_shardAmountText;
-    public Text m_totalGoldCostText;
-    public Text m_goldAmount;
+    [SerializeField]
+    private Text m_totalShardCostText;
+    [SerializeField]
+    private Text m_shardAmountText;
+    [SerializeField]
+    private Text m_totalGoldCostText;
+    [SerializeField]
+    private Text m_goldAmount;
     [HideInInspector]
-    public int m_totalGold;
+    private int m_totalGold;
     [HideInInspector]
-    public int m_totalShard;
+    private int m_totalShard;
 
     // Use this for initialization
     void Start ()

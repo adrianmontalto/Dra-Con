@@ -4,16 +4,26 @@ using System.Collections;
 
 public class GatherMenuController : MonoBehaviour
 {
-    public Player player;
-    public GameItem miner;
-    public GameItem advanceMiner;
-    public GameObject gatherMenuPanel;
-    public GameManager gameManager;
-    public Text minersAmountText;
-    public Text advanceMinersAmountText;
-    public Text gatherMaterial;
-    public int m_maxMiners = 0;
-    public int m_maxAdvanceMiners = 0;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private GameItem miner;
+    [SerializeField]
+    private GameItem advanceMiner;
+    [SerializeField]
+    private GameObject gatherMenuPanel;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private Text minersAmountText;
+    [SerializeField]
+    private Text advanceMinersAmountText;
+    [SerializeField]
+    private Text gatherMaterial;
+    [SerializeField]
+    private int m_maxMiners = 0;
+    [SerializeField]
+    private int m_maxAdvanceMiners = 0;
 
     private int m_availableMiners = 0;
     private int m_availableAdvanceMiners = 0;

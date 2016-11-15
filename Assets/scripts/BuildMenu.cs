@@ -24,10 +24,14 @@ public class BuildMenu : MonoBehaviour
     [HideInInspector]
     public int m_wallNum = 0;
    
-    public Player player;
-    public GameItemList gameItemList;
-    public GameObject initImage;
-    public GameObject previousImage;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private GameItemList gameItemList;
+    [SerializeField]
+    private GameObject initImage;
+    [SerializeField]
+    private GameObject previousImage;
 
     // Use this for initialization
     void Start ()

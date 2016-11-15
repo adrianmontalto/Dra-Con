@@ -4,14 +4,22 @@ using System.Collections;
 
 public class AttackPanelController : MonoBehaviour
 {
-    public Player player;
-    public Enemy enemy;
-    public GameItemList itemList;
-    public GameManager gameManger;
-    public GameObject attackPanel;
-    public int m_maxDragonWarriors;
-    public int m_maxDragonTanks;
-    public int m_maxDragons;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private Enemy enemy;
+    [SerializeField]
+    private GameItemList itemList;
+    [SerializeField]
+    private GameManager gameManger;
+    [SerializeField]
+    private GameObject attackPanel;
+    [SerializeField]
+    private int m_maxDragonWarriors;
+    [SerializeField]
+    private int m_maxDragonTanks;
+    [SerializeField]
+    private int m_maxDragons;
 
     private int m_dragonWarriorsNum = 0;
     private int m_dragonTanksNum = 0;
@@ -19,9 +27,14 @@ public class AttackPanelController : MonoBehaviour
     private int m_groundUnitHealth = 0;
     private int m_playerAttackdamage = 0;
 
-    public Text m_dragonWarriorsAmountText;
-    public Text m_dragonTankAmountText;
-    public Text m_dragonAmountText;
+    [SerializeField]
+    private Text m_dragonWarriorsAmountText;
+    [SerializeField]
+    private Text m_dragonTankAmountText;
+    [SerializeField]
+    private Text m_dragonAmountText;
+    [SerializeField]
+    private Text m_moveText;
 
     // Use this for initialization
     void Start()
@@ -41,7 +54,7 @@ public class AttackPanelController : MonoBehaviour
     {
         if (m_dragonWarriorsNum < m_maxDragonWarriors)
         {
-            if (m_dragonWarriorsNum < player.m_dragonWarriorNum)
+            if (m_dragonWarriorsNum < player.GetDragonWarriorNumber())
             {
                 m_dragonWarriorsNum++;
             }
@@ -60,7 +73,7 @@ public class AttackPanelController : MonoBehaviour
     {
         if (m_dragonTanksNum < m_maxDragonTanks)
         {
-            if (m_dragonTanksNum < player.m_dragonTankNum)
+            if (m_dragonTanksNum < player.GetDragonTankNumber())
             {
                 m_dragonTanksNum++;
             }
@@ -79,7 +92,7 @@ public class AttackPanelController : MonoBehaviour
     {
         if (m_dragonsNum < m_maxDragons)
         {
-            if (m_dragonsNum < player.m_dragonNum)
+            if (m_dragonsNum < player.GetDragonNumber())
             {
                 m_dragonsNum++;
             }
@@ -107,12 +120,13 @@ public class AttackPanelController : MonoBehaviour
             AttackEnemy();
         }
         ResetUnitNumbers();
-        enemy.m_health -= m_playerAttackdamage;
+        enemy.ReduceHealth(m_playerAttackdamage);
         attackPanel.SetActive(false);
         player.SetMaxUnitNumber();
         enemy.SetMaxValues();
         gameManger.playerTurn = false;
         gameManger.enemyTurn = true;
+        m_moveText.text = "Player Attacked";
     }
 
     void AttackEnemy()

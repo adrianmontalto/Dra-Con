@@ -1,18 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyBuildManager : MonoBehaviour
 {
-    public Enemy enemy;
-    public Player player;
-    public GameManager gameManager;
-    public GameItemList gameItemList;
-    public EnemyUnitBuilder unitBuilder;
+    [SerializeField]
+    private Enemy enemy;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private GameItemList gameItemList;
+    [SerializeField]
+    private EnemyUnitBuilder unitBuilder;
 
-    public int m_maxBuildNumber;
-    [HideInInspector]
-    public bool m_isActive = false;
+    [SerializeField]
+    private int m_maxBuildNumber;
+    private bool m_isActive = false;
     //values for the utility scores
     private UtilityValue m_buildResources;
     private UtilityValue m_buildMiners;
@@ -29,18 +35,15 @@ public class EnemyBuildManager : MonoBehaviour
     private UtilityValue m_buildDragonTanks;
     private UtilityValue m_buildDragon;
     //
-
+    [SerializeField]
+    private Text m_lastMoveText;
+ 
     //lists to store all the enemies decisions
-    [HideInInspector]
-    public Dictionary<string, UtilityScore> m_utilityScoreMap = new Dictionary<string, UtilityScore>();
-    [HideInInspector]
-    public Dictionary<string, UtilityScore> m_resourceUtilittScoreMap = new Dictionary<string,UtilityScore>();
-    [HideInInspector]
-    public Dictionary<string, UtilityScore> m_defenseUtilityScoreMap = new Dictionary<string, UtilityScore>();
-    [HideInInspector]
-    public Dictionary<string, UtilityScore> m_buildUtilityScoreMap = new Dictionary<string, UtilityScore>();
-    [HideInInspector]
-    public Dictionary<string, UtilityScore> m_unitUtilityScoreMap = new Dictionary<string, UtilityScore>();
+    private Dictionary<string, UtilityScore> m_utilityScoreMap = new Dictionary<string, UtilityScore>();
+    private Dictionary<string, UtilityScore> m_resourceUtilittScoreMap = new Dictionary<string,UtilityScore>();
+    private Dictionary<string, UtilityScore> m_defenseUtilityScoreMap = new Dictionary<string, UtilityScore>();
+    private Dictionary<string, UtilityScore> m_buildUtilityScoreMap = new Dictionary<string, UtilityScore>();
+    private Dictionary<string, UtilityScore> m_unitUtilityScoreMap = new Dictionary<string, UtilityScore>();
     //
 
     // Use this for initialization
@@ -246,25 +249,29 @@ public class EnemyBuildManager : MonoBehaviour
         if(strBestAction == "buildResource")
         {
             Debug.Log("build:build resources");
-            SelectResourceAction();            
+            SelectResourceAction();
+            m_lastMoveText.text = "Enemy Built Resources";
         }
 
         if(strBestAction == "buildUnit")
         {
             Debug.Log("build:build unit");
-            SelectUnitAction();            
+            SelectUnitAction();
+            m_lastMoveText.text = "Enemy Built Units";
         }
 
         if(strBestAction == "buildDefense")
         {
             Debug.Log("build: build defense");
-            SelectDefenseAction();            
+            SelectDefenseAction();
+            m_lastMoveText.text = "Enemy Built Defenses";
         }
 
         if(strBestAction == "buildBuilding")
         {
             Debug.Log("build: build building");
-            SelectBuildingAction();            
+            SelectBuildingAction();
+            m_lastMoveText.text = "Enemy Built Building";
         }
     }
 
@@ -420,6 +427,7 @@ public class EnemyBuildManager : MonoBehaviour
             enemy.SetMaxValues();
             gameManager.enemyTurn = false;
             gameManager.playerTurn = true;
+            
         }
         else
         {

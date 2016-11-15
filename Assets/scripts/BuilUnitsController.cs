@@ -4,22 +4,38 @@ using System.Collections;
 
 public class BuilUnitsController : MonoBehaviour
 {
-    public BuildMenu buildMenu;
-    public BuilMenuController buildController;
-    public GameObject minerImage;
-    public GameObject advanceMinerImage;
-    public GameObject dragonWarriorImage;
-    public GameObject dragonTankImage;
-    public GameObject dragonImage;
-    public Text m_shardsCostText;
-    public Text m_goldCostText;
-    public Text m_healthText;
-    public Text m_attackText;
-    public Text m_minerNumText;
-    public Text m_advanceMinerNumText;
-    public Text m_dragonWarriorNumText;
-    public Text m_dragonTankNumText;
-    public Text m_dragonNumText;
+    [SerializeField]
+    private BuildMenu buildMenu;
+    [SerializeField]
+    private BuilMenuController buildController;
+    [SerializeField]
+    private GameObject minerImage;
+    [SerializeField]
+    private GameObject advanceMinerImage;
+    [SerializeField]
+    private GameObject dragonWarriorImage;
+    [SerializeField]
+    private GameObject dragonTankImage;
+    [SerializeField]
+    private GameObject dragonImage;
+    [SerializeField]
+    private Text m_shardsCostText;
+    [SerializeField]
+    private Text m_goldCostText;
+    [SerializeField]
+    private Text m_healthText;
+    [SerializeField]
+    private Text m_attackText;
+    [SerializeField]
+    private Text m_minerNumText;
+    [SerializeField]
+    private Text m_advanceMinerNumText;
+    [SerializeField]
+    private Text m_dragonWarriorNumText;
+    [SerializeField]
+    private Text m_dragonTankNumText;
+    [SerializeField]
+    private Text m_dragonNumText;
 
     // Use this for initialization
     void Start ()

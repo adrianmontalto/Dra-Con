@@ -4,11 +4,16 @@ using UnityEngine.UI;
 
 public class GameItem : MonoBehaviour
 {
-    public string objectName;
-    public int shardCost;
-    public int goldCost;
-    public int health;
-    public int attack;
+    [SerializeField]
+    private string objectName;
+    [SerializeField]
+    private int shardCost;
+    [SerializeField]
+    private int goldCost;
+    [SerializeField]
+    private int health;
+    [SerializeField]
+    private int attack;
 
     public GameItem(string name,int gold, int shard, int a_health,int a_attack)
     {

@@ -3,13 +3,20 @@ using System.Collections;
 
 public class InfoSelectPanelController : MonoBehaviour
 {
-    public GameObject playerUnitPanel;//the unit info panel
-    public GameObject playerDefensePanel;//the defense info panel
-    public GameObject playerBuildingsPanel;//the buildings info panel
-    public GameObject enemyUnitPanel;//the unit info panel
-    public GameObject enemyDefensePanel;//the defense info panel
-    public GameObject enemyBuildingsPanel;//the buildings info panel
-    public GameObject startPanel;//the initial panel
+    [SerializeField]
+    private GameObject playerUnitPanel;//the unit info panel
+    [SerializeField]
+    private GameObject playerDefensePanel;//the defense info panel
+    [SerializeField]
+    private GameObject playerBuildingsPanel;//the buildings info panel
+    [SerializeField]
+    private GameObject enemyUnitPanel;//the unit info panel
+    [SerializeField]
+    private GameObject enemyDefensePanel;//the defense info panel
+    [SerializeField]
+    private GameObject enemyBuildingsPanel;//the buildings info panel
+    [SerializeField]
+    private GameObject startPanel;//the initial panel
     private GameObject previousPanel;//the previous panel
 
 	// Use this for initialization

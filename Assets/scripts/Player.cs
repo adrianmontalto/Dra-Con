@@ -5,28 +5,35 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector]
-    public int m_health = 0;//players health
-    public int m_gold = 0;//players gold
-    public int m_shards = 0;//players shards
-    public int m_dragonWarriorNum = 0;//the number of dragon warriors the player has
-    public int m_dragonTankNum = 0;//the number of dragon tanks the player has
-    public int m_dragonNum = 0;//the number of dragons the player has
-    public int m_minerNum = 0;//the number of miners the player has
-    public int m_advanceminerNum = 0;//the number of advance miners the player has
-    public int m_barrackNum = 0;//the number of barracks the player has
-    public int m_dragonPortalNum = 0;//the number or dragon portals the player has
-    public int m_wallNum = 0;//the number of walls the player has
-    public int m_antiAirTurretNum = 0;//the number of anti air turrets the player has
-    public int m_mineNum = 0;//the number of mines the player has
-    [HideInInspector]
-    public List<GameItem> m_playerUnits = new List<GameItem>();//a list of all the players units and buildings
-    [HideInInspector]
-    public int m_unitNumber = 0;//the number of units the player has
-    [HideInInspector]
-    public int m_maxHealth = 0;
-    [HideInInspector]
-    public int m_maxUnitNumber = 0;
+    private int m_health = 0;//players health
+    [SerializeField]
+    private int m_gold = 0;//players gold
+    [SerializeField]
+    private int m_shards = 0;//players shards
+    [SerializeField]
+    private int m_dragonWarriorNum = 0;//the number of dragon warriors the player has
+    [SerializeField]
+    private int m_dragonTankNum = 0;//the number of dragon tanks the player has
+    [SerializeField]
+    private int m_dragonNum = 0;//the number of dragons the player has
+    [SerializeField]
+    private int m_minerNum = 0;//the number of miners the player has
+    [SerializeField]
+    private int m_advanceminerNum = 0;//the number of advance miners the player has
+    [SerializeField]
+    private int m_barrackNum = 0;//the number of barracks the player has
+    [SerializeField]
+    private int m_dragonPortalNum = 0;//the number or dragon portals the player has
+    [SerializeField]
+    private int m_wallNum = 0;//the number of walls the player has
+    [SerializeField]
+    private int m_antiAirTurretNum = 0;//the number of anti air turrets the player has
+    [SerializeField]
+    private int m_mineNum = 0;//the number of mines the player has
+    private List<GameItem> m_playerUnits = new List<GameItem>();//a list of all the players units and buildings
+    private int m_unitNumber = 0;//the number of units the player has
+    private int m_maxHealth = 0;
+    private int m_maxUnitNumber = 0;
     // Use this for initialization
     void Start ()
     {
@@ -199,5 +206,65 @@ public class Player : MonoBehaviour
         {
             m_maxUnitNumber = m_unitNumber;
         }
+    }
+
+    public int GetGold()
+    {
+        return m_gold;
+    }
+
+    public int GetShards()
+    {
+        return m_shards;
+    }
+
+    public int GetDragonWarriorNumber()
+    {
+        return m_dragonWarriorNum;
+    }
+
+    public int GetDragonTankNumber()
+    {
+        return m_dragonTankNum;
+    }
+
+    public int GetDragonNumber()
+    {
+        return m_dragonNum;
+    }
+
+    public int GetMinerNumber()
+    {
+        return m_minerNum;
+    }
+
+    public int GetAdvanceMinerNumber()
+    {
+        return m_advanceminerNum;
+    }
+
+    public int GetBarracksNumber()
+    {
+        return m_barrackNum;
+    }
+
+    public int GetDragonPortalNumber()
+    {
+        return m_dragonPortalNum;
+    }
+
+    public int WallNumber()
+    {
+        return m_wallNum;
+    }
+
+    public int AntiAirTurretNumber()
+    {
+        return m_antiAirTurretNum;
+    }
+
+    public int MineNumber()
+    {
+        return m_mineNum;
     }
 }

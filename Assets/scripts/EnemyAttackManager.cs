@@ -1,25 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyAttackManager : MonoBehaviour
 {
-    public Enemy enemy;
-    public Player player;
-    public GameManager gameManager;
-    public GameItemList itemList;
-    [HideInInspector]
-    public bool m_isActive = false;
+    [SerializeField]
+    private Enemy enemy;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
+    private GameItemList itemList;
+    private bool m_isActive = false;
     private UtilityValue m_lowAttackValue;
     private UtilityValue m_mediumAttackValue;
     private UtilityValue m_highAttackValue;
-    public Dictionary<string, UtilityScore> m_utilityScoreMap = new Dictionary<string, UtilityScore>();
+    [SerializeField]
+    private Dictionary<string, UtilityScore> m_utilityScoreMap = new Dictionary<string, UtilityScore>();
     private int m_mineDamage = 0;
     private int m_dragonWarriorNumber = 0;
     private int m_dragonTankNum = 0;
     private int m_dragonNum = 0;
     private int m_groundUnitHealth = 0;
     private int m_attackDamage = 0;
+    [SerializeField]
+    private Text m_moveText;
 
     // Use this for initialization
     void Start()
@@ -128,6 +135,7 @@ public class EnemyAttackManager : MonoBehaviour
         enemy.SetMaxValues();
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
+        m_moveText.text = "Enemy Attacked";
     }
 
     void MediumAttack()
@@ -147,6 +155,7 @@ public class EnemyAttackManager : MonoBehaviour
         enemy.SetMaxValues();
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
+        m_moveText.text = "Enemy Attacked";
     }
 
     void HighAttack()
@@ -166,6 +175,7 @@ public class EnemyAttackManager : MonoBehaviour
         enemy.SetMaxValues();
         gameManager.enemyTurn = false;
         gameManager.playerTurn = true;
+        m_moveText.text = "Enemy Attacked";
     }
 
     void AttackPlayer()

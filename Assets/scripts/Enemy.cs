@@ -6,75 +6,79 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    private GameManager gameManager;//the game manager
+    [SerializeField]
+    private WinningGoalsManager winningGoalManager;
     
-    public GameManager gameManager;//the game manager
-    public WinningGoalsManager winningGoalManager;
-    
-    public int m_gold = 0;
-    public int m_shards = 0;
-    public int m_dragonWarriorNum = 0;
-    public int m_dragonTankNum = 0;
-    public int m_dragonNum = 0;
-    public int m_minerNum = 0;
-    public int m_advanceminerNum = 0;
-    public int m_barrackNum = 0;
-    public int m_dragonPortalNum = 0;
-    public int m_wallNum = 0;
-    public int m_antiAirTurretNum = 0;
-    public int m_mineNum = 0;
-    [HideInInspector]
-    public int m_health = 0;
-    [HideInInspector]
-    public List<GameItem> m_enemyUnits = new List<GameItem>();
-    [HideInInspector]
-    public float m_closenessToWinGoal = 0;
-    [HideInInspector]
-    public float m_closenessToShardGoal;
-    [HideInInspector]
-    public float m_closenessToGoldGoal;
-    [HideInInspector]
-    public int m_totalUnitCount = 0;
-    [HideInInspector]
-    public int m_totalResourceUnits = 0;
-    [HideInInspector]
-    public int m_dragonWarriorsDestroyed = 0;
-    [HideInInspector]
-    public int m_dragonTanksDestroyed = 0;
-    [HideInInspector]
-    public int m_dragonsDestroyed = 0;
+    [SerializeField]
+    private int m_gold = 0;
+    [SerializeField]
+    private int m_shards = 0;
+    [SerializeField]
+    private int m_dragonWarriorNum = 0;
+    [SerializeField]
+    private int m_dragonTankNum = 0;
+    [SerializeField]
+    private int m_dragonNum = 0;
+    [SerializeField]
+    private int m_minerNum = 0;
+    [SerializeField]
+    private int m_advanceminerNum = 0;
+    [SerializeField]
+    private int m_barrackNum = 0;
+    [SerializeField]
+    private int m_dragonPortalNum = 0;
+    [SerializeField]
+    private int m_wallNum = 0;
+    [SerializeField]
+    private int m_antiAirTurretNum = 0;
+    [SerializeField]
+    private int m_mineNum = 0;
+
+    private int m_health = 0;
+    private List<GameItem> m_enemyUnits = new List<GameItem>();
+    private float m_closenessToWinGoal = 0;
+    private float m_closenessToShardGoal;
+    private float m_closenessToGoldGoal;
+    private int m_totalUnitCount = 0;
+    private int m_totalResourceUnits = 0;
+    private int m_dragonWarriorsDestroyed = 0;
+    private int m_dragonTanksDestroyed = 0;
+    private int m_dragonsDestroyed = 0;
 
     [HideInInspector]
-    public float m_maxClosenessToWinGoal = 0;
+    private float m_maxClosenessToWinGoal = 0;
     [HideInInspector]
-    public int m_maxGold = 0;
+    private int m_maxGold = 0;
     [HideInInspector]
-    public int m_maxShard = 0;
+    private int m_maxShard = 0;
     [HideInInspector]
-    public int m_maxTotalUnitCount = 0;
+    private int m_maxTotalUnitCount = 0;
     [HideInInspector]
-    public int m_maxHealth = 0;
+    private int m_maxHealth = 0;
     [HideInInspector]
-    public int m_maxTotalResourceUnits = 0;
+    private int m_maxTotalResourceUnits = 0;
     [HideInInspector]
-    public int m_maxMinerNum = 0;
+    private int m_maxMinerNum = 0;
     [HideInInspector]
-    public int m_maxAdvanceMinerNum = 0;
+    private int m_maxAdvanceMinerNum = 0;
     [HideInInspector]
-    public int m_maxMineNum = 0;
+    private int m_maxMineNum = 0;
     [HideInInspector]
-    public int m_maxWallNUm = 0;
+    private int m_maxWallNUm = 0;
     [HideInInspector]
-    public int m_maxAntiAirTurretNum = 0;
+    private int m_maxAntiAirTurretNum = 0;
     [HideInInspector]
-    public int m_maxBarracksNum = 0;
+    private int m_maxBarracksNum = 0;
     [HideInInspector]
-    public int m_maxDragonPortalNum = 0;
+    private int m_maxDragonPortalNum = 0;
     [HideInInspector]
-    public int m_maxDragonWarriorNum = 0;
+    private int m_maxDragonWarriorNum = 0;
     [HideInInspector]
-    public int m_maxDragonTankNum = 0;
+    private int m_maxDragonTankNum = 0;
     [HideInInspector]
-    public int m_maxDragonNum = 0;
+    private int m_maxDragonNum = 0;
     // Use this for initialization
     void Start ()
     {
@@ -320,5 +324,74 @@ public class Enemy : MonoBehaviour
         {
             m_maxDragonNum = m_dragonNum;
         }
+    }
+
+    public int GetGold()
+    {
+        return m_gold;
+    }
+
+    public int GetShards()
+    {
+        return m_shards;
+    }
+    public int GetDragonWarriorNumber()
+    {
+        return m_dragonWarriorNum;
+    }
+
+    public int GetDragonTankNumber()
+    {
+        return m_dragonTankNum;
+    }
+
+    public int GetDragonNumber()
+    {
+        return m_dragonNum;
+    }
+
+    public int GetMinerNumber()
+    {
+        return m_minerNum;
+    }
+
+    public int GetAdvancedMinerNumber()
+    {
+        return m_advanceminerNum;
+    }
+
+    public int GetBarracksNumber()
+    {
+        return m_barrackNum;
+    }
+
+    public int GetDragonPortalNumber()
+    {
+        return m_dragonPortalNum;
+    }
+
+    public int GetWallNUmber()
+    {
+        return m_wallNum;
+    }
+
+    public int GetAntiAirTurretNumber()
+    {
+        return m_antiAirTurretNum;
+    }
+
+    public int GetMineNumber()
+    {
+        return m_mineNum;
+    }
+
+    public int GetHealth()
+    {
+        return m_health;
+    }
+
+    public void ReduceHealth(int reduce)
+    {
+        m_health -= reduce;
     }
 }

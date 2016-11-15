@@ -5,8 +5,10 @@ using System.Collections.Generic;
 
 public class PlayerHealthCalculator : MonoBehaviour
 {
-    public Player player;
-    public GameItemList itemList;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private GameItemList itemList;
 
 	// Use this for initialization
 	void Start ()

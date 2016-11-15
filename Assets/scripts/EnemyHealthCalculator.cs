@@ -5,8 +5,10 @@ using System.Collections.Generic;
 
 public class EnemyHealthCalculator : MonoBehaviour
 {
-    public Enemy enemy;
-    public GameItemList itemList;
+    [SerializeField]
+    private Enemy enemy;
+    [SerializeField]
+    private GameItemList itemList;
 
 	// Use this for initialization
 	void Start ()

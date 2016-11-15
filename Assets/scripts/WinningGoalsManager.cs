@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class WinningGoalsManager : MonoBehaviour
 {
-    public Text goalText;
-    public Text shardText;
-    [HideInInspector]
-    public int goldNeeded = 0;
-    [HideInInspector]
-    public int shardsNeeded = 0;
+    [SerializeField]
+    private Text goalText;
+    [SerializeField]
+    private Text shardText;
+
+    private int goldNeeded = 0;
+    private int shardsNeeded = 0;
 
     // Use this for initialization
     void Start ()
