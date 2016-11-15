@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class BuilMenuController : MonoBehaviour
+public class BuildMenuController : MonoBehaviour
 {
     [SerializeField]
     private Player player;
@@ -27,7 +27,7 @@ public class BuilMenuController : MonoBehaviour
     [SerializeField]
     private Text m_totalGoldCostText;
     [SerializeField]
-    private Text m_goldAmount;
+    private Text m_goldAmountText;
     [HideInInspector]
     private int m_totalGold;
     [HideInInspector]
@@ -64,7 +64,7 @@ public class BuilMenuController : MonoBehaviour
         Debug.Log("");
         Debug.Log("player build");
         Debug.Log("");
-        if (m_totalShard < player.m_shards && m_totalGold < player.m_gold)
+        if (m_totalShard < player.GetShards() && m_totalGold < player.GetGold())
         {
             buildMenu.AddPlayerBuildings();
             buildMenu.AddPlayerUnits();
@@ -74,9 +74,59 @@ public class BuilMenuController : MonoBehaviour
             m_totalShard = 0;
             player.SetMaxHealth();
             player.SetMaxUnitNumber();
-            gameManager.playerTurn = false;
-            gameManager.enemyTurn = true;
+            gameManager.SetPlayerTurn(false);
+            gameManager.SetEnemyTurn(true);
 
         }
+    }
+
+    public Text GetGoldAmountText()
+    {
+        return m_goldAmountText;
+    }
+
+    public Text GetTotalGoldCostText()
+    {
+        return m_totalGoldCostText;
+    }
+
+    public Text GetShardAmountText()
+    {
+        return m_shardAmountText;
+    }
+
+    public Text GetTotalShardCostText()
+    {
+        return m_totalShardCostText;
+    }
+
+    public int GetTotalGold()
+    {
+        return m_totalGold;
+    }
+
+    public void ReduceTotalGold(int amount)
+    {
+        m_totalGold -= amount;
+    }
+
+    public void AddTotalGold(int amount)
+    {
+        m_totalGold += amount;
+    }
+
+    public int GetTotalShard()
+    {
+        return m_totalShard;
+    }
+
+    public void ReduceTotalShard(int amount)
+    {
+        m_totalShard -= amount;
+    }
+
+    public void AddTotalShard(int amount)
+    {
+        m_totalShard += amount;
     }
 }

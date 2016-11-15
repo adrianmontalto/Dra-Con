@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     {
         for(int i = 0; i < number;++i)
         {
-            int lastMine = m_playerUnits.FindLastIndex((GameItem item) => { return item.objectName == "mines";});
+            int lastMine = m_playerUnits.FindLastIndex((GameItem item) => { return item.GetName() == "mines";});
 
             if(lastMine > -1)
             {
@@ -116,9 +116,9 @@ public class Player : MonoBehaviour
         while(unitDamage > 0)
         {
             int index = ChooseWhichUnitToDestroy();
-            if(unitDamage > m_playerUnits[index].health)
+            if(unitDamage > m_playerUnits[index].GetHealth())
             {
-                unitDamage -= m_playerUnits[index].health;
+                unitDamage -= m_playerUnits[index].GetHealth();
                 if(m_playerUnits[index].name == "dragonWarrior")
                 {
                     DestroyLastDragonWarrior(index);
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                m_playerUnits[index].health -= unitDamage;
+                m_playerUnits[index].ReduceHealth(unitDamage);
                 unitDamage = 0;
             }
         }
@@ -155,9 +155,9 @@ public class Player : MonoBehaviour
     int ChooseWhichUnitToDestroy()
     {
         int lastWarrior = m_playerUnits.FindLastIndex((GameItem item) =>
-                            { return item.objectName == "dragonWarrior"; });
+                            { return item.GetName() == "dragonWarrior"; });
         int lastTank = m_playerUnits.FindLastIndex((GameItem)=> 
-                            {return GameItem.objectName == "dragonTank"; });
+                            {return GameItem.GetName() == "dragonTank"; });
 
         if (lastWarrior > lastTank)
         {
@@ -173,15 +173,15 @@ public class Player : MonoBehaviour
         while(dragonDamage > 0)
         {
             int lastDragon = m_playerUnits.FindLastIndex((GameItem item) =>
-                                { return item.objectName == "dragon"; });
-            if(dragonDamage > m_playerUnits[lastDragon].health)
+                                { return item.GetName() == "dragon"; });
+            if(dragonDamage > m_playerUnits[lastDragon].GetHealth())
             {
-                dragonDamage -= m_playerUnits[lastDragon].health;
+                dragonDamage -= m_playerUnits[lastDragon].GetHealth();
                 DestroyLastDragon(lastDragon);
             }
             else
             {
-                m_playerUnits[lastDragon].health -= dragonDamage;
+                m_playerUnits[lastDragon].ReduceHealth(dragonDamage);
                 dragonDamage = 0;
             }
         }
@@ -213,9 +213,28 @@ public class Player : MonoBehaviour
         return m_gold;
     }
 
+    public void ReduceGold(int amount)
+    {
+        m_gold -= amount;
+    }
+
+    public void AddGold(int amount)
+    {
+        m_gold += amount;
+    }
     public int GetShards()
     {
         return m_shards;
+    }
+
+    public void ReduceShards(int amount)
+    {
+        m_shards -= amount;
+    }
+
+    public void AddShards(int amount)
+    {
+        m_shards += amount;
     }
 
     public int GetDragonWarriorNumber()
@@ -223,9 +242,29 @@ public class Player : MonoBehaviour
         return m_dragonWarriorNum;
     }
 
+    public void ReduceDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum -= amount;
+    }
+
+    public void AddDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum += amount;
+    }
+
     public int GetDragonTankNumber()
     {
         return m_dragonTankNum;
+    }
+
+    public void ReduceDragonTankNumber(int amount)
+    {
+        m_dragonTankNum -= amount;
+    }
+
+    public void AddDragonTankNumber(int amount)
+    {
+        m_dragonTankNum += amount;
     }
 
     public int GetDragonNumber()
@@ -233,14 +272,43 @@ public class Player : MonoBehaviour
         return m_dragonNum;
     }
 
+    public void ReduceDragonNumber(int amount)
+    {
+        m_dragonNum -= amount;
+    }
+
+    public void AddDragonNumber(int amount)
+    {
+        m_dragonNum += amount;
+    }
+
     public int GetMinerNumber()
     {
         return m_minerNum;
     }
 
+    public void ReduceMinerNumber(int amount)
+    {
+        m_minerNum -= amount;
+    }
+
+    public void AddMinerNumber(int amount)
+    {
+        m_minerNum += amount;
+    }
     public int GetAdvanceMinerNumber()
     {
         return m_advanceminerNum;
+    }
+
+    public void ReduceAdvanceMinerNumber(int amount)
+    {
+        m_advanceminerNum -= amount;
+    }
+
+    public void AddAdvanceMinerNumber(int amount)
+    {
+        m_advanceminerNum += amount;
     }
 
     public int GetBarracksNumber()
@@ -248,23 +316,106 @@ public class Player : MonoBehaviour
         return m_barrackNum;
     }
 
+    public void ReduceBarracksNumber(int amount)
+    {
+        m_barrackNum -= amount;
+    }
+
+    public void AddBarracksNumber(int amount)
+    {
+        m_barrackNum += amount;
+    }
+
     public int GetDragonPortalNumber()
     {
         return m_dragonPortalNum;
     }
 
-    public int WallNumber()
+    public void ReduceDragonPortalNumber(int amount)
+    {
+        m_dragonPortalNum -= amount;
+    }
+
+    public void AddDragonPortalNumber(int amount)
+    {
+        m_dragonPortalNum += amount;
+    }
+
+    public int GetWallNumber()
     {
         return m_wallNum;
     }
 
-    public int AntiAirTurretNumber()
+    public void ReduceWallNumber(int amount)
+    {
+        m_wallNum -= amount;
+    }
+
+    public void AddWallNumber(int amount)
+    {
+        m_wallNum += amount;
+    }
+
+    public int GetAntiAirTurretNumber()
     {
         return m_antiAirTurretNum;
     }
 
-    public int MineNumber()
+    public void ReduceAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum -= amount;
+    }
+
+    public void AddAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum += amount;
+    }
+
+    public int GetMineNumber()
     {
         return m_mineNum;
+    }
+
+    public void ReduceMineNumber(int amount)
+    {
+        m_mineNum -= amount;
+    }
+
+    public void AddMineNumber(int amount)
+    {
+        m_mineNum += amount;
+    }
+    public List<GameItem> GetPlayerUnitsList()
+    {
+        return m_playerUnits;
+    }
+    
+    public int GetHealth()
+    {
+        return m_health;
+    }
+
+    public void ReduceHealth(int amount)
+    {
+        m_health -= amount;
+    }
+    public void AddHealth(int amount)
+    {
+        m_health += amount;
+    }
+
+    public int GetUnitNumber()
+    {
+        return m_unitNumber;
+    }
+
+    public int GetMaxHealth()
+    {
+        return m_maxHealth;
+    }
+
+    public int GetMaxUnitNumber()
+    {
+        return m_maxUnitNumber;
     }
 }

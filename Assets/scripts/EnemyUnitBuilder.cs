@@ -23,37 +23,37 @@ public class EnemyUnitBuilder : MonoBehaviour
     {
         for (int i = 0; i < m_barracksNum; ++i)
         {
-            GameItem enemyBuildings = gameItemList.barracks.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyBuildings);
-            enemy.m_health += gameItemList.barracks.health;
+            GameItem enemyBuildings = gameItemList.GetBarracks().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyBuildings);
+            enemy.AddHealth(gameItemList.GetBarracks().GetHealth());
         }
 
         for (int i = 0; i < m_dragonPortalsNum; ++i)
         {
-            GameItem enemyBuildings = gameItemList.dragonPortal.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyBuildings);
-            enemy.m_health += gameItemList.dragonPortal.health;
+            GameItem enemyBuildings = gameItemList.GetDragonPortal().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyBuildings);
+            enemy.AddHealth(gameItemList.GetDragonPortal().GetHealth());
         }
 
         for (int i = 0; i < m_antiAirTurretNum; ++i)
         {
-            GameItem enemyBuildings = gameItemList.antiAirTurret.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyBuildings);
-            enemy.m_health += gameItemList.antiAirTurret.health;
+            GameItem enemyBuildings = gameItemList.GetAntiAirTurret().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyBuildings);
+            enemy.AddHealth(gameItemList.GetAntiAirTurret().GetHealth());
         }
 
         for (int i = 0; i < m_wallNum; ++i)
         {
-            GameItem enemyBuildings = gameItemList.wall.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyBuildings);
-            enemy.m_health += gameItemList.wall.health;
+            GameItem enemyBuildings = gameItemList.GetWall().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyBuildings);
+            enemy.AddHealth(gameItemList.GetWall().GetHealth());
         }
 
         for (int i = 0; i < m_minesNum; ++i)
         {
-            GameItem enemyBuildings = gameItemList.mine.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyBuildings);
-            enemy.m_health += gameItemList.mine.health;
+            GameItem enemyBuildings = gameItemList.GetMine().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyBuildings);
+            enemy.AddHealth(gameItemList.GetMine().GetHealth());
         }
     }
 
@@ -61,37 +61,37 @@ public class EnemyUnitBuilder : MonoBehaviour
     {
         for (int i = 0; i < m_minerNum; ++i)
         {
-            GameItem enemyUnit = gameItemList.miner.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyUnit);
-            enemy.m_health += gameItemList.miner.health;
+            GameItem enemyUnit = gameItemList.GetMiner().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyUnit);
+            enemy.AddHealth(gameItemList.GetMiner().GetHealth());
         }
 
         for (int i = 0; i < m_advanceMinerNum; ++i)
         {
-            GameItem enemyUnit = gameItemList.advanceMiner.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyUnit);
-            enemy.m_health += gameItemList.advanceMiner.health;
+            GameItem enemyUnit = gameItemList.GetAdvanceMiner().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyUnit);
+            enemy.AddHealth(gameItemList.GetAdvanceMiner().GetHealth());
         }
 
         for (int i = 0; i < m_dragonWarriorNum; ++i)
         {
-            GameItem enemyUnit = gameItemList.dragonWarrior.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyUnit);
-            enemy.m_health += gameItemList.dragonWarrior.health;
+            GameItem enemyUnit = gameItemList.GetDragonWarrior().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyUnit);
+            enemy.AddHealth(gameItemList.GetDragonWarrior().GetHealth());
         }
 
         for (int i = 0; i < m_dragonTankNum; ++i)
         {
-            GameItem enemyUnit = gameItemList.dragonTank.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyUnit);
-            enemy.m_health += gameItemList.dragonTank.health;
+            GameItem enemyUnit = gameItemList.GetDragonTank().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyUnit);
+            enemy.AddHealth(gameItemList.GetDragonTank().GetHealth());
         }
 
         for (int i = 0; i < m_dragonNum; ++i)
         {
-            GameItem enemyUnit = gameItemList.dragon.gameObject.GetComponent<GameItem>();
-            enemy.m_enemyUnits.Add(enemyUnit);
-            enemy.m_health += gameItemList.dragon.health;
+            GameItem enemyUnit = gameItemList.GetDragon().gameObject.GetComponent<GameItem>();
+            enemy.GetEnemyUnits().Add(enemyUnit);
+            enemy.AddHealth(gameItemList.GetDragon().GetHealth());
         }
     }
 
@@ -108,4 +108,126 @@ public class EnemyUnitBuilder : MonoBehaviour
         m_minesNum = 0;
         m_wallNum = 0;
     }
+
+    public int GetDragonWarriorNumber()
+    {
+        return m_dragonWarriorNum;
+    }
+
+    public void ReduceDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum -= amount;
+    }
+
+    public void AddDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum += amount;
+    }
+
+    public int GetDragonTankNumber()
+    {
+        return m_dragonTankNum;
+    }
+
+    public void ReduceDragonTankNumber(int amount)
+    {
+        m_dragonTankNum -= amount;
+    }
+
+    public void AddDragonTankNumber(int amount)
+    {
+        m_dragonTankNum += amount;
+    }
+
+    public int GetDragonNumber()
+    {
+        return m_dragonNum;
+    }
+
+    public void ReduceDragonNumber(int amount)
+    {
+        m_dragonNum -= amount;
+    }
+
+    public void AddDragonNumber(int amount)
+    {
+        m_dragonNum += amount;
+    }
+
+    public int GetMinerNumber()
+    {
+        return m_minerNum;
+    }
+
+    public void ReduceMinerNumber(int amount)
+    {
+        m_minerNum -= amount;
+    }
+
+    public void AddMinerNumber(int amount)
+    {
+        m_minerNum += amount;
+    }
+
+    public int GetAdvanceMinerNumber()
+    {
+        return m_advanceMinerNum;
+    }
+
+    public void ReduceAdvanceMinerNumber(int amount)
+    {
+        m_advanceMinerNum -= amount;
+    }
+
+    public void AddAdvanceMinerNumber(int amount)
+    {
+        m_advanceMinerNum += amount;
+    }
+
+
+    public int GetDragonPortalNumber()
+    {
+        return m_dragonPortalsNum;
+    }
+
+    public void ReduceDragonPortalNumber(int amount)
+    {
+        m_dragonPortalsNum -= amount;
+    }
+
+    public void AddDragonPortalNumber(int amount)
+    {
+        m_dragonPortalsNum += amount;
+    }
+
+    public int GetWallNumber()
+    {
+        return m_wallNum;
+    }
+
+    public void ReduceWallNumber(int amount)
+    {
+        m_wallNum -= amount;
+    }
+
+    public void AddWallNumber(int amount)
+    {
+        m_wallNum += amount;
+    }
+
+    public int GetAntiAirTurretNumber()
+    {
+        return m_antiAirTurretNum;
+    }
+
+    public void ReduceAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum -= amount;
+    }
+
+    public void AddAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum += amount;
+    }
+
 }

@@ -17,7 +17,7 @@ public class BuildingsBuilderController : MonoBehaviour
     [SerializeField]
     private BuildMenu buildMenu;//allows to access the build menu variables
     [SerializeField]
-    private BuilMenuController buildController;//allows to access build controller variables
+    private BuildMenuController buildController;//allows to access build controller variables
     [SerializeField]
     private Text m_shardsCostText;//text to display the shard cost of the building
     [SerializeField]
@@ -47,159 +47,159 @@ public class BuildingsBuilderController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        buildController.m_goldAmount.text = buildMenu.player.m_gold.ToString();
-        buildController.m_totalGoldCostText.text = buildController.m_totalGold.ToString();
-        buildController.m_shardAmountText.text = buildMenu.player.m_shards.ToString();
-        buildController.m_totalShardCostText.text = buildController.m_totalShard.ToString();
+        buildController.GetGoldAmountText().text = buildMenu.GetPlayer().GetGold().ToString();
+        buildController.GetTotalGoldCostText().text = buildController.GetTotalGold().ToString();
+        buildController.GetShardAmountText().text = buildMenu.GetPlayer().GetShards().ToString();
+        buildController.GetTotalShardCostText().text = buildController.GetTotalShard().ToString();
         SetNumbersText();
     }
 
     public void BarracksButton()
     {
-        buildMenu.previousImage.SetActive(false);
+        buildMenu.SetPreviousImageActive(false);
         barracksImage.SetActive(true);
-        buildMenu.previousImage = barracksImage;
-        m_shardsCostText.text = buildMenu.gameItemList.barracks.shardCost.ToString();
-        m_goldCostText.text = buildMenu.gameItemList.barracks.goldCost.ToString();
-        m_healthText.text = buildMenu.gameItemList.barracks.health.ToString();
-        m_attackText.text = buildMenu.gameItemList.barracks.attack.ToString();
+        buildMenu.SetPreviousImage(barracksImage);
+        m_shardsCostText.text = buildMenu.GetGameItemList().GetBarracks().GetShardCost().ToString();
+        m_goldCostText.text = buildMenu.GetGameItemList().GetBarracks().GetGoldCost().ToString();
+        m_healthText.text = buildMenu.GetGameItemList().GetBarracks().GetHealth().ToString();
+        m_attackText.text = buildMenu.GetGameItemList().GetBarracks().GetAttack().ToString();
     }
 
     public void AddBarracks()
     {
-        buildMenu.m_barracksNum += 1;
-        buildController.m_totalGold += buildMenu.gameItemList.barracks.goldCost;
-        buildController.m_totalShard += buildMenu.gameItemList.barracks.shardCost;
+        buildMenu.AddBarracksNumber(1);
+        buildController.AddTotalGold(buildMenu.GetGameItemList().GetBarracks().GetGoldCost());
+        buildController.AddTotalShard(buildMenu.GetGameItemList().GetBarracks().GetShardCost());
     }
 
     public void RemoveBarracks()
     {
-        if(buildMenu.m_barracksNum > 0)
+        if(buildMenu.GetBarracksNumber() > 0)
         {
-            buildMenu.m_barracksNum--;
-            buildController.m_totalGold -= buildMenu.gameItemList.barracks.goldCost;
-            buildController.m_totalShard -= buildMenu.gameItemList.barracks.shardCost;
+            buildMenu.ReduceBarracksNumber(1);
+            buildController.ReduceTotalGold(buildMenu.GetGameItemList().GetBarracks().GetGoldCost());
+            buildController.ReduceTotalShard(buildMenu.GetGameItemList().GetBarracks().GetShardCost());
         }       
     }
 
     public void DragonPortalButton()
     {
-        buildMenu.previousImage.SetActive(false);
+        buildMenu.SetPreviousImageActive(false);
         dragonPortalImage.SetActive(true);
-        buildMenu.previousImage = dragonPortalImage;
-        m_shardsCostText.text = buildMenu.gameItemList.dragonPortal.shardCost.ToString();
-        m_goldCostText.text = buildMenu.gameItemList.dragonPortal.goldCost.ToString();
-        m_healthText.text = buildMenu.gameItemList.dragonPortal.health.ToString();
-        m_attackText.text = buildMenu.gameItemList.dragonPortal.attack.ToString();
+        buildMenu.SetPreviousImage(dragonPortalImage);
+        m_shardsCostText.text = buildMenu.GetGameItemList().GetDragonPortal().GetShardCost().ToString();
+        m_goldCostText.text = buildMenu.GetGameItemList().GetDragonPortal().GetGoldCost().ToString();
+        m_healthText.text = buildMenu.GetGameItemList().GetDragonPortal().GetHealth().ToString();
+        m_attackText.text = buildMenu.GetGameItemList().GetDragonPortal().GetAttack().ToString();
     }
 
     public void AddDragonPortal()
     {
-        buildMenu.m_dragonPortalsNum += 1;
-        buildController.m_totalGold += buildMenu.gameItemList.dragonPortal.goldCost;
-        buildController.m_totalShard += buildMenu.gameItemList.dragonPortal.shardCost;
+        buildMenu.AddDragonPortalsNumber(1);
+        buildController.AddTotalGold(buildMenu.GetGameItemList().GetDragonPortal().GetGoldCost());
+        buildController.AddTotalShard(buildMenu.GetGameItemList().GetDragonPortal().GetShardCost());
     }
 
     public void RemoveDragonPortal()
     {
-        if (buildMenu.m_dragonPortalsNum > 0)
+        if (buildMenu.GetDragonPortalsNumber() > 0)
         {
-            buildMenu.m_dragonPortalsNum--;
-            buildController.m_totalGold -= buildMenu.gameItemList.dragonPortal.goldCost;
-            buildController.m_totalShard -= buildMenu.gameItemList.dragonPortal.shardCost;
+            buildMenu.ReduceDragonPortalsNumber(1);
+            buildController.ReduceTotalGold(buildMenu.GetGameItemList().GetDragonPortal().GetGoldCost());
+            buildController.ReduceTotalShard(buildMenu.GetGameItemList().GetDragonPortal().GetShardCost());
         }
     }
 
     public void AntiAirTurretButton()
     {
-        buildMenu.previousImage.SetActive(false);
+        buildMenu.SetPreviousImageActive(false);
         antiAirTurretImage.SetActive(true);
-        buildMenu.previousImage = antiAirTurretImage;
-        m_shardsCostText.text = buildMenu.gameItemList.antiAirTurret.shardCost.ToString();
-        m_goldCostText.text = buildMenu.gameItemList.antiAirTurret.goldCost.ToString();
-        m_healthText.text = buildMenu.gameItemList.antiAirTurret.health.ToString();
-        m_attackText.text = buildMenu.gameItemList.antiAirTurret.attack.ToString();
+        buildMenu.SetPreviousImageActive(antiAirTurretImage);
+        m_shardsCostText.text = buildMenu.GetGameItemList().GetAntiAirTurret().GetShardCost().ToString();
+        m_goldCostText.text = buildMenu.GetGameItemList().GetAntiAirTurret().GetGoldCost().ToString();
+        m_healthText.text = buildMenu.GetGameItemList().GetAntiAirTurret().GetHealth().ToString();
+        m_attackText.text = buildMenu.GetGameItemList().GetAntiAirTurret().GetAttack().ToString();
     }
 
     public void AddAntiAirTurret()
     {
-        buildMenu.m_antiAirTurretNum += 1;
-        buildController.m_totalGold += buildMenu.gameItemList.antiAirTurret.goldCost;
-        buildController.m_totalShard += buildMenu.gameItemList.antiAirTurret.shardCost;
+        buildMenu.AddAntiAirTurretNumber(1);
+        buildController.AddTotalGold(buildMenu.GetGameItemList().GetAntiAirTurret().GetGoldCost());
+        buildController.AddTotalShard(buildMenu.GetGameItemList().GetAntiAirTurret().GetShardCost());
     }
 
     public void RemoveAntiAirTurret()
     {
-        if (buildMenu.m_antiAirTurretNum > 0)
+        if (buildMenu.GetAntiAirTurretNumber() > 0)
         {
-            buildMenu.m_antiAirTurretNum--;
-            buildController.m_totalGold -= buildMenu.gameItemList.antiAirTurret.goldCost;
-            buildController.m_totalShard -= buildMenu.gameItemList.antiAirTurret.shardCost;
+            buildMenu.ReduceAntiAirTurretNumber(1);
+            buildController.ReduceTotalGold(buildMenu.GetGameItemList().GetAntiAirTurret().GetGoldCost());
+            buildController.ReduceTotalShard(buildMenu.GetGameItemList().GetAntiAirTurret().GetShardCost());
         }
     }
 
     public void MinesButton()
     {
-        buildMenu.previousImage.SetActive(false);
+        buildMenu.SetPreviousImageActive(false);
         minesImage.SetActive(true);
-        buildMenu.previousImage = minesImage;
-        m_shardsCostText.text = buildMenu.gameItemList.mine.shardCost.ToString();
-        m_goldCostText.text = buildMenu.gameItemList.mine.goldCost.ToString();
-        m_healthText.text = buildMenu.gameItemList.mine.health.ToString();
-        m_attackText.text = buildMenu.gameItemList.mine.attack.ToString();
+        buildMenu.SetPreviousImage(minesImage);
+        m_shardsCostText.text = buildMenu.GetGameItemList().GetMine().GetShardCost().ToString();
+        m_goldCostText.text = buildMenu.GetGameItemList().GetMine().GetGoldCost().ToString();
+        m_healthText.text = buildMenu.GetGameItemList().GetMine().GetHealth().ToString();
+        m_attackText.text = buildMenu.GetGameItemList().GetMine().GetAttack().ToString();
     }
 
     public void AddMines()
     {
-        buildMenu.m_minesNum += 1;
-        buildController.m_totalGold += buildMenu.gameItemList.mine.goldCost;
-        buildController.m_totalShard += buildMenu.gameItemList.mine.shardCost;
+        buildMenu.AddMineNumber(1);
+        buildController.AddTotalGold(buildMenu.GetGameItemList().GetMine().GetGoldCost());
+        buildController.AddTotalShard(buildMenu.GetGameItemList().GetMine().GetShardCost());
     }
 
     public void RemoveMines()
     {
-        if (buildMenu.m_minesNum > 0)
+        if (buildMenu.GetMinesNumber() > 0)
         {
-            buildMenu.m_minesNum--;
-            buildController.m_totalGold -= buildMenu.gameItemList.mine.goldCost;
-            buildController.m_totalShard -= buildMenu.gameItemList.mine.shardCost;
+            buildMenu.ReduceMineNumber(1);
+            buildController.ReduceTotalGold(buildMenu.GetGameItemList().GetMine().GetGoldCost());
+            buildController.ReduceTotalShard(buildMenu.GetGameItemList().GetMine().GetShardCost());
         }
     }
 
     public void WallButton()
     {
-        buildMenu.previousImage.SetActive(false);
+        buildMenu.SetPreviousImageActive(false);
         wallImage.SetActive(true);
-        buildMenu.previousImage = wallImage;
-        m_shardsCostText.text = buildMenu.gameItemList.wall.shardCost.ToString();
-        m_goldCostText.text = buildMenu.gameItemList.wall.goldCost.ToString();
-        m_healthText.text = buildMenu.gameItemList.wall.health.ToString();
-        m_attackText.text = buildMenu.gameItemList.wall.attack.ToString();
+        buildMenu.SetPreviousImage(wallImage);
+        m_shardsCostText.text = buildMenu.GetGameItemList().GetWall().GetShardCost().ToString();
+        m_goldCostText.text = buildMenu.GetGameItemList().GetWall().GetGoldCost().ToString();
+        m_healthText.text = buildMenu.GetGameItemList().GetWall().GetHealth().ToString();
+        m_attackText.text = buildMenu.GetGameItemList().GetWall().GetAttack().ToString();
     }
 
     public void AddWall()
     {
-        buildMenu.m_wallNum += 1;
-        buildController.m_totalGold += buildMenu.gameItemList.wall.goldCost;
-        buildController.m_totalShard += buildMenu.gameItemList.wall.shardCost;
+        buildMenu.AddWallNumber(1);
+        buildController.AddTotalGold(buildMenu.GetGameItemList().GetWall().GetGoldCost());
+        buildController.AddTotalShard(buildMenu.GetGameItemList().GetWall().GetShardCost());
     }
 
     public void RemoveWall()
     {
-        if (buildMenu.m_wallNum > 0)
+        if (buildMenu.GetWallNumber() > 0)
         {
-            buildMenu.m_wallNum--;
-            buildController.m_totalGold += buildMenu.gameItemList.barracks.goldCost;
-            buildController.m_totalShard += buildMenu.gameItemList.barracks.shardCost;
+            buildMenu.ReduceWallNumber(1);
+            buildController.AddTotalGold(buildMenu.GetGameItemList().GetWall().GetGoldCost());
+            buildController.AddTotalShard(buildMenu.GetGameItemList().GetWall().GetShardCost());
         }
     }
 
     void SetNumbersText()
     {
-        m_barracksNumText.text = buildMenu.m_barracksNum.ToString();
-        m_dragonPortalNumText.text = buildMenu.m_dragonPortalsNum.ToString();
-        m_minesNumText.text = buildMenu.m_minesNum.ToString();
-        m_wallNumText.text = buildMenu.m_wallNum.ToString();
-        m_antiAirTurretNumText.text = buildMenu.m_antiAirTurretNum.ToString();
+        m_barracksNumText.text = buildMenu.GetBarracksNumber().ToString();
+        m_dragonPortalNumText.text = buildMenu.GetDragonPortalsNumber().ToString();
+        m_minesNumText.text = buildMenu.GetMinesNumber().ToString();
+        m_wallNumText.text = buildMenu.GetWallNumber().ToString();
+        m_antiAirTurretNumText.text = buildMenu.GetAntiAirTurretNumber().ToString();
     }
 }

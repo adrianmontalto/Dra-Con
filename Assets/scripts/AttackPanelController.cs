@@ -124,14 +124,14 @@ public class AttackPanelController : MonoBehaviour
         attackPanel.SetActive(false);
         player.SetMaxUnitNumber();
         enemy.SetMaxValues();
-        gameManger.playerTurn = false;
-        gameManger.enemyTurn = true;
+        gameManger.SetPlayerTurn(false);
+        gameManger.SetEnemyTurn(true);
         m_moveText.text = "Player Attacked";
     }
 
     void AttackEnemy()
     {
-        if (enemy.m_wallNum > 0)
+        if (enemy.GetWallNumber()> 0)
         {
             AttackEnemyWall();
         }
@@ -143,19 +143,19 @@ public class AttackPanelController : MonoBehaviour
 
     void AttackEnemyWall()
     {
-        int lastWall = enemy.m_enemyUnits.FindLastIndex((GameItem item) => { return item.objectName == "wall"; });
+        int lastWall = enemy.GetEnemyUnits().FindLastIndex((GameItem item) => { return item.GetName() == "wall"; });
 
         if (lastWall > -1)
         {
-            if (m_playerAttackdamage < enemy.m_enemyUnits[lastWall].health)
+            if (m_playerAttackdamage < enemy.GetEnemyUnits()[lastWall].GetHealth())
             {
-                enemy.m_enemyUnits[lastWall].health -= m_playerAttackdamage;
+                enemy.GetEnemyUnits()[lastWall].ReduceHealth(m_playerAttackdamage);
             }
             else
             {
-                m_playerAttackdamage -= enemy.m_enemyUnits[lastWall].health;
-                enemy.m_enemyUnits.RemoveAt(lastWall);
-                enemy.m_wallNum--;
+                m_playerAttackdamage -= enemy.GetEnemyUnits()[lastWall].GetHealth();
+                enemy.GetEnemyUnits().RemoveAt(lastWall);
+                enemy.ReduceWallNumber(1);
                 AttackEnemy();
             }
         }
@@ -163,16 +163,16 @@ public class AttackPanelController : MonoBehaviour
 
     void AttackEnemyLastBuilt()
     {
-        int LastEnemy = enemy.m_enemyUnits.Count - 1;
-        if (m_playerAttackdamage < enemy.m_enemyUnits[LastEnemy].health)
+        int LastEnemy = enemy.GetEnemyUnits().Count - 1;
+        if (m_playerAttackdamage < enemy.GetEnemyUnits()[LastEnemy].GetHealth())
         {
-            enemy.m_enemyUnits[LastEnemy].health -= m_playerAttackdamage;
+            enemy.GetEnemyUnits()[LastEnemy].ReduceHealth(m_playerAttackdamage);
         }
         else
         {
-            m_playerAttackdamage -= enemy.m_enemyUnits[LastEnemy].health;
-            enemy.ReduceUnitNumber(enemy.m_enemyUnits[LastEnemy].objectName);
-            enemy.m_enemyUnits.RemoveAt(LastEnemy);
+            m_playerAttackdamage -= enemy.GetEnemyUnits()[LastEnemy].GetHealth();
+            enemy.ReduceUnitNumber(enemy.GetEnemyUnits()[LastEnemy].GetName());
+            enemy.GetEnemyUnits().RemoveAt(LastEnemy);
             AttackEnemy();
         }
     }
@@ -181,32 +181,32 @@ public class AttackPanelController : MonoBehaviour
     {
         for (int i = 0; i < m_dragonWarriorsNum; ++i)
         {
-            m_playerAttackdamage += itemList.dragonWarrior.attack;
+            m_playerAttackdamage += itemList.GetDragonWarrior().GetAttack();
         }
 
         for (int i = 0; i < m_dragonTanksNum; ++i)
         {
-            m_playerAttackdamage += itemList.dragonTank.attack;
+            m_playerAttackdamage += itemList.GetDragonTank().GetAttack();
         }
 
         for (int i = 0; i < m_dragonsNum; ++i)
         {
-            m_playerAttackdamage += itemList.dragon.attack;
+            m_playerAttackdamage += itemList.GetDragon().GetAttack();
         }
     }
 
     void CalculateMineDamage()
     {
         //check to see if enemy has any mines
-        if (enemy.m_mineNum > 0)
+        if (enemy.GetMineNumber() > 0)
         {
             CalculateGrounUnitHealth();
             //calculate damage done to player ensuring that no excess mines are used
-            int mineDamage = enemy.m_mineNum * itemList.mine.attack;
+            int mineDamage = enemy.GetMineNumber() * itemList.GetMine().GetAttack();
             if (mineDamage < m_groundUnitHealth)
             {
                 //destroy all mines used
-                enemy.DestroyMines(enemy.m_mineNum);
+                enemy.DestroyMines(enemy.GetMineNumber());
                 //destroy any warriors and tanks killed by mines
                 player.DestroyGroundUnit(mineDamage);
             }
@@ -217,7 +217,7 @@ public class AttackPanelController : MonoBehaviour
                 while (mineDamage < m_groundUnitHealth)
                 {
                     mineNum++;
-                    mineDamage += itemList.mine.attack;
+                    mineDamage += itemList.GetMine().GetAttack();
                 }
                 //destroy all mines used
                 player.DestroyMines(mineNum);
@@ -230,12 +230,12 @@ public class AttackPanelController : MonoBehaviour
     void CalculateAntiAirTurretDamage()
     {
         //check to see if the enemy has any anti air turrets
-        if (enemy.m_antiAirTurretNum > 0)
+        if (enemy.GetAntiAirTurretNumber()> 0)
         {
             //calculate damage from air turrets
-            int turretDamage = player.m_antiAirTurretNum * itemList.antiAirTurret.attack;
+            int turretDamage = enemy.GetAntiAirTurretNumber() * itemList.GetAntiAirTurret().GetAttack();
             //claculate dragon health
-            int dragonHealth = m_dragonsNum * itemList.dragon.health;
+            int dragonHealth = m_dragonsNum * itemList.GetDragon().GetHealth();
             if (turretDamage > dragonHealth)
             {
                 turretDamage = dragonHealth;
@@ -253,8 +253,8 @@ public class AttackPanelController : MonoBehaviour
     }
     void CalculateGrounUnitHealth()
     {
-        m_groundUnitHealth = ((m_dragonWarriorsNum * itemList.dragonWarrior.health) + 
-                                (m_dragonTanksNum * itemList.dragonTank.health));
+        m_groundUnitHealth = ((m_dragonWarriorsNum * itemList.GetDragonWarrior().GetHealth()) + 
+                                (m_dragonTanksNum * itemList.GetDragonTank().GetHealth()));
     }
 
     void ResetUnitNumbers()

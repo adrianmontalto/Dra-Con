@@ -5,20 +5,20 @@ using UnityEngine.UI;
 public class WinningGoalsManager : MonoBehaviour
 {
     [SerializeField]
-    private Text goalText;
+    private Text m_goalText;
     [SerializeField]
-    private Text shardText;
+    private Text m_shardText;
 
-    private int goldNeeded = 0;
-    private int shardsNeeded = 0;
+    private int m_goldNeeded = 0;
+    private int m_shardsNeeded = 0;
 
     // Use this for initialization
     void Start ()
     {
-        goldNeeded = Random.Range(2000, 7000);
-        shardsNeeded = Random.Range(2000, 7000);
-        goalText.text = goldNeeded.ToString();
-        shardText.text = shardsNeeded.ToString();
+        m_goldNeeded = Random.Range(2000, 7000);
+        m_shardsNeeded = Random.Range(2000, 7000);
+        m_goalText.text = m_goldNeeded.ToString();
+        m_shardText.text = m_shardsNeeded.ToString();
 
 	}
 	
@@ -27,4 +27,14 @@ public class WinningGoalsManager : MonoBehaviour
     {
 	    
 	}
+
+    public int GetGoldNeeded()
+    {
+        return m_goldNeeded;
+    }
+
+    public int GetShardsNeeded()
+    {
+        return m_shardsNeeded;
+    }
 }

@@ -47,37 +47,22 @@ public class Enemy : MonoBehaviour
     private int m_dragonTanksDestroyed = 0;
     private int m_dragonsDestroyed = 0;
 
-    [HideInInspector]
+    
     private float m_maxClosenessToWinGoal = 0;
-    [HideInInspector]
     private int m_maxGold = 0;
-    [HideInInspector]
     private int m_maxShard = 0;
-    [HideInInspector]
     private int m_maxTotalUnitCount = 0;
-    [HideInInspector]
     private int m_maxHealth = 0;
-    [HideInInspector]
     private int m_maxTotalResourceUnits = 0;
-    [HideInInspector]
     private int m_maxMinerNum = 0;
-    [HideInInspector]
     private int m_maxAdvanceMinerNum = 0;
-    [HideInInspector]
     private int m_maxMineNum = 0;
-    [HideInInspector]
-    private int m_maxWallNUm = 0;
-    [HideInInspector]
+    private int m_maxWallNum = 0;
     private int m_maxAntiAirTurretNum = 0;
-    [HideInInspector]
     private int m_maxBarracksNum = 0;
-    [HideInInspector]
     private int m_maxDragonPortalNum = 0;
-    [HideInInspector]
     private int m_maxDragonWarriorNum = 0;
-    [HideInInspector]
     private int m_maxDragonTankNum = 0;
-    [HideInInspector]
     private int m_maxDragonNum = 0;
     // Use this for initialization
     void Start ()
@@ -88,8 +73,8 @@ public class Enemy : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        m_closenessToGoldGoal = m_gold / winningGoalManager.goldNeeded;
-        m_closenessToShardGoal = m_shards / winningGoalManager.shardsNeeded;
+        m_closenessToGoldGoal = m_gold / winningGoalManager.GetGoldNeeded();
+        m_closenessToShardGoal = m_shards / winningGoalManager.GetShardsNeeded();
         m_closenessToWinGoal = (m_closenessToGoldGoal + m_closenessToShardGoal) / 2;
 
         m_totalUnitCount = m_dragonWarriorNum + m_dragonTankNum + m_dragonNum;
@@ -150,9 +135,9 @@ public class Enemy : MonoBehaviour
         while(unitDamage > 0)
         {
             int index = ChooseWhichUnitToDestroy();
-            if (unitDamage > m_enemyUnits[index].health)
+            if (unitDamage > m_enemyUnits[index].GetHealth())
             {
-                unitDamage -= m_enemyUnits[index].health;
+                unitDamage -= m_enemyUnits[index].GetHealth();
                 if (m_enemyUnits[index].name == "dragonWarrior")
                 {
                     DestroyLastDragonWarrior(index);
@@ -164,7 +149,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                m_enemyUnits[index].health -= unitDamage;
+                m_enemyUnits[index].ReduceHealth(unitDamage);
                 unitDamage = 0;
             }
         }
@@ -190,9 +175,9 @@ public class Enemy : MonoBehaviour
     int ChooseWhichUnitToDestroy()
     {
         int lastWarrior = m_enemyUnits.FindLastIndex((GameItem item) =>
-        { return item.objectName == "dragonWarrior"; });
+        { return item.GetName() == "dragonWarrior"; });
         int lastTank = m_enemyUnits.FindLastIndex((GameItem item) =>
-        { return item.objectName == "dragonTank"; });
+        { return item.GetName() == "dragonTank"; });
 
         if (lastWarrior > lastTank)
         {
@@ -208,15 +193,15 @@ public class Enemy : MonoBehaviour
         while (dragonDamage > 0)
         {
             int lastDragon = m_enemyUnits.FindLastIndex((GameItem item) => 
-                                { return item.objectName == "dragon"; });
-            if (dragonDamage > m_enemyUnits[lastDragon].health)
+                                { return item.GetName() == "dragon"; });
+            if (dragonDamage > m_enemyUnits[lastDragon].GetHealth())
             {
-                dragonDamage -= m_enemyUnits[lastDragon].health;
+                dragonDamage -= m_enemyUnits[lastDragon].GetHealth();
                 DestroyLastDragon(lastDragon);
             }
             else
             {
-                m_enemyUnits[lastDragon].health -= dragonDamage;
+                m_enemyUnits[lastDragon].ReduceHealth(dragonDamage);
                 dragonDamage = 0;
             }
         }
@@ -233,7 +218,7 @@ public class Enemy : MonoBehaviour
     {
         for(int i = 0; i < number;++i)
         {
-            int lastMine = m_enemyUnits.FindLastIndex((GameItem item) => { return item.objectName == "mines";});
+            int lastMine = m_enemyUnits.FindLastIndex((GameItem item) => { return item.GetName() == "mines";});
 
             if(lastMine > -1)
             {
@@ -290,9 +275,9 @@ public class Enemy : MonoBehaviour
             m_maxMineNum = m_mineNum;
         }
 
-        if (m_wallNum > m_maxWallNUm)
+        if (m_wallNum > m_maxWallNum)
         {
-            m_maxWallNUm = m_wallNum;
+            m_maxWallNum = m_wallNum;
         }
 
         if (m_antiAirTurretNum > m_maxAntiAirTurretNum)
@@ -331,13 +316,44 @@ public class Enemy : MonoBehaviour
         return m_gold;
     }
 
+    public void ReduceGold(int amount)
+    {
+        m_gold -= amount;
+    }
+
+    public void AddGold(int amount)
+    {
+        m_gold += amount;
+    }
+
     public int GetShards()
     {
         return m_shards;
     }
+
+    public void ReduceShards(int amount)
+    {
+        m_shards -= amount;
+    }
+
+    public void AddShards(int amount)
+    {
+        m_shards += amount;
+    }
+
     public int GetDragonWarriorNumber()
     {
         return m_dragonWarriorNum;
+    }
+
+    public void ReduceDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum -= amount;
+    }
+
+    public void AddDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum += amount;
     }
 
     public int GetDragonTankNumber()
@@ -345,9 +361,29 @@ public class Enemy : MonoBehaviour
         return m_dragonTankNum;
     }
 
+    public void ReduceDragonTankNumber(int amount)
+    {
+        m_dragonTankNum -= amount;
+    }
+
+    public void AddDragonTankNumber(int amount)
+    {
+        m_dragonTankNum += amount;
+    }
+
     public int GetDragonNumber()
     {
         return m_dragonNum;
+    }
+
+    public void ReduceDragonNumber(int amount)
+    {
+        m_dragonNum -= amount;
+    }
+
+    public void AddDragonNumber(int amount)
+    {
+        m_dragonNum += amount;
     }
 
     public int GetMinerNumber()
@@ -355,9 +391,29 @@ public class Enemy : MonoBehaviour
         return m_minerNum;
     }
 
-    public int GetAdvancedMinerNumber()
+    public void ReduceMinerNumber(int amount)
+    {
+        m_minerNum -= amount;
+    }
+
+    public void AddMinerNumber(int amount)
+    {
+        m_minerNum += amount;
+    }
+
+    public int GetAdvanceMinerNumber()
     {
         return m_advanceminerNum;
+    }
+
+    public void ReduceAdvanceMinerNumber(int amount)
+    {
+        m_advanceminerNum -= amount;
+    }
+
+    public void AddAdvanceMinerNumber(int amount)
+    {
+        m_advanceminerNum += amount;
     }
 
     public int GetBarracksNumber()
@@ -365,14 +421,44 @@ public class Enemy : MonoBehaviour
         return m_barrackNum;
     }
 
+    public void ReduceBarracksNumber(int amount)
+    {
+        m_barrackNum -= amount;
+    }
+
+    public void AddBarracksNumber(int amount)
+    {
+        m_barrackNum += amount;
+    }
+
     public int GetDragonPortalNumber()
     {
         return m_dragonPortalNum;
     }
 
-    public int GetWallNUmber()
+    public void ReduceDragonPortalNumber(int amount)
+    {
+        m_dragonPortalNum -= amount;
+    }
+
+    public void AddDragonPortalNumber(int amount)
+    {
+        m_dragonPortalNum += amount;
+    }
+
+    public int GetWallNumber()
     {
         return m_wallNum;
+    }
+
+    public void ReduceWallNumber(int amount)
+    {
+        m_wallNum -= amount;
+    }
+
+    public void AddWallNumber(int amount)
+    {
+        m_wallNum += amount;
     }
 
     public int GetAntiAirTurretNumber()
@@ -380,9 +466,34 @@ public class Enemy : MonoBehaviour
         return m_antiAirTurretNum;
     }
 
+    public void ReduceAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum -= amount;
+    }
+
+    public void AddAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum += amount;
+    }
+
     public int GetMineNumber()
     {
         return m_mineNum;
+    }
+
+    public void ReduceMineNumber(int amount)
+    {
+        m_mineNum -= amount;
+    }
+
+    public void AddMineNumber(int amount)
+    {
+        m_mineNum += amount;
+    }
+
+    public List<GameItem> GetEnemyUnits()
+    {
+        return m_enemyUnits;
     }
 
     public int GetHealth()
@@ -390,8 +501,133 @@ public class Enemy : MonoBehaviour
         return m_health;
     }
 
-    public void ReduceHealth(int reduce)
+    public void ReduceHealth(int amount)
     {
-        m_health -= reduce;
+        m_health -= amount;
+    }
+
+    public void AddHealth(int amount)
+    {
+        m_health += amount;
+    }
+
+    public float GetClosenessToWinGoal()
+    {
+        return m_closenessToWinGoal;
+    }
+
+    public float GetClosenessToShardGoal()
+    {
+        return m_closenessToShardGoal;
+    }
+
+    public float GetClosenessToGoldGoal()
+    {
+        return m_closenessToGoldGoal;
+    }
+    
+    public int GetTotalUnitCount()
+    {
+        return m_totalUnitCount;
+    }
+
+    public int GetTotalResourceUnits()
+    {
+        return m_totalResourceUnits;
+    }
+
+    public int GetDragonWarriorsDestroyed()
+    {
+        return m_dragonWarriorsDestroyed;
+    }
+
+    public int GetDragonTanksDestroyed()
+    {
+        return m_dragonTanksDestroyed;
+    }
+
+    public int GetDragonsDestroyed()
+    {
+        return m_dragonsDestroyed;
+    }
+
+    public float GetMaxClosenessToWinGoal()
+    {
+        return m_maxClosenessToWinGoal;
+    }
+
+    public int GetMaxGold()
+    {
+        return m_maxGold;
+    }
+
+    public int GetMaxShard()
+    {
+        return m_maxShard;
+    }
+
+    public int GetMaxTotalUnitCount()
+    {
+        return m_maxTotalUnitCount;
+    }
+
+    public int GetMaxHealth()
+    {
+        return m_maxHealth;
+    }
+
+    public int GetMaxTotalResourceUnits()
+    {
+        return m_maxTotalResourceUnits;
+    }
+
+    public int GetMaxMinerNum()
+    {
+        return m_maxMinerNum;
+    }
+
+    public int GetMaxAdvanceMinerNum()
+    {
+        return m_maxAdvanceMinerNum;
+    }
+
+    public int GetMaxMineNum()
+    {
+        return m_maxMineNum;
+    }
+
+    public int GetMaxWallNum()
+    {
+        return m_maxWallNum;
+    }
+
+    public int GetMaxAntiAirTurretNum()
+    {
+        return m_maxAntiAirTurretNum;
+    }
+
+    public int GetMaxBarracksNum()
+    {
+        return m_maxBarracksNum;
+    }
+
+    public int GetMaxDragonPortalNum()
+    {
+        return m_maxDragonPortalNum;
+    }
+
+    public int GetMaxDragonWarriorNum()
+    {
+        return m_maxDragonWarriorNum;
+    }
+
+    public int GetMaxDragonTankNum()
+    {
+        return m_maxDragonTankNum;
+    }
+
+    public int GetMaxDragonNum()
+    {
+        return m_maxDragonNum;
     }
 }

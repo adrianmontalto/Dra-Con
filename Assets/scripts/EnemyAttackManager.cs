@@ -43,27 +43,27 @@ public class EnemyAttackManager : MonoBehaviour
 
     void InitValues()
     {
-        m_lowAttackValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, enemy.m_maxClosenessToWinGoal);
+        m_lowAttackValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 0, enemy.GetMaxClosenessToWinGoal());
         m_lowAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
-        m_lowAttackValue.SetValue(enemy.m_closenessToWinGoal);
+        m_lowAttackValue.SetValue(enemy.GetClosenessToWinGoal());
 
-        m_mediumAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, player.m_maxHealth);
+        m_mediumAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, player.GetMaxHealth());
         m_mediumAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
-        m_mediumAttackValue.SetValue(player.m_health);
+        m_mediumAttackValue.SetValue(player.GetHealth());
 
-        m_highAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, enemy.m_maxClosenessToWinGoal);
+        m_highAttackValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, enemy.GetMaxClosenessToWinGoal());
         m_mediumAttackValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
-        m_highAttackValue.SetValue(enemy.m_closenessToWinGoal);
+        m_highAttackValue.SetValue(enemy.GetClosenessToWinGoal());
     }
 
     void SetValues()
     {
-        m_lowAttackValue.SetMinMaxValue(0, enemy.m_maxClosenessToWinGoal);
-        m_lowAttackValue.SetValue(enemy.m_closenessToWinGoal);
-        m_mediumAttackValue.SetMinMaxValue(0, player.m_maxHealth);
-        m_mediumAttackValue.SetValue(player.m_health);
-        m_highAttackValue.SetMinMaxValue(0, enemy.m_maxClosenessToWinGoal);
-        m_highAttackValue.SetValue(enemy.m_closenessToWinGoal);
+        m_lowAttackValue.SetMinMaxValue(0, enemy.GetMaxClosenessToWinGoal());
+        m_lowAttackValue.SetValue(enemy.GetClosenessToWinGoal());
+        m_mediumAttackValue.SetMinMaxValue(0, player.GetMaxHealth());
+        m_mediumAttackValue.SetValue(player.GetHealth());
+        m_highAttackValue.SetMinMaxValue(0, enemy.GetMaxClosenessToWinGoal());
+        m_highAttackValue.SetValue(enemy.GetClosenessToWinGoal());
     }
 
     void SetScores()
@@ -124,7 +124,7 @@ public class EnemyAttackManager : MonoBehaviour
         DragonAttackNumber(5);
         CalculateDefenseDamage();
         CalculateAttackDamage();
-        player.m_health -= m_attackDamage;
+        player.ReduceHealth(m_attackDamage);
         if(m_attackDamage > 0)
         {
             AttackPlayer();
@@ -133,8 +133,8 @@ public class EnemyAttackManager : MonoBehaviour
         player.SetMaxHealth();
         player.SetMaxUnitNumber();
         enemy.SetMaxValues();
-        gameManager.enemyTurn = false;
-        gameManager.playerTurn = true;
+        gameManager.SetEnemyTurn(false);
+        gameManager.SetPlayerTurn(true);
         m_moveText.text = "Enemy Attacked";
     }
 
@@ -145,7 +145,7 @@ public class EnemyAttackManager : MonoBehaviour
         DragonAttackNumber(10);
         CalculateDefenseDamage();
         CalculateAttackDamage();
-        player.m_health -= m_attackDamage;
+        player.ReduceHealth(m_attackDamage);
         if (m_attackDamage > 0)
         {
             AttackPlayer();
@@ -153,8 +153,8 @@ public class EnemyAttackManager : MonoBehaviour
         player.SetMaxHealth();
         player.SetMaxUnitNumber();
         enemy.SetMaxValues();
-        gameManager.enemyTurn = false;
-        gameManager.playerTurn = true;
+        gameManager.SetEnemyTurn(false);
+        gameManager.SetPlayerTurn(true);
         m_moveText.text = "Enemy Attacked";
     }
 
@@ -165,7 +165,7 @@ public class EnemyAttackManager : MonoBehaviour
         DragonAttackNumber(15);
         CalculateDefenseDamage();
         CalculateAttackDamage();
-        player.m_health -= m_attackDamage;
+        player.ReduceHealth(m_attackDamage);
         if (m_attackDamage > 0)
         {
             AttackPlayer();
@@ -173,15 +173,15 @@ public class EnemyAttackManager : MonoBehaviour
         player.SetMaxHealth();
         player.SetMaxUnitNumber();
         enemy.SetMaxValues();
-        gameManager.enemyTurn = false;
-        gameManager.playerTurn = true;
+        gameManager.SetEnemyTurn(false);
+        gameManager.SetPlayerTurn(true);
         m_moveText.text = "Enemy Attacked";
     }
 
     void AttackPlayer()
     {
         //check to see if player has any walls
-        if (player.m_wallNum > 0)
+        if (player.GetWallNumber() > 0)
         {
             CalculateWallDamage();
         }
@@ -194,16 +194,16 @@ public class EnemyAttackManager : MonoBehaviour
     void CalculateMineDamage()
     {
         //check to see if player has any mines
-        if(player.m_mineNum > 0)
+        if(player.GetMineNumber() > 0)
         {
             //calculate health of attacking dragon warriors and dragon tanks
             CalculateGroundUnitHealth();
             //calculate damage done to player ensurinbg that no excess mines are used
-            m_mineDamage = player.m_mineNum * itemList.mine.attack;
+            m_mineDamage = player.GetMineNumber() * itemList.GetMine().GetAttack();
             if(m_mineDamage < m_groundUnitHealth)
             {
                 //destroy all mines used                
-                player.DestroyMines(player.m_mineNum);
+                player.DestroyMines(player.GetMineNumber());
                 //destroy any warriors and tanks killed from mines
                 enemy.DestroyGroundUnit(m_mineDamage);
             }
@@ -214,7 +214,7 @@ public class EnemyAttackManager : MonoBehaviour
                 while(m_mineDamage < m_groundUnitHealth)
                 {
                     mineNum++;
-                    m_mineDamage += itemList.mine.attack;
+                    m_mineDamage += itemList.GetMine().GetAttack();
                 }
                 //destroy all mines used                
                 player.DestroyMines(mineNum);
@@ -227,12 +227,12 @@ public class EnemyAttackManager : MonoBehaviour
     void CalculateAntiAirTurretDamage()
     {
         //check to see if player has any anti air turret
-        if(player.m_antiAirTurretNum > 0)
+        if(player.GetAntiAirTurretNumber() > 0)
         {
             //calculate damage from air turrets
-            int turretDamage = player.m_antiAirTurretNum * itemList.antiAirTurret.attack;
+            int turretDamage = player.GetAntiAirTurretNumber() * itemList.GetAntiAirTurret().GetAttack();
             //calculate dragon health
-            int dragonHealth = m_dragonNum * itemList.dragon.health;
+            int dragonHealth = m_dragonNum * itemList.GetDragon().GetHealth();
             if(turretDamage > dragonHealth)
             {
                 turretDamage = dragonHealth;
@@ -243,29 +243,29 @@ public class EnemyAttackManager : MonoBehaviour
 
     void CalculateAttackDamage()
     {
-        m_dragonWarriorNumber -= enemy.m_dragonWarriorsDestroyed;
-        m_dragonTankNum -= enemy.m_dragonTanksDestroyed;
-        m_dragonNum -= enemy.m_dragonsDestroyed;
-        m_attackDamage = (m_dragonWarriorNumber * itemList.dragonWarrior.attack) + 
-                            (m_dragonTankNum * itemList.dragonTank.attack) + 
-                            (m_dragonNum * itemList.dragon.attack);
+        m_dragonWarriorNumber -= enemy.GetDragonWarriorsDestroyed();
+        m_dragonTankNum -= enemy.GetDragonTanksDestroyed();
+        m_dragonNum -= enemy.GetDragonsDestroyed();
+        m_attackDamage = (m_dragonWarriorNumber * itemList.GetDragonWarrior().GetAttack()) + 
+                            (m_dragonTankNum * itemList.GetDragonTank().GetAttack()) + 
+                            (m_dragonNum * itemList.GetDragon().GetAttack());
     }
 
     void CalculateWallDamage()
     {
-        int lastWall = player.m_playerUnits.FindLastIndex((GameItem item) => { return item.objectName == "wall"; });
+        int lastWall = player.GetPlayerUnitsList().FindLastIndex((GameItem item) => { return item.GetName() == "wall"; });
 
         if(lastWall > -1)
         {
-            if(m_attackDamage < player.m_playerUnits[lastWall].health)
+            if(m_attackDamage < player.GetPlayerUnitsList()[lastWall].GetHealth())
             {
-                player.m_playerUnits[lastWall].health -= m_attackDamage;
+                player.GetPlayerUnitsList()[lastWall].ReduceHealth(m_attackDamage);
             }
             else
             {
-                m_attackDamage -= player.m_playerUnits[lastWall].health;
-                player.m_playerUnits.RemoveAt(lastWall);
-                player.m_wallNum--;
+                m_attackDamage -= player.GetPlayerUnitsList()[lastWall].GetHealth();
+                player.GetPlayerUnitsList().RemoveAt(lastWall);
+                player.ReduceWallNumber(1);
                 AttackPlayer();
             }
         }
@@ -273,31 +273,31 @@ public class EnemyAttackManager : MonoBehaviour
 
     void CalculateLastBuiltDamage()
     {
-        int LastBuilt = player.m_playerUnits.Count - 1;
-        if(m_attackDamage < player.m_playerUnits[LastBuilt].health)
+        int LastBuilt = player.GetPlayerUnitsList().Count - 1;
+        if(m_attackDamage < player.GetPlayerUnitsList()[LastBuilt].GetHealth())
         {
-            player.m_playerUnits[LastBuilt].health -= m_attackDamage;
+            player.GetPlayerUnitsList()[LastBuilt].ReduceHealth(m_attackDamage);
         }
         else
         {
-            m_attackDamage -= player.m_playerUnits[LastBuilt].health;
-            player.ReduceUnitNumber(player.m_playerUnits[LastBuilt].objectName);
-            player.m_playerUnits.RemoveAt(LastBuilt);
+            m_attackDamage -= player.GetPlayerUnitsList()[LastBuilt].GetHealth();
+            player.ReduceUnitNumber(player.GetPlayerUnitsList()[LastBuilt].GetName());
+            player.GetPlayerUnitsList().RemoveAt(LastBuilt);
             AttackPlayer();
         }
     }
 
     void CalculateGroundUnitHealth()
     {
-        m_groundUnitHealth = (m_dragonWarriorNumber * itemList.dragonWarrior.health) + 
-                              (m_dragonTankNum * itemList.dragonTank.health);
+        m_groundUnitHealth = (m_dragonWarriorNumber * itemList.GetDragonWarrior().GetHealth()) + 
+                              (m_dragonTankNum * itemList.GetDragonTank().GetHealth());
     }
 
     void DragonWarriorAttackNumber(int num)
     {
-        if(enemy.m_dragonWarriorNum < num)
+        if(enemy.GetDragonWarriorNumber() < num)
         {
-            m_dragonWarriorNumber = enemy.m_dragonWarriorNum;
+            m_dragonWarriorNumber = enemy.GetDragonWarriorNumber();
         }
         else
         {
@@ -307,9 +307,9 @@ public class EnemyAttackManager : MonoBehaviour
 
     void DragonTankAttackNumber(int num)
     {
-        if(enemy.m_dragonTankNum < num)
+        if(enemy.GetDragonTankNumber() < num)
         {
-            m_dragonTankNum = enemy.m_dragonTankNum;
+            m_dragonTankNum = enemy.GetDragonTankNumber();
         }
         else
         {
@@ -319,9 +319,9 @@ public class EnemyAttackManager : MonoBehaviour
 
     void DragonAttackNumber(int num)
     {
-        if(enemy.m_dragonNum < num)
+        if(enemy.GetDragonNumber() < num)
         {
-            m_dragonNum = enemy.m_dragonNum;
+            m_dragonNum = enemy.GetDragonNumber();
         }
         else
         {

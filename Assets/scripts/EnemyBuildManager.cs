@@ -64,98 +64,98 @@ public class EnemyBuildManager : MonoBehaviour
 
     void InitValues()
     {
-        m_buildResources = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxTotalResourceUnits);
-        m_buildResources.SetValue(enemy.m_totalResourceUnits);
+        m_buildResources = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxTotalResourceUnits());
+        m_buildResources.SetValue(enemy.GetTotalResourceUnits());
 
-        m_buildMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxMinerNum);
-        m_buildMiners.SetValue(enemy.m_minerNum);
+        m_buildMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxMinerNum());
+        m_buildMiners.SetValue(enemy.GetMinerNumber());
         
-        m_buildAdvanceMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxAdvanceMinerNum);
-        m_buildAdvanceMiners.SetValue(enemy.m_advanceminerNum);
+        m_buildAdvanceMiners = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxAdvanceMinerNum());
+        m_buildAdvanceMiners.SetValue(enemy.GetAdvanceMinerNumber());
 
-        m_buildDefenses = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,player.m_maxUnitNumber);
-        m_buildDefenses.SetValue(player.m_unitNumber);
+        m_buildDefenses = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,player.GetMaxUnitNumber());
+        m_buildDefenses.SetValue(player.GetUnitNumber());
 
-        m_buildMines = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxMineNum);
-        m_buildMines.SetValue(enemy.m_mineNum);
+        m_buildMines = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxMineNum());
+        m_buildMines.SetValue(enemy.GetMineNumber());
 
-        m_buildWalls = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxWallNUm);
-        m_buildWalls.SetValue(enemy.m_wallNum);
+        m_buildWalls = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxWallNum());
+        m_buildWalls.SetValue(enemy.GetWallNumber());
 
-        m_buildAntiAirTurrets = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxAntiAirTurretNum);
-        m_buildAntiAirTurrets.SetValue(enemy.m_antiAirTurretNum);
+        m_buildAntiAirTurrets = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxAntiAirTurretNum());
+        m_buildAntiAirTurrets.SetValue(enemy.GetAntiAirTurretNumber());
 
-        m_buildBuildings = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxHealth);
-        m_buildBuildings.SetValue(enemy.m_health);
+        m_buildBuildings = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxHealth());
+        m_buildBuildings.SetValue(enemy.GetHealth());
 
-        m_buildBarracks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxBarracksNum);
-        m_buildBarracks.SetValue(enemy.m_barrackNum);
+        m_buildBarracks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxBarracksNum());
+        m_buildBarracks.SetValue(enemy.GetBarracksNumber());
 
-        m_buildPortals = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonPortalNum);
-        m_buildPortals.SetValue(enemy.m_dragonPortalNum);
+        m_buildPortals = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxDragonPortalNum());
+        m_buildPortals.SetValue(enemy.GetDragonPortalNumber());
 
-        m_buildUnits = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxTotalUnitCount);
-        m_buildUnits.SetValue(enemy.m_totalUnitCount);
+        m_buildUnits = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxTotalUnitCount());
+        m_buildUnits.SetValue(enemy.GetTotalUnitCount());
 
-        m_buildDragonWarriors = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonWarriorNum);
-        m_buildDragonWarriors.SetValue(enemy.m_dragonWarriorNum);
+        m_buildDragonWarriors = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxDragonWarriorNum());
+        m_buildDragonWarriors.SetValue(enemy.GetDragonWarriorNumber());
 
-        m_buildDragonTanks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonTankNum);
-        m_buildDragonTanks.SetValue(enemy.m_dragonTankNum);
+        m_buildDragonTanks = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxDragonTankNum());
+        m_buildDragonTanks.SetValue(enemy.GetDragonTankNumber());
 
-        m_buildDragon = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.m_maxDragonNum);
-        m_buildDragon.SetValue(enemy.m_dragonNum);
+        m_buildDragon = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR,0,enemy.GetMaxDragonNum());
+        m_buildDragon.SetValue(enemy.GetDragonNumber());
     }
 
     void SetValues()
     {
-        m_buildResources.SetMinMaxValue(0, enemy.m_maxTotalResourceUnits);
-        m_buildResources.SetValue(enemy.m_totalResourceUnits);
-        m_buildDefenses.SetMinMaxValue(0, player.m_maxUnitNumber);
-        m_buildDefenses.SetValue(player.m_unitNumber);
-        m_buildBuildings.SetMinMaxValue(0, enemy.m_maxHealth);
-        m_buildBuildings.SetValue(enemy.m_health);
-        m_buildUnits.SetMinMaxValue(0, enemy.m_maxTotalUnitCount);
-        m_buildUnits.SetValue(enemy.m_totalUnitCount);
+        m_buildResources.SetMinMaxValue(0, enemy.GetMaxTotalResourceUnits());
+        m_buildResources.SetValue(enemy.GetTotalResourceUnits());
+        m_buildDefenses.SetMinMaxValue(0, player.GetMaxUnitNumber());
+        m_buildDefenses.SetValue(player.GetUnitNumber());
+        m_buildBuildings.SetMinMaxValue(0, enemy.GetMaxHealth());
+        m_buildBuildings.SetValue(enemy.GetHealth());
+        m_buildUnits.SetMinMaxValue(0, enemy.GetMaxTotalUnitCount());
+        m_buildUnits.SetValue(enemy.GetTotalUnitCount());
     }
 
     void SetResourceValues()
     {
-        m_buildMiners.SetMinMaxValue(0, enemy.m_maxMinerNum);
-        m_buildMiners.SetValue(enemy.m_minerNum);
-        m_buildAdvanceMiners.SetMinMaxValue(0, enemy.m_maxAdvanceMinerNum);
-        m_buildAdvanceMiners.SetValue(enemy.m_advanceminerNum);
+        m_buildMiners.SetMinMaxValue(0, enemy.GetMaxMinerNum());
+        m_buildMiners.SetValue(enemy.GetMinerNumber());
+        m_buildAdvanceMiners.SetMinMaxValue(0, enemy.GetMaxAdvanceMinerNum());
+        m_buildAdvanceMiners.SetValue(enemy.GetAdvanceMinerNumber());
     }
 
     void SetDefenseValues()
     {
-        m_buildMines.SetMinMaxValue(0, enemy.m_maxMineNum);
-        m_buildMines.SetValue(enemy.m_mineNum);
-        m_buildWalls.SetMinMaxValue(0, enemy.m_maxWallNUm);
-        m_buildWalls.SetValue(enemy.m_wallNum);
-        m_buildAntiAirTurrets.SetMinMaxValue(0, enemy.m_maxAntiAirTurretNum);
-        m_buildAntiAirTurrets.SetValue(enemy.m_antiAirTurretNum);
+        m_buildMines.SetMinMaxValue(0, enemy.GetMaxMineNum());
+        m_buildMines.SetValue(enemy.GetMineNumber());
+        m_buildWalls.SetMinMaxValue(0, enemy.GetMaxWallNum());
+        m_buildWalls.SetValue(enemy.GetWallNumber());
+        m_buildAntiAirTurrets.SetMinMaxValue(0, enemy.GetMaxAntiAirTurretNum());
+        m_buildAntiAirTurrets.SetValue(enemy.GetAntiAirTurretNumber());
     }
 
     void SetBuildingsValues()
     {
-        m_buildBarracks.SetMinMaxValue(0, enemy.m_maxBarracksNum); 
-        m_buildBarracks.SetValue(enemy.m_barrackNum);
+        m_buildBarracks.SetMinMaxValue(0, enemy.GetMaxBarracksNum()); 
+        m_buildBarracks.SetValue(enemy.GetBarracksNumber());
 
-        m_buildPortals.SetMinMaxValue(0, enemy.m_maxDragonPortalNum);
-        m_buildPortals.SetValue(enemy.m_dragonPortalNum);
+        m_buildPortals.SetMinMaxValue(0, enemy.GetMaxDragonPortalNum());
+        m_buildPortals.SetValue(enemy.GetDragonPortalNumber());
     }
 
     void SetUnitsValues()
     {
-        m_buildDragonWarriors.SetMinMaxValue(0, enemy.m_maxDragonWarriorNum);
-        m_buildDragonWarriors.SetValue(enemy.m_dragonWarriorNum);
+        m_buildDragonWarriors.SetMinMaxValue(0, enemy.GetMaxDragonWarriorNum());
+        m_buildDragonWarriors.SetValue(enemy.GetDragonWarriorNumber());
 
-        m_buildDragonTanks.SetMinMaxValue(0, enemy.m_maxDragonTankNum);
-        m_buildDragonTanks.SetValue(enemy.m_dragonTankNum);
+        m_buildDragonTanks.SetMinMaxValue(0, enemy.GetMaxDragonTankNum());
+        m_buildDragonTanks.SetValue(enemy.GetDragonTankNumber());
 
-        m_buildDragon.SetMinMaxValue(0, enemy.m_maxDragonNum);
-        m_buildDragon.SetValue(enemy.m_dragonNum);
+        m_buildDragon.SetMinMaxValue(0, enemy.GetMaxDragonNum());
+        m_buildDragon.SetValue(enemy.GetDragonNumber());
     }
 
     void SetUtilityScores()
@@ -409,24 +409,24 @@ public class EnemyBuildManager : MonoBehaviour
 
     void BuildMiner()
     {
-        int totalGoldCost = gameItemList.miner.goldCost * m_maxBuildNumber;
-        int totalShardCost = gameItemList.miner.shardCost * m_maxBuildNumber;
-        int goldAmount = enemy.m_gold;
-        int shardAmount = enemy.m_shards;
+        int totalGoldCost = gameItemList.GetMiner().GetGoldCost() * m_maxBuildNumber;
+        int totalShardCost = gameItemList.GetMiner().GetShardCost() * m_maxBuildNumber;
+        int goldAmount = enemy.GetGold();
+        int shardAmount = enemy.GetShards();
 
         if(totalGoldCost < goldAmount && totalShardCost < shardAmount)
         {
             for(int i = 0;i < m_maxBuildNumber;++i)
             {
-                unitBuilder.m_minerNum ++;
+                unitBuilder.AddMinerNumber(1);
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
             player.SetMaxHealth();
             player.SetMaxUnitNumber();
             enemy.SetMaxValues();
-            gameManager.enemyTurn = false;
-            gameManager.playerTurn = true;
+            gameManager.SetEnemyTurn(false);
+            gameManager.SetPlayerTurn(true);
             
         }
         else
@@ -437,14 +437,14 @@ public class EnemyBuildManager : MonoBehaviour
 
             while(canBuild == true)
             {
-                if((totalGoldCost + gameItemList.miner.goldCost) < enemy.m_gold)
+                if((totalGoldCost + gameItemList.GetMiner().GetGoldCost()) < enemy.GetGold())
                 {
                     
-                    if((totalShardCost + gameItemList.miner.shardCost) < enemy.m_shards)
+                    if((totalShardCost + gameItemList.GetMiner().GetShardCost()) < enemy.GetShards())
                     {
-                        totalGoldCost += gameItemList.miner.goldCost;
-                        totalShardCost += gameItemList.miner.shardCost;
-                        unitBuilder.m_minerNum++;
+                        totalGoldCost += gameItemList.GetMiner().GetGoldCost();
+                        totalShardCost += gameItemList.GetMiner().GetShardCost();
+                        unitBuilder.AddMinerNumber(1);
                     }
                     else
                     {
@@ -461,31 +461,31 @@ public class EnemyBuildManager : MonoBehaviour
             player.SetMaxHealth();
             player.SetMaxUnitNumber();
             enemy.SetMaxValues();
-            gameManager.enemyTurn = false;
-            gameManager.playerTurn = true;
+            gameManager.SetEnemyTurn(false);
+            gameManager.SetPlayerTurn(true);
         }
     }
 
     void BuildAdvanceMiner()
     {
-        int totalGoldCost = gameItemList.advanceMiner.goldCost * m_maxBuildNumber;
-        int totalShardCost = gameItemList.advanceMiner.shardCost * m_maxBuildNumber;
-        int goldAmount = enemy.m_gold;
-        int shardAmount = enemy.m_shards;
+        int totalGoldCost = gameItemList.GetAdvanceMiner().GetGoldCost() * m_maxBuildNumber;
+        int totalShardCost = gameItemList.GetAdvanceMiner().GetShardCost() * m_maxBuildNumber;
+        int goldAmount = enemy.GetGold();
+        int shardAmount = enemy.GetShards();
 
         if (totalGoldCost < goldAmount && totalShardCost < shardAmount)
         {
             for (int i = 0; i < m_maxBuildNumber; ++i)
             {
-                unitBuilder.m_advanceMinerNum++;
+                unitBuilder.AddAdvanceMinerNumber(1);
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
             player.SetMaxHealth();
             player.SetMaxUnitNumber();
             enemy.SetMaxValues();
-            gameManager.enemyTurn = false;
-            gameManager.playerTurn = true;
+            gameManager.SetEnemyTurn(false);
+            gameManager.SetPlayerTurn(true);
         }
         else
         {
@@ -494,14 +494,14 @@ public class EnemyBuildManager : MonoBehaviour
             bool canBuild = true;
             while (canBuild == true)
             {
-                if ((totalGoldCost + gameItemList.advanceMiner.goldCost) < enemy.m_gold)
+                if ((totalGoldCost + gameItemList.GetAdvanceMiner().GetGoldCost()) < enemy.GetGold())
                 {
 
-                    if ((totalShardCost + gameItemList.advanceMiner.shardCost) < enemy.m_shards)
+                    if ((totalShardCost + gameItemList.GetAdvanceMiner().GetShardCost()) < enemy.GetShards())
                     {
-                        totalGoldCost += gameItemList.advanceMiner.goldCost;
-                        totalShardCost += gameItemList.advanceMiner.shardCost;
-                        unitBuilder.m_advanceMinerNum++;
+                        totalGoldCost += gameItemList.GetAdvanceMiner().GetGoldCost();
+                        totalShardCost += gameItemList.GetAdvanceMiner().GetShardCost();
+                        unitBuilder.AddAdvanceMinerNumber(1);
                     }
                     else
                     {
@@ -518,31 +518,31 @@ public class EnemyBuildManager : MonoBehaviour
             player.SetMaxHealth();
             player.SetMaxUnitNumber();
             enemy.SetMaxValues();
-            gameManager.enemyTurn = false;
-            gameManager.playerTurn = true;
+            gameManager.SetEnemyTurn(false);
+            gameManager.SetPlayerTurn(true);
         }
     }
 
     void BuildDragonWarrior()
     {
-        int totalGoldCost = gameItemList.dragonWarrior.goldCost * m_maxBuildNumber;
-        int totalShardCost = gameItemList.dragonWarrior.shardCost * m_maxBuildNumber;
-        int goldAmount = enemy.m_gold;
-        int shardAmount = enemy.m_shards;
+        int totalGoldCost = gameItemList.GetDragonWarrior().GetGoldCost() * m_maxBuildNumber;
+        int totalShardCost = gameItemList.GetDragonWarrior().GetShardCost() * m_maxBuildNumber;
+        int goldAmount = enemy.GetGold();
+        int shardAmount = enemy.GetShards();
 
         if (totalGoldCost < goldAmount && totalShardCost < shardAmount)
         {
             for (int i = 0; i < m_maxBuildNumber; ++i)
             {
-                unitBuilder.m_dragonWarriorNum++;
+                unitBuilder.AddDragonWarriorNumber(1);
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();
             player.SetMaxHealth();
             player.SetMaxUnitNumber();
             enemy.SetMaxValues();
-            gameManager.enemyTurn = false;
-            gameManager.playerTurn = true;
+            gameManager.SetEnemyTurn(false);
+            gameManager.SetPlayerTurn(true);
         }
         else
         {
@@ -551,14 +551,14 @@ public class EnemyBuildManager : MonoBehaviour
             bool canBuild = true;
             while (canBuild == true)
             {
-                if ((totalGoldCost + gameItemList.dragonWarrior.goldCost) < enemy.m_gold)
+                if ((totalGoldCost + gameItemList.GetDragonWarrior().GetGoldCost()) < enemy.GetGold())
                 {
 
-                    if ((totalShardCost + gameItemList.dragonWarrior.shardCost) < enemy.m_shards)
+                    if ((totalShardCost + gameItemList.GetDragonWarrior().GetShardCost()) < enemy.GetShards())
                     {
-                        totalGoldCost += gameItemList.dragonWarrior.goldCost;
-                        totalShardCost += gameItemList.dragonWarrior.shardCost;
-                        unitBuilder.m_dragonWarriorNum++;
+                        totalGoldCost += gameItemList.GetDragonWarrior().GetGoldCost();
+                        totalShardCost += gameItemList.GetDragonWarrior().GetShardCost();
+                        unitBuilder.AddDragonWarriorNumber(1);
                     }
                     else
                     {
@@ -575,23 +575,23 @@ public class EnemyBuildManager : MonoBehaviour
             player.SetMaxHealth();
             player.SetMaxUnitNumber();
             enemy.SetMaxValues();
-            gameManager.enemyTurn = false;
-            gameManager.playerTurn = true;
+            gameManager.SetEnemyTurn(false);
+            gameManager.SetPlayerTurn(true);
         }
     }
 
     void BuildDragonTank()
     {
-        int totalGoldCost = gameItemList.dragonTank.goldCost * m_maxBuildNumber;
-        int totalShardCost = gameItemList.dragonTank.shardCost * m_maxBuildNumber;
-        int goldAmount = enemy.m_gold;
-        int shardAmount = enemy.m_shards;
+        int totalGoldCost = gameItemList.GetDragonTank().GetGoldCost() * m_maxBuildNumber;
+        int totalShardCost = gameItemList.GetDragonTank().GetShardCost() * m_maxBuildNumber;
+        int goldAmount = enemy.GetGold();
+        int shardAmount = enemy.GetShards();
 
         if (totalGoldCost < goldAmount && totalShardCost < shardAmount)
         {
             for (int i = 0; i < m_maxBuildNumber; ++i)
             {
-                unitBuilder.m_dragonTankNum++;
+                unitBuilder.AddDragonTankNumber(1);
             }
             unitBuilder.AddEnemyUnits();
             unitBuilder.ResetNumbers();

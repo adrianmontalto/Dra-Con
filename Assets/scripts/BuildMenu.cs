@@ -3,40 +3,30 @@ using System.Collections;
 
 public class BuildMenu : MonoBehaviour
 {
-    [HideInInspector]
-    public int m_minerNum = 0;
-    [HideInInspector]
-    public int m_advanceMinerNum = 0;
-    [HideInInspector]
-    public int m_dragonWarriorNum = 0;
-    [HideInInspector]
-    public int m_dragonTankNum = 0;
-    [HideInInspector]
-    public int m_dragonNum = 0;
-    [HideInInspector]
-    public int m_barracksNum = 0;
-    [HideInInspector]
-    public int m_dragonPortalsNum = 0;
-    [HideInInspector]
-    public int m_antiAirTurretNum = 0;
-    [HideInInspector]
-    public int m_minesNum = 0;
-    [HideInInspector]
-    public int m_wallNum = 0;
+    private int m_minerNum = 0;
+    private int m_advanceMinerNum = 0;
+    private int m_dragonWarriorNum = 0;
+    private int m_dragonTankNum = 0;
+    private int m_dragonNum = 0;
+    private int m_barracksNum = 0;
+    private int m_dragonPortalsNum = 0;
+    private int m_antiAirTurretNum = 0;
+    private int m_minesNum = 0;
+    private int m_wallNum = 0;
    
     [SerializeField]
-    private Player player;
+    private Player m_player;
     [SerializeField]
-    private GameItemList gameItemList;
+    private GameItemList m_gameItemList;
     [SerializeField]
-    private GameObject initImage;
+    private GameObject m_initImage;
     [SerializeField]
-    private GameObject previousImage;
+    private GameObject m_previousImage;
 
     // Use this for initialization
     void Start ()
     {
-        previousImage = initImage;
+        m_previousImage = m_initImage;
 	}
 	
 	// Update is called once per frame
@@ -49,52 +39,52 @@ public class BuildMenu : MonoBehaviour
     {
         for(int i = 0; i < m_barracksNum; ++i)
         {
-            GameItem playerBuilding = gameItemList.barracks.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.barracks.goldCost;
-            player.m_shards -= gameItemList.barracks.shardCost;
-            player.m_barrackNum ++;
-            player.m_playerUnits.Add(playerBuilding);
-            player.m_health += gameItemList.barracks.health;
+            GameItem playerBuilding = m_gameItemList.GetBarracks().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetBarracks().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetBarracks().GetShardCost());
+            m_player.AddBarracksNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerBuilding);
+            m_player.AddHealth(m_gameItemList.GetBarracks().GetHealth());
         }
 
         for (int i = 0; i < m_dragonPortalsNum; ++i)
         {
-            GameItem playerBuilding = gameItemList.dragonPortal.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.dragonPortal.goldCost;
-            player.m_shards -= gameItemList.dragonPortal.shardCost;
-            player.m_dragonPortalNum ++;
-            player.m_playerUnits.Add(playerBuilding);
-            player.m_health += gameItemList.dragonPortal.health;
+            GameItem playerBuilding = m_gameItemList.GetDragonPortal().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetDragonPortal().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetDragonPortal().GetShardCost());
+            m_player.AddDragonPortalNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerBuilding);
+            m_player.AddHealth(m_gameItemList.GetDragonPortal().GetHealth());
         }
 
         for (int i = 0; i < m_antiAirTurretNum; ++i)
         {
-            GameItem playerBuilding = gameItemList.antiAirTurret.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.antiAirTurret.goldCost;
-            player.m_shards -= gameItemList.antiAirTurret.shardCost;
-            player.m_antiAirTurretNum ++;
-            player.m_playerUnits.Add(playerBuilding);
-            player.m_health += gameItemList.antiAirTurret.health;
+            GameItem playerBuilding = m_gameItemList.GetAntiAirTurret().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetAntiAirTurret().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetAntiAirTurret().GetShardCost());
+            m_player.AddAntiAirTurretNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerBuilding);
+            m_player.AddHealth(m_gameItemList.GetAntiAirTurret().GetHealth());
         }
 
         for (int i = 0; i < m_wallNum; ++i)
         {
-            GameItem playerBuilding = gameItemList.wall.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.wall.goldCost;
-            player.m_shards -= gameItemList.wall.shardCost;
-            player.m_wallNum ++;
-            player.m_playerUnits.Add(playerBuilding);
-            player.m_health += gameItemList.wall.health;
+            GameItem playerBuilding = m_gameItemList.GetWall().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetWall().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetWall().GetShardCost());
+            m_player.AddWallNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerBuilding);
+            m_player.AddHealth(m_gameItemList.GetWall().GetHealth());
         }
 
         for (int i = 0; i < m_minesNum; ++i)
         {
-            GameItem playerBuilding = gameItemList.mine.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.mine.goldCost;
-            player.m_shards -= gameItemList.mine.shardCost;
-            player.m_mineNum ++;
-            player.m_playerUnits.Add(playerBuilding);
-            player.m_health += gameItemList.mine.health;
+            GameItem playerBuilding = m_gameItemList.GetMine().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetMine().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetMine().GetShardCost());
+            m_player.AddMineNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerBuilding);
+            m_player.AddHealth(m_gameItemList.GetMine().GetHealth());
         }
     }
 
@@ -102,52 +92,52 @@ public class BuildMenu : MonoBehaviour
     {
         for (int i = 0; i < m_minerNum; ++i)
         {
-            GameItem playerUnits = gameItemList.miner.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.miner.goldCost;
-            player.m_shards -= gameItemList.miner.shardCost;
-            player.m_minerNum ++;
-            player.m_playerUnits.Add(playerUnits);
-            player.m_health += gameItemList.miner.health;
+            GameItem playerUnits = m_gameItemList.GetMiner().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetMiner().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetMiner().GetShardCost());
+            m_player.AddMinerNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerUnits);
+            m_player.AddHealth(m_gameItemList.GetMiner().GetHealth());
         }
 
         for (int i = 0; i < m_advanceMinerNum; ++i)
         {
-            GameItem playerUnits = gameItemList.advanceMiner.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.advanceMiner.goldCost;
-            player.m_shards -= gameItemList.advanceMiner.shardCost;
-            player.m_advanceminerNum ++;
-            player.m_playerUnits.Add(playerUnits);
-            player.m_health += gameItemList.advanceMiner.health;
+            GameItem playerUnits = m_gameItemList.GetAdvanceMiner().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetAdvanceMiner().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetAdvanceMiner().GetShardCost());
+            m_player.AddAdvanceMinerNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerUnits);
+            m_player.AddHealth(m_gameItemList.GetAdvanceMiner().GetHealth());
         }
 
         for (int i = 0; i < m_dragonWarriorNum; ++i)
         {
-            GameItem playerUnits = gameItemList.dragonWarrior.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.dragonWarrior.goldCost;
-            player.m_shards -= gameItemList.dragonWarrior.shardCost;
-            player.m_dragonWarriorNum ++;
-            player.m_playerUnits.Add(playerUnits);
-            player.m_health += gameItemList.dragonWarrior.health;
+            GameItem playerUnits = m_gameItemList.GetDragonWarrior().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetDragonWarrior().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetDragonWarrior().GetShardCost());
+            m_player.AddDragonWarriorNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerUnits);
+            m_player.AddHealth(m_gameItemList.GetDragonWarrior().GetHealth());
         }
 
         for (int i = 0; i < m_dragonTankNum; ++i)
         {
-            GameItem playerUnits = gameItemList.dragonTank.gameObject.GetComponent<GameItem>();
-            player.m_gold -= gameItemList.dragonTank.goldCost;
-            player.m_shards -= gameItemList.dragonTank.shardCost;
-            player.m_dragonTankNum ++;
-            player.m_playerUnits.Add(playerUnits);
-            player.m_health += gameItemList.dragonTank.health;
+            GameItem playerUnits = m_gameItemList.GetDragonTank().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetDragonTank().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetDragonTank().GetShardCost());
+            m_player.AddDragonTankNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerUnits);
+            m_player.AddHealth(m_gameItemList.GetDragonTank().GetHealth());
         }
 
         for (int i = 0; i < m_dragonNum; ++i)
         {
-            GameItem playerUnits = gameItemList.dragon.gameObject.GetComponent<GameItem>();
-            player.m_dragonNum ++;
-            player.m_gold -= gameItemList.dragon.goldCost;
-            player.m_shards -= gameItemList.dragon.shardCost;
-            player.m_playerUnits.Add(playerUnits);
-            player.m_health += gameItemList.dragon.health;
+            GameItem playerUnits = m_gameItemList.GetDragon().gameObject.GetComponent<GameItem>();
+            m_player.ReduceGold(m_gameItemList.GetDragon().GetGoldCost());
+            m_player.ReduceShards(m_gameItemList.GetDragon().GetShardCost());
+            m_player.AddDragonNumber(1);
+            m_player.GetPlayerUnitsList().Add(playerUnits);
+            m_player.AddHealth(m_gameItemList.GetDragon().GetHealth());
         }
     }
 
@@ -163,5 +153,175 @@ public class BuildMenu : MonoBehaviour
         m_antiAirTurretNum = 0;
         m_minesNum = 0;
         m_wallNum = 0;
+    }
+
+    public Player GetPlayer()
+    {
+        return m_player;
+    }
+
+    public void SetPreviousImageActive(bool active)
+    {
+        m_previousImage.SetActive(active);
+    }
+
+    public void SetPreviousImage(GameObject image)
+    {
+        m_previousImage = image;
+    }
+
+    public GameItemList GetGameItemList()
+    {
+        return m_gameItemList;
+    }
+
+    public int GetMinerNumber()
+    {
+        return m_minerNum;
+    }
+
+    public void ReduceMinerNumber(int amount)
+    {
+        m_minerNum -= amount;
+    }
+
+    public void AddMinerNumber(int amount)
+    {
+        m_minerNum += amount;
+    }
+
+    public int GetAdvanceMinerNumber()
+    {
+        return m_advanceMinerNum;
+    }
+
+    public void ReduceAdvanceMinerNumber(int amount)
+    {
+        m_advanceMinerNum -= amount;
+    }
+
+    public void AddAdvanceMinerNumber(int amount)
+    {
+        m_advanceMinerNum += amount;
+    }
+
+    public int GetDragonWarriorNumber()
+    {
+        return m_dragonWarriorNum;
+    }
+
+    public void ReduceDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum -= amount;
+    }
+
+    public void AddDragonWarriorNumber(int amount)
+    {
+        m_dragonWarriorNum += amount;
+    }
+
+    public int GetDragonTankNumber()
+    {
+        return m_dragonTankNum;
+    }
+
+    public void ReduceDragonTankNumber(int amount)
+    {
+        m_dragonTankNum -= amount;
+    }
+
+    public void AddDragonTankNumber(int amount)
+    {
+        m_dragonTankNum += amount;
+    }
+
+    public int GetDragonNumber()
+    {
+        return m_dragonNum;
+    }
+
+    public void ReduceDragonNumber(int amount)
+    {
+        m_dragonNum -= amount;
+    }
+
+    public void AddDragonNumber(int amount)
+    {
+        m_dragonNum += amount;
+    }
+
+    public int GetBarracksNumber()
+    {
+        return m_barracksNum;
+    }
+
+    public void ReduceBarracksNumber(int amount)
+    {
+        m_barracksNum -= amount;
+    }
+
+    public void AddBarracksNumber(int amount)
+    {
+        m_barracksNum += amount;
+    }
+
+    public int GetDragonPortalsNumber()
+    {
+        return m_dragonPortalsNum;
+    }
+
+    public void ReduceDragonPortalsNumber(int amount)
+    {
+        m_dragonPortalsNum -= amount;
+    }
+
+    public void AddDragonPortalsNumber(int amount)
+    {
+        m_dragonPortalsNum += amount;
+    }
+    
+    public int GetAntiAirTurretNumber()
+    {
+        return m_antiAirTurretNum;
+    }
+
+    public void ReduceAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum -= amount;
+    }
+
+    public void AddAntiAirTurretNumber(int amount)
+    {
+        m_antiAirTurretNum += amount;
+    }
+
+    public int GetMinesNumber()
+    {
+        return m_minesNum;
+    }
+
+    public void ReduceMineNumber(int amount)
+    {
+        m_minesNum -= amount;
+    }
+
+    public void AddMineNumber(int amount)
+    {
+        m_minesNum += amount;
+    }
+
+    public int GetWallNumber()
+    {
+        return m_wallNum;
+    }
+
+    public void ReduceWallNumber(int amount)
+    {
+        m_wallNum -= amount;
+    }
+
+    public void AddWallNumber(int amount)
+    {
+        m_wallNum += amount;
     }
 }

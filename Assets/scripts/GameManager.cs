@@ -25,33 +25,33 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        playerTurn = true;	
+        m_playerTurn = true;	
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	    if(playerTurn == true && playerIndicatorON == false)
+	    if(m_playerTurn == true && m_playerIndicatorON == false)
         {
-            playerAttackPanel.SetActive(true);
-            enemyTurnIndicator.SetActive(false);
-            enemyIndicatorOn = false;
-            playerTurnIndicator.SetActive(true);
-            playerIndicatorON = true;
+            m_playerAttackPanel.SetActive(true);
+            m_enemyTurnIndicator.SetActive(false);
+            m_enemyIndicatorOn = false;
+            m_playerTurnIndicator.SetActive(true);
+            m_playerIndicatorON = true;
         }
 
-        if(enemyTurn == true && enemyIndicatorOn == false)
+        if(m_enemyTurn == true && m_enemyIndicatorOn == false)
         {
-            playerAttackPanel.SetActive(false);
-            playerTurnIndicator.SetActive(false);
-            playerIndicatorON = false;
-            enemyTurnIndicator.SetActive(true);
-            enemyIndicatorOn = true;
+            m_playerAttackPanel.SetActive(false);
+            m_playerTurnIndicator.SetActive(false);
+            m_playerIndicatorON = false;
+            m_enemyTurnIndicator.SetActive(true);
+            m_enemyIndicatorOn = true;
         }
 
-        if(enemy.GetHealth() < 0)
+        if(m_enemy.GetHealth() < 0)
         {
-            if((player.GetGold() == winGoal.goldNeeded) &&(player.m_shards == winGoal.shardsNeeded))
+            if((m_player.GetGold() == winGoal.goldNeeded) &&(m_player.m_shards == winGoal.shardsNeeded))
             {
                 SceneManager.LoadScene("PlayerWin");
             }
@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerTurn(bool isTurn)
     {
-        m_playerTurn
+        m_playerTurn = isTurn;
+    }
+
+    public void SetEnemyTurn(bool isTurn)
+    {
+        m_enemyTurn = isTurn;
     }
 }
