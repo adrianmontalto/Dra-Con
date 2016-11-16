@@ -109,9 +109,6 @@ public class AttackPanelController : MonoBehaviour
 
     public void AttackButtonClick()
     {
-        Debug.Log("");
-        Debug.Log("player attack");
-        Debug.Log("");
         CalculateDefenseDamage();
         CalculatePlayerAttackDamage();
        

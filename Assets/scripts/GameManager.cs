@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
         if(m_enemy.GetHealth() < 0)
         {
-            if((m_player.GetGold() == winGoal.goldNeeded) &&(m_player.m_shards == winGoal.shardsNeeded))
+            if((m_player.GetGold() == winGoal.GetGoldNeeded()) &&(m_player.GetShards() == winGoal.GetShardsNeeded()))
             {
                 SceneManager.LoadScene("PlayerWin");
             }
@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (player.m_health < 0)
+        if (m_player.GetHealth() < 0)
         {
-            if ((enemy.m_gold == winGoal.goldNeeded) && (enemy.m_shards == winGoal.shardsNeeded))
+            if ((m_enemy.GetGold() == winGoal.GetGoldNeeded()) && (m_enemy.GetShards() == winGoal.GetShardsNeeded()))
             {
                 SceneManager.LoadScene("EnemyWin");
             }
@@ -74,11 +74,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool GetPlayerTurn()
+    {
+        return m_playerTurn;
+    }
     public void SetPlayerTurn(bool isTurn)
     {
         m_playerTurn = isTurn;
     }
 
+    public bool GetEnemyTurn()
+    {
+        return m_enemyTurn;
+    }
     public void SetEnemyTurn(bool isTurn)
     {
         m_enemyTurn = isTurn;

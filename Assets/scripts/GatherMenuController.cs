@@ -40,8 +40,8 @@ public class GatherMenuController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        m_availableMiners = player.m_minerNum;
-        m_availableAdvanceMiners = player.m_advanceminerNum;
+        m_availableMiners = player.GetMinerNumber();
+        m_availableAdvanceMiners = player.GetAdvanceMinerNumber();
         minersAmountText.text = m_minersNum.ToString();
         advanceMinersAmountText.text = m_advanceMinersNum.ToString();
         if(m_gatherGold == true)
@@ -107,21 +107,18 @@ public class GatherMenuController : MonoBehaviour
 
     public void GatherButton()
     {
-        Debug.Log("");
-        Debug.Log("player Gather");
-        Debug.Log("");
         if (m_gatherGold == true)
         {
-            int gold = (m_minersNum * miner.attack) + (m_advanceMinersNum * advanceMiner.attack);
-            player.m_gold += gold;
+            int gold = (m_minersNum * miner.GetAttack()) + (m_advanceMinersNum * advanceMiner.GetAttack());
+            player.AddGold(gold);
             m_minersNum = 0;
             m_advanceMinersNum = 0;
         }
 
         if (m_gatherShards == true)
         {
-            int shard = (m_minersNum * miner.attack) + (m_advanceMinersNum * advanceMiner.attack);
-            player.m_shards += shard;
+            int shard = (m_minersNum * miner.GetAttack()) + (m_advanceMinersNum * advanceMiner.GetAttack());
+            player.AddShards(shard);
             m_minersNum = 0;
             m_advanceMinersNum = 0;
         }
@@ -130,7 +127,7 @@ public class GatherMenuController : MonoBehaviour
         m_gatherShards = false;
         gatherMaterial.text = "";
         gatherMenuPanel.SetActive(false);
-        gameManager.playerTurn = false;
-        gameManager.enemyTurn = true;
+        gameManager.SetPlayerTurn(false);
+        gameManager.SetEnemyTurn(true);
     }
 }

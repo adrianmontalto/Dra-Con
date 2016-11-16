@@ -46,10 +46,10 @@ public class BuildUnitsController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        buildController.GetGoldAmountText().text = buildMenu.GetPlayer().GetGold().ToString();
-        buildController.GetTotalGoldCostText().text = buildController.GetTotalGold().ToString();
-        buildController.GetShardAmountText().text = buildMenu.GetPlayer().GetShards().ToString();
-        buildController.GetTotalShardCostText().text = buildController.GetTotalShard().ToString();
+        buildController.SetGoldAmountText(buildMenu.GetPlayer().GetGold().ToString());
+        buildController.SetTotalGoldCostText(buildController.GetTotalGold().ToString());
+        buildController.SetShardAmountText(buildMenu.GetPlayer().GetShards().ToString());
+        buildController.SetTotalShardCostText(buildController.GetTotalShard().ToString());
         SetUnitNumbersText();
     }
 

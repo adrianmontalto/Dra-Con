@@ -30,7 +30,7 @@ public class EnemyDecisionManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(gameManager.enemyTurn == true)
+        if(gameManager.GetEnemyTurn() == true)
         {
             SelectAction();
         }        
@@ -46,7 +46,6 @@ public class EnemyDecisionManager : MonoBehaviour
         foreach(KeyValuePair<string,UtilityScore> m_utilityScore in m_utilityScoreMap)
         {            
             float thisScore = m_utilityScore.Value.GetUtilityScore();
-            Debug.Log(m_utilityScore.Key + "::" + thisScore);
             if (thisScore > bestScore)
             {                
                 bestScore = thisScore;
@@ -57,43 +56,36 @@ public class EnemyDecisionManager : MonoBehaviour
         if(strBestAction == "lowerDefense")
         {
             AttackPlayer();
-            Debug.Log("dec:lower defense");
         }
 
         if(strBestAction == "destroyPlayer")
         {
-            Debug.Log("dec:destroy player");
             AttackPlayer();
             
         }
 
         if(strBestAction == "gatherGold")
         {
-            Debug.Log("dec:gather gold");
             GatherResources();            
         }
 
         if(strBestAction == "gatherShard")
         {
-            Debug.Log("dec:gather shard");
             GatherResources();            
         }
 
         if(strBestAction == "buildUnit")
         {
-            Debug.Log("dec:build unit");
             BuildResources();            
         }
 
         if(strBestAction == "buildBuilding")
         {
-            Debug.Log("dec:build building");
             BuildResources();            
         }
 
         if(strBestAction == "buildResource")
         {
-            Debug.Log("dec:build resources");
             BuildResources();            
         }
     }
@@ -115,55 +107,55 @@ public class EnemyDecisionManager : MonoBehaviour
 
     void InitValues()
     {
-        m_attackToLowerDefensesValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, player.m_maxHealth);
+        m_attackToLowerDefensesValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, player.GetMaxHealth());
         m_attackToLowerDefensesValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
-        m_attackToLowerDefensesValue.SetValue(player.m_health);
+        m_attackToLowerDefensesValue.SetValue(player.GetHealth());
 
-        m_attackToDestroyPlayerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, enemy.m_maxClosenessToWinGoal);
+        m_attackToDestroyPlayerValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 0, enemy.GetMaxClosenessToWinGoal());
         m_attackToDestroyPlayerValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
-        m_attackToDestroyPlayerValue.SetValue(enemy.m_closenessToWinGoal);
+        m_attackToDestroyPlayerValue.SetValue(enemy.GetClosenessToWinGoal());
 
-        m_gatherGoldValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 5, enemy.m_maxGold);
+        m_gatherGoldValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 5, enemy.GetMaxGold());
         m_gatherGoldValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
-        m_gatherGoldValue.SetValue(enemy.m_gold);
+        m_gatherGoldValue.SetValue(enemy.GetGold());
 
-        m_gatherShardValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 5, enemy.m_maxShard);
+        m_gatherShardValue = new UtilityValue(UtilityValue.NormalizationType.LINEAR, 5, enemy.GetMaxShard());
         m_gatherShardValue.SetNormaliztionType(UtilityValue.NormalizationType.LINEAR);
-        m_gatherShardValue.SetValue(enemy.m_shards);
+        m_gatherShardValue.SetValue(enemy.GetShards());
 
-        m_buildUnitValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, enemy.m_maxTotalUnitCount);
+        m_buildUnitValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, enemy.GetMaxTotalUnitCount());
         m_buildUnitValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
-        m_buildUnitValue.SetValue(enemy.m_totalUnitCount);
+        m_buildUnitValue.SetValue(enemy.GetTotalUnitCount());
 
-        m_buildBuildingValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, enemy.m_maxHealth);
+        m_buildBuildingValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, enemy.GetMaxHealth());
         m_buildBuildingValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
-        m_buildBuildingValue.SetValue(enemy.m_health);
+        m_buildBuildingValue.SetValue(enemy.GetHealth());
 
-        m_buildResourceValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, enemy.m_maxTotalResourceUnits);
+        m_buildResourceValue = new UtilityValue(UtilityValue.NormalizationType.INVERSE_LINEAR, 2, enemy.GetMaxTotalResourceUnits());
         m_buildResourceValue.SetNormaliztionType(UtilityValue.NormalizationType.INVERSE_LINEAR);
-        m_buildResourceValue.SetValue(enemy.m_totalResourceUnits);
+        m_buildResourceValue.SetValue(enemy.GetTotalResourceUnits());
     }
 
     void SetValues()
     {
         //sets all of the minium and maximun values
-        m_attackToLowerDefensesValue.SetMinMaxValue(0, player.m_maxHealth);
-        m_attackToDestroyPlayerValue.SetMinMaxValue(0, enemy.m_maxClosenessToWinGoal);
-        m_gatherGoldValue.SetMinMaxValue(5, enemy.m_maxGold);
-        m_gatherShardValue.SetMinMaxValue(5, enemy.m_maxShard);
-         m_buildUnitValue.SetMinMaxValue(2, enemy.m_maxTotalUnitCount);
-        m_buildBuildingValue.SetMinMaxValue(2, enemy.m_maxHealth);
-        m_buildResourceValue.SetMinMaxValue(2, enemy.m_maxTotalResourceUnits);
+        m_attackToLowerDefensesValue.SetMinMaxValue(0, player.GetMaxHealth());
+        m_attackToDestroyPlayerValue.SetMinMaxValue(0, enemy.GetMaxClosenessToWinGoal());
+        m_gatherGoldValue.SetMinMaxValue(5, enemy.GetGold());
+        m_gatherShardValue.SetMinMaxValue(5, enemy.GetMaxShard());
+        m_buildUnitValue.SetMinMaxValue(2, enemy.GetMaxTotalUnitCount());
+        m_buildBuildingValue.SetMinMaxValue(2, enemy.GetMaxHealth());
+        m_buildResourceValue.SetMinMaxValue(2, enemy.GetMaxTotalResourceUnits());
         //
 
         //sets all the values
-        m_attackToLowerDefensesValue.SetValue(player.m_health);
-        m_attackToDestroyPlayerValue.SetValue(enemy.m_closenessToWinGoal);
-        m_gatherGoldValue.SetValue(enemy.m_gold);
-        m_gatherShardValue.SetValue(enemy.m_shards);
-        m_buildUnitValue.SetValue(enemy.m_totalUnitCount);
-        m_buildBuildingValue.SetValue(enemy.m_health);
-        m_buildResourceValue.SetValue(enemy.m_totalResourceUnits);
+        m_attackToLowerDefensesValue.SetValue(player.GetHealth());
+        m_attackToDestroyPlayerValue.SetValue(enemy.GetClosenessToWinGoal());
+        m_gatherGoldValue.SetValue(enemy.GetGold());
+        m_gatherShardValue.SetValue(enemy.GetShards());
+        m_buildUnitValue.SetValue(enemy.GetTotalUnitCount());
+        m_buildBuildingValue.SetValue(enemy.GetHealth());
+        m_buildResourceValue.SetValue(enemy.GetTotalResourceUnits());
         //
     }
 

@@ -42,7 +42,7 @@ public class PlayerStatText : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        healthText.text = player.m_health.ToString();
+        healthText.text = player.GetHealth().ToString();
         SetResourceText();
         SetUnitsText();
         SetBuildingsText();
@@ -51,29 +51,29 @@ public class PlayerStatText : MonoBehaviour
 
     void SetResourceText()
     {
-        goldText.text = player.m_gold.ToString();
-        shardsText.text = player.m_shards.ToString();
+        goldText.text = player.GetGold().ToString();
+        shardsText.text = player.GetShards().ToString();
     }
 
     void SetUnitsText()
     {
-        dragonWarriorsText.text = player.m_dragonWarriorNum.ToString();
-        dragonTanksText.text = player.m_dragonTankNum.ToString();
-        dragonsText.text = player.m_dragonNum.ToString();
-        minersText.text = player.m_minerNum.ToString();
-        advanceminersText.text = player.m_advanceminerNum.ToString();
+        dragonWarriorsText.text = player.GetDragonWarriorNumber().ToString();
+        dragonTanksText.text = player.GetDragonTankNumber().ToString();
+        dragonsText.text = player.GetDragonNumber().ToString();
+        minersText.text = player.GetMinerNumber().ToString();
+        advanceminersText.text = player.GetAdvanceMinerNumber().ToString();
     }
 
     void SetBuildingsText()
     {
-        barracksText.text = player.m_barrackNum.ToString();
-        dragonPortalText.text = player.m_dragonPortalNum.ToString();
+        barracksText.text = player.GetBarracksNumber().ToString();
+        dragonPortalText.text = player.GetDragonPortalNumber().ToString();
     }
 
     void SetDefenseText()
     {
-        wallsText.text = player.m_wallNum.ToString();
-        antiAirTurretsText.text = player.m_antiAirTurretNum.ToString();
-        minesText.text = player.m_mineNum.ToString();
+        wallsText.text = player.GetWallNumber().ToString();
+        antiAirTurretsText.text = player.GetAntiAirTurretNumber().ToString();
+        minesText.text = player.GetMineNumber().ToString();
     }
 }

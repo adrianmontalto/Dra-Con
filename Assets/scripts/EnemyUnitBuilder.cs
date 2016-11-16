@@ -184,7 +184,20 @@ public class EnemyUnitBuilder : MonoBehaviour
         m_advanceMinerNum += amount;
     }
 
+    public int GetBarracksNum()
+    {
+        return m_barracksNum;
+    }
 
+    public void ReduceBarracksNum(int amount)
+    {
+        m_barracksNum -= amount;
+    }
+
+    public void AddBarracksNum(int amount)
+    {
+        m_barracksNum += amount;
+    }
     public int GetDragonPortalNumber()
     {
         return m_dragonPortalsNum;
@@ -230,4 +243,18 @@ public class EnemyUnitBuilder : MonoBehaviour
         m_antiAirTurretNum += amount;
     }
 
+    public int GetMinesNum()
+    {
+        return m_minesNum;
+    }
+
+    public void ReduceMineNum(int amount)
+    {
+        m_minesNum -= amount;
+    }
+
+    public void AddMineNum(int amount)
+    {
+        m_minesNum += amount;
+    }
 }

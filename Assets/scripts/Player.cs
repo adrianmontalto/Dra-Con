@@ -390,6 +390,10 @@ public class Player : MonoBehaviour
         return m_playerUnits;
     }
     
+    public void SetPlayerUnitsList(List<GameItem> list)
+    {
+        m_playerUnits = list;
+    }
     public int GetHealth()
     {
         return m_health;

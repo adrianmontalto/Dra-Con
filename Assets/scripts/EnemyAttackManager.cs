@@ -100,19 +100,16 @@ public class EnemyAttackManager : MonoBehaviour
 
         if (strBestAction == "lowAttack")
         {
-            Debug.Log("atk: low attack");
             LowAttack();            
         }
 
         if (strBestAction == "mediumAttack")
         {
-            Debug.Log("atk: medium attack");
             MediumAttack();            
         }
 
         if (strBestAction == "highAttack")
         {
-            Debug.Log("atk: high attack");
             HighAttack();            
         }
     }

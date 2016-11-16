@@ -42,7 +42,7 @@ public class EnemyStatText : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        healthText.text = enemy.m_health.ToString();
+        healthText.text = enemy.GetHealth().ToString();
         SetResourceText();
         SetUnitsText();
         SetBuildingsText();
@@ -51,29 +51,29 @@ public class EnemyStatText : MonoBehaviour
 
     void SetResourceText()
     {
-        goldText.text = enemy.m_gold.ToString();
-        shardsText.text = enemy.m_shards.ToString();
+        goldText.text = enemy.GetGold().ToString();
+        shardsText.text = enemy.GetShards().ToString();
     }
 
     void SetUnitsText()
     {
-        dragonWarriorsText.text = enemy.m_dragonWarriorNum.ToString();
-        dragonTanksText.text = enemy.m_dragonTankNum.ToString();
-        dragonsText.text = enemy.m_dragonNum.ToString();
-        minersText.text = enemy.m_minerNum.ToString();
-        advanceminersText.text = enemy.m_advanceminerNum.ToString();
+        dragonWarriorsText.text = enemy.GetDragonWarriorNumber().ToString();
+        dragonTanksText.text = enemy.GetDragonTankNumber().ToString();
+        dragonsText.text = enemy.GetDragonNumber().ToString();
+        minersText.text = enemy.GetMinerNumber().ToString();
+        advanceminersText.text = enemy.GetAdvanceMinerNumber().ToString();
     }
 
     void SetBuildingsText()
     {
-        barracksText.text = enemy.m_barrackNum.ToString();
-        dragonPortalText.text = enemy.m_dragonPortalNum.ToString();
+        barracksText.text = enemy.GetBarracksNumber().ToString();
+        dragonPortalText.text = enemy.GetDragonPortalNumber().ToString();
     }
 
     void SetDefenseText()
     {
-        wallsText.text = enemy.m_wallNum.ToString();
-        antiAirTurretsText.text = enemy.m_antiAirTurretNum.ToString();
-        minesText.text = enemy.m_mineNum.ToString();
+        wallsText.text = enemy.GetWallNumber().ToString();
+        antiAirTurretsText.text = enemy.GetAntiAirTurretNumber().ToString();
+        minesText.text = enemy.GetMineNumber().ToString();
     }
 }

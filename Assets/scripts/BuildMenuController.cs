@@ -61,9 +61,6 @@ public class BuildMenuController : MonoBehaviour
 
     public void BuildButtonClick()
     {
-        Debug.Log("");
-        Debug.Log("player build");
-        Debug.Log("");
         if (m_totalShard < player.GetShards() && m_totalGold < player.GetGold())
         {
             buildMenu.AddPlayerBuildings();
@@ -85,9 +82,19 @@ public class BuildMenuController : MonoBehaviour
         return m_goldAmountText;
     }
 
+    public void SetGoldAmountText(string text)
+    {
+        m_goldAmountText.text = text;
+    }
+
     public Text GetTotalGoldCostText()
     {
         return m_totalGoldCostText;
+    }
+
+    public void SetTotalGoldCostText(string text)
+    {
+        m_totalGoldCostText.text = text;
     }
 
     public Text GetShardAmountText()
@@ -95,9 +102,19 @@ public class BuildMenuController : MonoBehaviour
         return m_shardAmountText;
     }
 
+    public void SetShardAmountText(string text)
+    {
+        m_shardAmountText.text = text;
+    }
+
     public Text GetTotalShardCostText()
     {
         return m_totalShardCostText;
+    }
+
+    public void SetTotalShardCostText(string text)
+    {
+        m_totalShardCostText.text = text;
     }
 
     public int GetTotalGold()
